@@ -19,18 +19,18 @@ class _PegawaiPageState extends State<PegawaiPage> {
           GestureDetector(
             child: const Card(
               child: ListTile(
-                title: Text("Budi Santoso"),
-                subtitle: Text("NIP: 198501012010011001"),
+                title: Text("Darell Rangga Putra Rachman"),
+                subtitle: Text("NIM/NIP: 19241009 (Absen: 37)"),
               ),
             ),
             onTap: () {
               Pegawai pegawai = Pegawai(
-                id: 1,
-                nip: "198501012010011001",
-                nama: "Budi Santoso",
-                tanggalLahir: "1985-01-01",
+                id: 37,
+                nip: "19241009",
+                nama: "Darell Rangga Putra Rachman",
+                tanggalLahir: "2005-08-16",
                 nomorTelepon: "081234567890",
-                email: "budi.santoso@klinik.com",
+                email: "darell.rangga@klinik.com",
                 password: "password123",
               );
               Navigator.push(

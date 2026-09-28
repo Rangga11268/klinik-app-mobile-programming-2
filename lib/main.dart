@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './ui/poli_page.dart';
+// import './ui/pegawai_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const PoliPage(),
+      // home: const PegawaiPage(),
+      // home: const PasienPage(),
     );
   }
 }
