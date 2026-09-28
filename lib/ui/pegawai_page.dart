@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/pegawai.dart';
 import 'pegawai_detail.dart';
+import 'sidebar.dart';
 
 class PegawaiPage extends StatefulWidget {
   const PegawaiPage({super.key});
@@ -13,6 +14,7 @@ class _PegawaiPageState extends State<PegawaiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Sidebar(),
       appBar: AppBar(title: const Text("Data Pegawai")),
       body: ListView(
         children: [
@@ -28,7 +30,7 @@ class _PegawaiPageState extends State<PegawaiPage> {
                 id: 37,
                 nip: "19241009",
                 nama: "Darell Rangga Putra Rachman",
-                tanggalLahir: "2005-08-16",
+                tanggalLahir: "2005-11-26",
                 nomorTelepon: "081234567890",
                 email: "darell.rangga@klinik.com",
                 password: "password123",

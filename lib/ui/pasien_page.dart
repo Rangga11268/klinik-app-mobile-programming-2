@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/pasien.dart';
 import 'pasien_detail.dart';
+import 'sidebar.dart';
 
 class PasienPage extends StatefulWidget {
   const PasienPage({super.key});
@@ -13,6 +14,7 @@ class _PasienPageState extends State<PasienPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Sidebar(),
       appBar: AppBar(title: const Text("Data Pasien")),
       body: ListView(
         children: [

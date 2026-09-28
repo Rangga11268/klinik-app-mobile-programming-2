@@ -21,14 +21,8 @@ class _PegawaiDetailState extends State<PegawaiDetail> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            if (widget.pegawai.id != null)
-              Text(
-                "No. Absen / ID : ${widget.pegawai.id}",
-                style: const TextStyle(fontSize: 18),
-              ),
-            if (widget.pegawai.id != null) const SizedBox(height: 10),
             Text(
-              "NIM / NIP : ${widget.pegawai.nip}",
+              "NIP : ${widget.pegawai.nip}",
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 10),
