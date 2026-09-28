@@ -30,9 +30,9 @@ class _PegawaiPageState extends State<PegawaiPage> {
                 id: 37,
                 nip: "19241009",
                 nama: "Darell Rangga Putra Rachman",
-                tanggalLahir: "2005-11-26",
-                nomorTelepon: "081234567890",
-                email: "darell.rangga@klinik.com",
+                tanggalLahir: "2005-08-16",
+                nomorTelepon: "08978638973",
+                email: "darellrangga@gmail.com",
                 password: "password123",
               );
               Navigator.push(
