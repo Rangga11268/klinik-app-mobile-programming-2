@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+import '../model/pegawai.dart';
+
+class PegawaiDetail extends StatefulWidget {
+  final Pegawai pegawai;
+
+  const PegawaiDetail({super.key, required this.pegawai});
+
+  @override
+  State<PegawaiDetail> createState() => _PegawaiDetailState();
+}
+
+class _PegawaiDetailState extends State<PegawaiDetail> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Detail Pegawai")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            Text(
+              "NIP : ${widget.pegawai.nip}",
+              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Nama Pegawai : ${widget.pegawai.nama}",
+              style: const TextStyle(fontSize: 18),
+            ),
+            if (widget.pegawai.tanggalLahir != null) ...[
+              const SizedBox(height: 10),
+              Text(
+                "Tanggal Lahir : ${widget.pegawai.tanggalLahir}",
+                style: const TextStyle(fontSize: 16),
+              ),
+            ],
+            if (widget.pegawai.nomorTelepon != null) ...[
+              const SizedBox(height: 10),
+              Text(
+                "Nomor Telepon : ${widget.pegawai.nomorTelepon}",
+                style: const TextStyle(fontSize: 16),
+              ),
+            ],
+            if (widget.pegawai.email != null) ...[
+              const SizedBox(height: 10),
+              Text(
+                "Email : ${widget.pegawai.email}",
+                style: const TextStyle(fontSize: 16),
+              ),
+            ],
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  child: const Text("Ubah"),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  child: const Text("Hapus"),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
