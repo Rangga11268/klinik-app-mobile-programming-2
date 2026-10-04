@@ -73,3 +73,4 @@ class _PegawaiDetailState extends State<PegawaiDetail> {
     );
   }
 }
+

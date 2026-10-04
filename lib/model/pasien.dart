@@ -15,3 +15,4 @@ class Pasien {
     this.alamat,
   });
 }
+
