@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/poli.dart';
-import 'poli_detail.dart';
+import 'poli_form.dart';
+import 'poli_item.dart';
 
 class Poli37 extends StatefulWidget {
   const Poli37({super.key});
@@ -35,73 +36,27 @@ class _Poli37State extends State<Poli37> {
             ),
           ],
         ),
+        actions: [
+          GestureDetector(
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Icon(Icons.add, size: 28),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PoliForm()),
+              );
+            },
+          )
+        ],
       ),
       body: ListView(
         children: [
-          GestureDetector(
-            child: const Card(
-              child: ListTile(
-                title: Text("POLI MATA"),
-              ),
-            ),
-            onTap: () {
-              Poli poliMata = Poli(namaPoli: "POLI MATA");
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PoliDetail(poli: poliMata),
-                ),
-              );
-            },
-          ),
-          GestureDetector(
-            child: const Card(
-              child: ListTile(
-                title: Text("POLI PENYAKIT DALAM"),
-              ),
-            ),
-            onTap: () {
-              Poli poliPenyakitDalam = Poli(namaPoli: "POLI PENYAKIT DALAM");
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PoliDetail(poli: poliPenyakitDalam),
-                ),
-              );
-            },
-          ),
-          GestureDetector(
-            child: const Card(
-              child: ListTile(
-                title: Text("POLI KULIT"),
-              ),
-            ),
-            onTap: () {
-              Poli poliKulit = Poli(namaPoli: "POLI KULIT");
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PoliDetail(poli: poliKulit),
-                ),
-              );
-            },
-          ),
-          GestureDetector(
-            child: const Card(
-              child: ListTile(
-                title: Text("POLI TULANG"),
-              ),
-            ),
-            onTap: () {
-              Poli poliTulang = Poli(namaPoli: "POLI TULANG");
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PoliDetail(poli: poliTulang),
-                ),
-              );
-            },
-          ),
+          PoliItem(poli: Poli(namaPoli: "POLI MATA")),
+          PoliItem(poli: Poli(namaPoli: "POLI PENYAKIT DALAM")),
+          PoliItem(poli: Poli(namaPoli: "POLI KULIT")),
+          PoliItem(poli: Poli(namaPoli: "POLI TULANG")),
         ],
       ),
     );
