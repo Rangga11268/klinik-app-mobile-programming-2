@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../model/poli.dart';
 import 'poli_form.dart';
 import 'poli_item.dart';
+import 'sidebar.dart';
 
 class Poli37 extends StatefulWidget {
   const Poli37({super.key});
@@ -21,6 +22,7 @@ class _Poli37State extends State<Poli37> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Sidebar(),
       appBar: AppBar(
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../model/pasien.dart';
 import 'pasien_form.dart';
 import 'pasien_item.dart';
+import 'sidebar.dart';
 
 class PasienPage extends StatefulWidget {
   const PasienPage({super.key});
@@ -13,6 +14,7 @@ class PasienPage extends StatefulWidget {
 class _PasienPageState extends State<PasienPage> {
   List<Pasien> listPasien = [
     Pasien(
+      id: "1",
       nomorRm: "RM-001",
       nama: "Rizky Ramadhan",
       tanggalLahir: "2000-05-10",
@@ -20,6 +22,7 @@ class _PasienPageState extends State<PasienPage> {
       alamat: "Jl. Margonda No. 12",
     ),
     Pasien(
+      id: "2",
       nomorRm: "RM-002",
       nama: "Dewi Lestari",
       tanggalLahir: "1995-08-20",
@@ -27,6 +30,7 @@ class _PasienPageState extends State<PasienPage> {
       alamat: "Jl. Fatmawati No. 45",
     ),
     Pasien(
+      id: "3",
       nomorRm: "RM-003",
       nama: "Bambang Pamungkas",
       tanggalLahir: "1980-06-10",
@@ -38,6 +42,7 @@ class _PasienPageState extends State<PasienPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Sidebar(),
       appBar: AppBar(
         title: const Text("Data Pasien"),
         actions: [
