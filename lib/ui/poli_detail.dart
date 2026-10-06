@@ -12,14 +12,6 @@ class PoliDetail extends StatefulWidget {
 }
 
 class _PoliDetailState extends State<PoliDetail> {
-  late String _namaPoli;
-
-  @override
-  void initState() {
-    super.initState();
-    _namaPoli = widget.poli.namaPoli;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +20,7 @@ class _PoliDetailState extends State<PoliDetail> {
         children: [
           const SizedBox(height: 20),
           Text(
-            "Nama Poli : $_namaPoli",
+            "Nama Poli : ${widget.poli.namaPoli}",
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 15),
@@ -100,9 +92,7 @@ class _PoliDetailState extends State<PoliDetail> {
           ),
         );
         if (updated != null) {
-          setState(() {
-            _namaPoli = updated.namaPoli;
-          });
+          setState(() {});
         }
       },
       style: ElevatedButton.styleFrom(backgroundColor: Colors.green),

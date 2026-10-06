@@ -12,24 +12,6 @@ class PegawaiDetail extends StatefulWidget {
 }
 
 class _PegawaiDetailState extends State<PegawaiDetail> {
-  late String _nip;
-  late String _nama;
-  late String _tglLahir;
-  late String _telepon;
-  late String _email;
-  late String _password;
-
-  @override
-  void initState() {
-    super.initState();
-    _nip = widget.pegawai.nip;
-    _nama = widget.pegawai.nama;
-    _tglLahir = widget.pegawai.tanggalLahir ?? "";
-    _telepon = widget.pegawai.nomorTelepon ?? "";
-    _email = widget.pegawai.email ?? "";
-    _password = widget.pegawai.password ?? "";
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,17 +29,32 @@ class _PegawaiDetailState extends State<PegawaiDetail> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("NIP : $_nip", style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text(
+                      "NIP : ${widget.pegawai.nip}",
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
                     const Divider(),
-                    Text("Nama Pegawai : $_nama", style: const TextStyle(fontSize: 16)),
+                    Text("Nama Pegawai : ${widget.pegawai.nama}", style: const TextStyle(fontSize: 16)),
                     const SizedBox(height: 8),
-                    Text("Tanggal Lahir : $_tglLahir", style: const TextStyle(fontSize: 16)),
+                    Text(
+                      "Tanggal Lahir : ${widget.pegawai.tanggalLahir ?? '-'}",
+                      style: const TextStyle(fontSize: 16),
+                    ),
                     const SizedBox(height: 8),
-                    Text("Nomor Telepon : $_telepon", style: const TextStyle(fontSize: 16)),
+                    Text(
+                      "Nomor Telepon : ${widget.pegawai.nomorTelepon ?? '-'}",
+                      style: const TextStyle(fontSize: 16),
+                    ),
                     const SizedBox(height: 8),
-                    Text("Email : $_email", style: const TextStyle(fontSize: 16)),
+                    Text(
+                      "Email : ${widget.pegawai.email ?? '-'}",
+                      style: const TextStyle(fontSize: 16),
+                    ),
                     const SizedBox(height: 8),
-                    Text("Password : ${'*' * _password.length}", style: const TextStyle(fontSize: 16)),
+                    Text(
+                      "Password : ${'*' * (widget.pegawai.password?.length ?? 6)}",
+                      style: const TextStyle(fontSize: 16),
+                    ),
                   ],
                 ),
               ),
@@ -86,14 +83,7 @@ class _PegawaiDetailState extends State<PegawaiDetail> {
           ),
         );
         if (updated != null) {
-          setState(() {
-            _nip = updated.nip;
-            _nama = updated.nama;
-            _tglLahir = updated.tanggalLahir ?? "";
-            _telepon = updated.nomorTelepon ?? "";
-            _email = updated.email ?? "";
-            _password = updated.password ?? "";
-          });
+          setState(() {});
         }
       },
       style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
