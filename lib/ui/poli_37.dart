@@ -11,6 +11,13 @@ class Poli37 extends StatefulWidget {
 }
 
 class _Poli37State extends State<Poli37> {
+  List<Poli> listPoli = [
+    Poli(namaPoli: "POLI MATA"),
+    Poli(namaPoli: "POLI PENYAKIT DALAM"),
+    Poli(namaPoli: "POLI KULIT"),
+    Poli(namaPoli: "POLI TULANG"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,22 +49,22 @@ class _Poli37State extends State<Poli37> {
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Icon(Icons.add, size: 28),
             ),
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              final newPoli = await Navigator.push<Poli>(
                 context,
                 MaterialPageRoute(builder: (context) => const PoliForm()),
               );
+              if (newPoli != null) {
+                setState(() {
+                  listPoli.add(newPoli);
+                });
+              }
             },
           )
         ],
       ),
       body: ListView(
-        children: [
-          PoliItem(poli: Poli(namaPoli: "POLI MATA")),
-          PoliItem(poli: Poli(namaPoli: "POLI PENYAKIT DALAM")),
-          PoliItem(poli: Poli(namaPoli: "POLI KULIT")),
-          PoliItem(poli: Poli(namaPoli: "POLI TULANG")),
-        ],
+        children: listPoli.map((poli) => PoliItem(poli: poli)).toList(),
       ),
     );
   }

@@ -11,6 +11,30 @@ class PegawaiPage extends StatefulWidget {
 }
 
 class _PegawaiPageState extends State<PegawaiPage> {
+  List<Pegawai> listPegawai = [
+    Pegawai(
+      nip: "198801012015011001",
+      nama: "Dr. Budi Santoso, Sp.A",
+      tanggalLahir: "1988-01-01",
+      nomorTelepon: "081234567890",
+      email: "budi@klinik.com",
+    ),
+    Pegawai(
+      nip: "199002022016022002",
+      nama: "Siti Rahmawati, S.Kep",
+      tanggalLahir: "1990-02-02",
+      nomorTelepon: "081298765432",
+      email: "siti@klinik.com",
+    ),
+    Pegawai(
+      nip: "199203032017031003",
+      nama: "Ahmad Fauzi, S.Farm",
+      tanggalLahir: "1992-03-03",
+      nomorTelepon: "081311223344",
+      email: "ahmad@klinik.com",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,50 +43,26 @@ class _PegawaiPageState extends State<PegawaiPage> {
         actions: [
           GestureDetector(
             child: const Padding(
-              padding: EdgeInsets.only(right: 16.0),
-              child: Icon(Icons.add),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Icon(Icons.add, size: 28),
             ),
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              final newPegawai = await Navigator.push<Pegawai>(
                 context,
                 MaterialPageRoute(builder: (context) => const PegawaiForm()),
               );
+              if (newPegawai != null) {
+                setState(() {
+                  listPegawai.add(newPegawai);
+                });
+              }
             },
           )
         ],
       ),
       body: ListView(
-        children: [
-          PegawaiItem(
-            pegawai: Pegawai(
-              nip: "198801012015011001",
-              nama: "Dr. Budi Santoso, Sp.A",
-              tanggalLahir: "1988-01-01",
-              nomorTelepon: "081234567890",
-              email: "budi@klinik.com",
-            ),
-          ),
-          PegawaiItem(
-            pegawai: Pegawai(
-              nip: "199002022016022002",
-              nama: "Siti Rahmawati, S.Kep",
-              tanggalLahir: "1990-02-02",
-              nomorTelepon: "081298765432",
-              email: "siti@klinik.com",
-            ),
-          ),
-          PegawaiItem(
-            pegawai: Pegawai(
-              nip: "199203032017031003",
-              nama: "Ahmad Fauzi, S.Farm",
-              tanggalLahir: "1992-03-03",
-              nomorTelepon: "081311223344",
-              email: "ahmad@klinik.com",
-            ),
-          ),
-        ],
+        children: listPegawai.map((pegawai) => PegawaiItem(pegawai: pegawai)).toList(),
       ),
     );
   }
 }
-

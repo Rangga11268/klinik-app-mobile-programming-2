@@ -11,6 +11,30 @@ class PasienPage extends StatefulWidget {
 }
 
 class _PasienPageState extends State<PasienPage> {
+  List<Pasien> listPasien = [
+    Pasien(
+      nomorRm: "RM-001",
+      nama: "Rizky Ramadhan",
+      tanggalLahir: "2000-05-10",
+      nomorTelepon: "085678901234",
+      alamat: "Jl. Margonda No. 12",
+    ),
+    Pasien(
+      nomorRm: "RM-002",
+      nama: "Dewi Lestari",
+      tanggalLahir: "1995-08-20",
+      nomorTelepon: "087812345678",
+      alamat: "Jl. Fatmawati No. 45",
+    ),
+    Pasien(
+      nomorRm: "RM-003",
+      nama: "Bambang Pamungkas",
+      tanggalLahir: "1980-06-10",
+      nomorTelepon: "081912345678",
+      alamat: "Jl. Sudirman No. 88",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,50 +43,26 @@ class _PasienPageState extends State<PasienPage> {
         actions: [
           GestureDetector(
             child: const Padding(
-              padding: EdgeInsets.only(right: 16.0),
-              child: Icon(Icons.add),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Icon(Icons.add, size: 28),
             ),
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              final newPasien = await Navigator.push<Pasien>(
                 context,
                 MaterialPageRoute(builder: (context) => const PasienForm()),
               );
+              if (newPasien != null) {
+                setState(() {
+                  listPasien.add(newPasien);
+                });
+              }
             },
           )
         ],
       ),
       body: ListView(
-        children: [
-          PasienItem(
-            pasien: Pasien(
-              nomorRm: "RM-001",
-              nama: "Rizky Ramadhan",
-              tanggalLahir: "2000-05-10",
-              nomorTelepon: "085678901234",
-              alamat: "Jl. Margonda No. 12",
-            ),
-          ),
-          PasienItem(
-            pasien: Pasien(
-              nomorRm: "RM-002",
-              nama: "Dewi Lestari",
-              tanggalLahir: "1995-08-20",
-              nomorTelepon: "087812345678",
-              alamat: "Jl. Fatmawati No. 45",
-            ),
-          ),
-          PasienItem(
-            pasien: Pasien(
-              nomorRm: "RM-003",
-              nama: "Bambang Pamungkas",
-              tanggalLahir: "1980-06-10",
-              nomorTelepon: "081912345678",
-              alamat: "Jl. Sudirman No. 88",
-            ),
-          ),
-        ],
+        children: listPasien.map((pasien) => PasienItem(pasien: pasien)).toList(),
       ),
     );
   }
 }
-

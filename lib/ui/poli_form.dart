@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../model/poli.dart';
 
 class PoliForm extends StatefulWidget {
   const PoliForm({super.key});
@@ -9,6 +10,13 @@ class PoliForm extends StatefulWidget {
 
 class _PoliFormState extends State<PoliForm> {
   final _formKey = GlobalKey<FormState>();
+  final _namaPoliCtrl = TextEditingController();
+
+  @override
+  void dispose() {
+    _namaPoliCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +29,18 @@ class _PoliFormState extends State<PoliForm> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                const TextField(
-                  decoration: InputDecoration(labelText: "Nama Poli"),
+                TextField(
+                  controller: _namaPoliCtrl,
+                  decoration: const InputDecoration(labelText: "Nama Poli"),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_namaPoliCtrl.text.trim().isNotEmpty) {
+                      Poli poliBaru = Poli(namaPoli: _namaPoliCtrl.text.trim());
+                      Navigator.pop(context, poliBaru);
+                    }
+                  },
                   child: const Text("Simpan"),
                 ),
               ],
@@ -37,4 +51,3 @@ class _PoliFormState extends State<PoliForm> {
     );
   }
 }
-
