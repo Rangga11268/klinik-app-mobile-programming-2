@@ -68,8 +68,22 @@ class _PegawaiPageState extends State<PegawaiPage> {
           )
         ],
       ),
-      body: ListView(
-        children: listPegawai.map((pegawai) => PegawaiItem(pegawai: pegawai)).toList(),
+      body: ListView.builder(
+        itemCount: listPegawai.length,
+        itemBuilder: (context, index) {
+          final item = listPegawai[index];
+          return PegawaiItem(
+            pegawai: item,
+            onDelete: () {
+              setState(() {
+                listPegawai.removeAt(index);
+              });
+            },
+            onUpdate: () {
+              setState(() {});
+            },
+          );
+        },
       ),
     );
   }

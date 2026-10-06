@@ -65,8 +65,22 @@ class _PasienPageState extends State<PasienPage> {
           )
         ],
       ),
-      body: ListView(
-        children: listPasien.map((pasien) => PasienItem(pasien: pasien)).toList(),
+      body: ListView.builder(
+        itemCount: listPasien.length,
+        itemBuilder: (context, index) {
+          final item = listPasien[index];
+          return PasienItem(
+            pasien: item,
+            onDelete: () {
+              setState(() {
+                listPasien.removeAt(index);
+              });
+            },
+            onUpdate: () {
+              setState(() {});
+            },
+          );
+        },
       ),
     );
   }

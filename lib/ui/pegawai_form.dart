@@ -28,6 +28,22 @@ class _PegawaiFormState extends State<PegawaiForm> {
     super.dispose();
   }
 
+  Future<void> _pilihTanggalLahir(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime(1995, 1, 1),
+      firstDate: DateTime(1950),
+      lastDate: DateTime.now(),
+    );
+    if (pickedDate != null) {
+      String formattedDate =
+          "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
+      setState(() {
+        _tglLahirCtrl.text = formattedDate;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,16 +67,24 @@ class _PegawaiFormState extends State<PegawaiForm> {
                 const SizedBox(height: 10),
                 TextField(
                   controller: _tglLahirCtrl,
-                  decoration: const InputDecoration(labelText: "Tanggal Lahir"),
+                  readOnly: true,
+                  onTap: () => _pilihTanggalLahir(context),
+                  decoration: const InputDecoration(
+                    labelText: "Tanggal Lahir",
+                    hintText: "Pilih tanggal lahir",
+                    suffixIcon: Icon(Icons.calendar_today),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 TextField(
                   controller: _teleponCtrl,
+                  keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(labelText: "Nomor Telepon"),
                 ),
                 const SizedBox(height: 10),
                 TextField(
                   controller: _emailCtrl,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(labelText: "Email"),
                 ),
                 const SizedBox(height: 10),
