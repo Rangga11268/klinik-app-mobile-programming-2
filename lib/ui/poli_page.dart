@@ -63,8 +63,22 @@ class _PoliPageState extends State<PoliPage> {
           )
         ],
       ),
-      body: ListView(
-        children: listPoli.map((poli) => PoliItem(poli: poli)).toList(),
+      body: ListView.builder(
+        itemCount: listPoli.length,
+        itemBuilder: (context, index) {
+          final item = listPoli[index];
+          return PoliItem(
+            poli: item,
+            onDelete: () {
+              setState(() {
+                listPoli.removeAt(index);
+              });
+            },
+            onUpdate: () {
+              setState(() {});
+            },
+          );
+        },
       ),
     );
   }
