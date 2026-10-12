@@ -29,25 +29,33 @@ class _PoliFormState extends State<PoliForm> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                TextField(
-                  controller: _namaPoliCtrl,
-                  decoration: const InputDecoration(labelText: "Nama Poli"),
-                ),
+                _fieldNamaPoli(),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_namaPoliCtrl.text.trim().isNotEmpty) {
-                      Poli poliBaru = Poli(namaPoli: _namaPoliCtrl.text.trim());
-                      Navigator.pop(context, poliBaru);
-                    }
-                  },
-                  child: const Text("Simpan"),
-                ),
+                _tombolSimpan(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _fieldNamaPoli() {
+    return TextField(
+      controller: _namaPoliCtrl,
+      decoration: const InputDecoration(labelText: "Nama Poli"),
+    );
+  }
+
+  Widget _tombolSimpan() {
+    return ElevatedButton(
+      onPressed: () {
+        if (_namaPoliCtrl.text.trim().isNotEmpty) {
+          Poli poliBaru = Poli(namaPoli: _namaPoliCtrl.text.trim());
+          Navigator.pop(context, poliBaru);
+        }
+      },
+      child: const Text("Simpan"),
     );
   }
 }
