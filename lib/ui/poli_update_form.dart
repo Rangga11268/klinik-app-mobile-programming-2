@@ -49,21 +49,34 @@ class _PoliUpdateFormState extends State<PoliUpdateForm> {
   }
 
   Widget _fieldNamaPoli() {
-    return TextField(
-      decoration: const InputDecoration(labelText: "Nama Poli"),
+    return TextFormField(
+      decoration: const InputDecoration(
+        labelText: "Nama Poli",
+        border: OutlineInputBorder(),
+      ),
       controller: _namaPoliCtrl,
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Nama Poli wajib diisi";
+        }
+        return null;
+      },
     );
   }
 
   Widget _tombolSimpan() {
-    return ElevatedButton(
-      onPressed: () {
-        if (_namaPoliCtrl.text.trim().isNotEmpty) {
-          widget.poli.namaPoli = _namaPoliCtrl.text.trim();
-          Navigator.pop(context, widget.poli);
-        }
-      },
-      child: const Text("Simpan Perubahan"),
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            widget.poli.namaPoli = _namaPoliCtrl.text.trim();
+            Navigator.pop(context, widget.poli);
+          }
+        },
+        child: const Text("Simpan Perubahan", style: TextStyle(fontSize: 16)),
+      ),
     );
   }
 }

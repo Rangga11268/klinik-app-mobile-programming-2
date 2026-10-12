@@ -74,63 +74,147 @@ class _PegawaiUpdateFormState extends State<PegawaiUpdateForm> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                TextField(
-                  controller: _nipCtrl,
-                  decoration: const InputDecoration(labelText: "NIP"),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _namaCtrl,
-                  decoration: const InputDecoration(labelText: "Nama Pegawai"),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _tglLahirCtrl,
-                  readOnly: true,
-                  onTap: () => _pilihTanggalLahir(context),
-                  decoration: const InputDecoration(
-                    labelText: "Tanggal Lahir",
-                    hintText: "Pilih tanggal lahir",
-                    suffixIcon: Icon(Icons.calendar_today),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _teleponCtrl,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(labelText: "Nomor Telepon"),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _emailCtrl,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(labelText: "Email"),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _passwordCtrl,
-                  obscureText: true,
-                  decoration: const InputDecoration(labelText: "Password"),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_namaCtrl.text.trim().isNotEmpty && _nipCtrl.text.trim().isNotEmpty) {
-                      widget.pegawai.nip = _nipCtrl.text.trim();
-                      widget.pegawai.nama = _namaCtrl.text.trim();
-                      widget.pegawai.tanggalLahir = _tglLahirCtrl.text.trim();
-                      widget.pegawai.nomorTelepon = _teleponCtrl.text.trim();
-                      widget.pegawai.email = _emailCtrl.text.trim();
-                      widget.pegawai.password = _passwordCtrl.text.trim();
-                      Navigator.pop(context, widget.pegawai);
-                    }
-                  },
-                  child: const Text("Simpan Perubahan"),
-                ),
+                _fieldNip(),
+                const SizedBox(height: 12),
+                _fieldNama(),
+                const SizedBox(height: 12),
+                _fieldTanggalLahir(context),
+                const SizedBox(height: 12),
+                _fieldTelepon(),
+                const SizedBox(height: 12),
+                _fieldEmail(),
+                const SizedBox(height: 12),
+                _fieldPassword(),
+                const SizedBox(height: 24),
+                _tombolSimpan(),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _fieldNip() {
+    return TextFormField(
+      controller: _nipCtrl,
+      decoration: const InputDecoration(
+        labelText: "NIP",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "NIP wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldNama() {
+    return TextFormField(
+      controller: _namaCtrl,
+      decoration: const InputDecoration(
+        labelText: "Nama Pegawai",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Nama Pegawai wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldTanggalLahir(BuildContext context) {
+    return TextFormField(
+      controller: _tglLahirCtrl,
+      readOnly: true,
+      onTap: () => _pilihTanggalLahir(context),
+      decoration: const InputDecoration(
+        labelText: "Tanggal Lahir",
+        hintText: "Pilih tanggal lahir",
+        border: OutlineInputBorder(),
+        suffixIcon: Icon(Icons.calendar_today),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Tanggal Lahir wajib dipilih";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldTelepon() {
+    return TextFormField(
+      controller: _teleponCtrl,
+      keyboardType: TextInputType.phone,
+      decoration: const InputDecoration(
+        labelText: "Nomor Telepon",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Nomor Telepon wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldEmail() {
+    return TextFormField(
+      controller: _emailCtrl,
+      keyboardType: TextInputType.emailAddress,
+      decoration: const InputDecoration(
+        labelText: "Email",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Email wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldPassword() {
+    return TextFormField(
+      controller: _passwordCtrl,
+      obscureText: true,
+      decoration: const InputDecoration(
+        labelText: "Password",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Password wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _tombolSimpan() {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            widget.pegawai.nip = _nipCtrl.text.trim();
+            widget.pegawai.nama = _namaCtrl.text.trim();
+            widget.pegawai.tanggalLahir = _tglLahirCtrl.text.trim();
+            widget.pegawai.nomorTelepon = _teleponCtrl.text.trim();
+            widget.pegawai.email = _emailCtrl.text.trim();
+            widget.pegawai.password = _passwordCtrl.text.trim();
+            Navigator.pop(context, widget.pegawai);
+          }
+        },
+        child: const Text("Simpan Perubahan", style: TextStyle(fontSize: 16)),
       ),
     );
   }

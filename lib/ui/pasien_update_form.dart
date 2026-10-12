@@ -71,55 +71,127 @@ class _PasienUpdateFormState extends State<PasienUpdateForm> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                TextField(
-                  controller: _nomorRmCtrl,
-                  decoration: const InputDecoration(labelText: "Nomor RM"),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _namaCtrl,
-                  decoration: const InputDecoration(labelText: "Nama Pasien"),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _tglLahirCtrl,
-                  readOnly: true,
-                  onTap: () => _pilihTanggalLahir(context),
-                  decoration: const InputDecoration(
-                    labelText: "Tanggal Lahir",
-                    hintText: "Pilih tanggal lahir",
-                    suffixIcon: Icon(Icons.calendar_today),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _teleponCtrl,
-                  keyboardType: TextInputType.phone,
-                  decoration: const InputDecoration(labelText: "Nomor Telepon"),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _alamatCtrl,
-                  decoration: const InputDecoration(labelText: "Alamat"),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_namaCtrl.text.trim().isNotEmpty && _nomorRmCtrl.text.trim().isNotEmpty) {
-                      widget.pasien.nomorRm = _nomorRmCtrl.text.trim();
-                      widget.pasien.nama = _namaCtrl.text.trim();
-                      widget.pasien.tanggalLahir = _tglLahirCtrl.text.trim();
-                      widget.pasien.nomorTelepon = _teleponCtrl.text.trim();
-                      widget.pasien.alamat = _alamatCtrl.text.trim();
-                      Navigator.pop(context, widget.pasien);
-                    }
-                  },
-                  child: const Text("Simpan Perubahan"),
-                ),
+                _fieldNomorRm(),
+                const SizedBox(height: 12),
+                _fieldNama(),
+                const SizedBox(height: 12),
+                _fieldTanggalLahir(context),
+                const SizedBox(height: 12),
+                _fieldTelepon(),
+                const SizedBox(height: 12),
+                _fieldAlamat(),
+                const SizedBox(height: 24),
+                _tombolSimpan(),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _fieldNomorRm() {
+    return TextFormField(
+      controller: _nomorRmCtrl,
+      decoration: const InputDecoration(
+        labelText: "Nomor RM",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Nomor RM wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldNama() {
+    return TextFormField(
+      controller: _namaCtrl,
+      decoration: const InputDecoration(
+        labelText: "Nama Pasien",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Nama Pasien wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldTanggalLahir(BuildContext context) {
+    return TextFormField(
+      controller: _tglLahirCtrl,
+      readOnly: true,
+      onTap: () => _pilihTanggalLahir(context),
+      decoration: const InputDecoration(
+        labelText: "Tanggal Lahir",
+        hintText: "Pilih tanggal lahir",
+        border: OutlineInputBorder(),
+        suffixIcon: Icon(Icons.calendar_today),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Tanggal Lahir wajib dipilih";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldTelepon() {
+    return TextFormField(
+      controller: _teleponCtrl,
+      keyboardType: TextInputType.phone,
+      decoration: const InputDecoration(
+        labelText: "Nomor Telepon",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Nomor Telepon wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _fieldAlamat() {
+    return TextFormField(
+      controller: _alamatCtrl,
+      maxLines: 2,
+      decoration: const InputDecoration(
+        labelText: "Alamat",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Alamat wajib diisi";
+        }
+        return null;
+      },
+    );
+  }
+
+  Widget _tombolSimpan() {
+    return SizedBox(
+      width: double.infinity,
+      height: 48,
+      child: ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            widget.pasien.nomorRm = _nomorRmCtrl.text.trim();
+            widget.pasien.nama = _namaCtrl.text.trim();
+            widget.pasien.tanggalLahir = _tglLahirCtrl.text.trim();
+            widget.pasien.nomorTelepon = _teleponCtrl.text.trim();
+            widget.pasien.alamat = _alamatCtrl.text.trim();
+            Navigator.pop(context, widget.pasien);
+          }
+        },
+        child: const Text("Simpan Perubahan", style: TextStyle(fontSize: 16)),
       ),
     );
   }
