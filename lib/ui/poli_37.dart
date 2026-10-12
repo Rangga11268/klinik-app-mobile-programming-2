@@ -52,6 +52,7 @@ class _Poli37State extends State<Poli37> {
               child: Icon(Icons.add, size: 28),
             ),
             onTap: () async {
+              final messenger = ScaffoldMessenger.of(context);
               final newPoli = await Navigator.push<Poli>(
                 context,
                 MaterialPageRoute(builder: (context) => const PoliForm()),
@@ -60,6 +61,13 @@ class _Poli37State extends State<Poli37> {
                 setState(() {
                   listPoli.add(newPoli);
                 });
+                messenger.showSnackBar(
+                  SnackBar(
+                    content: Text("Data ${newPoli.namaPoli} berhasil ditambahkan!"),
+                    backgroundColor: Colors.green,
+                    duration: const Duration(seconds: 2),
+                  ),
+                );
               }
             },
           )
@@ -72,12 +80,27 @@ class _Poli37State extends State<Poli37> {
           return PoliItem(
             poli: item,
             onDelete: () {
+              final deletedName = item.namaPoli;
               setState(() {
                 listPoli.removeAt(index);
               });
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Data $deletedName berhasil dihapus!"),
+                  backgroundColor: Colors.red,
+                  duration: const Duration(seconds: 2),
+                ),
+              );
             },
             onUpdate: () {
               setState(() {});
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Data ${item.namaPoli} berhasil diperbarui!"),
+                  backgroundColor: Colors.blue,
+                  duration: const Duration(seconds: 2),
+                ),
+              );
             },
           );
         },

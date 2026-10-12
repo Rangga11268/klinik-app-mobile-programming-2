@@ -41,21 +41,34 @@ class _PoliFormState extends State<PoliForm> {
   }
 
   Widget _fieldNamaPoli() {
-    return TextField(
+    return TextFormField(
       controller: _namaPoliCtrl,
-      decoration: const InputDecoration(labelText: "Nama Poli"),
+      decoration: const InputDecoration(
+        labelText: "Nama Poli",
+        border: OutlineInputBorder(),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return "Nama Poli wajib diisi";
+        }
+        return null;
+      },
     );
   }
 
   Widget _tombolSimpan() {
-    return ElevatedButton(
-      onPressed: () {
-        if (_namaPoliCtrl.text.trim().isNotEmpty) {
-          Poli poliBaru = Poli(namaPoli: _namaPoliCtrl.text.trim());
-          Navigator.pop(context, poliBaru);
-        }
-      },
-      child: const Text("Simpan"),
+    return SizedBox(
+      width: double.infinity,
+      height: 45,
+      child: ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            Poli poliBaru = Poli(namaPoli: _namaPoliCtrl.text.trim());
+            Navigator.pop(context, poliBaru);
+          }
+        },
+        child: const Text("Simpan", style: TextStyle(fontSize: 16)),
+      ),
     );
   }
 }

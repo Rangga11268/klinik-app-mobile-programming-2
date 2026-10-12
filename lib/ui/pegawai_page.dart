@@ -55,6 +55,7 @@ class _PegawaiPageState extends State<PegawaiPage> {
               child: Icon(Icons.add, size: 28),
             ),
             onTap: () async {
+              final messenger = ScaffoldMessenger.of(context);
               final newPegawai = await Navigator.push<Pegawai>(
                 context,
                 MaterialPageRoute(builder: (context) => const PegawaiForm()),
@@ -63,6 +64,13 @@ class _PegawaiPageState extends State<PegawaiPage> {
                 setState(() {
                   listPegawai.add(newPegawai);
                 });
+                messenger.showSnackBar(
+                  SnackBar(
+                    content: Text("Pegawai ${newPegawai.nama} berhasil ditambahkan!"),
+                    backgroundColor: Colors.green,
+                    duration: const Duration(seconds: 2),
+                  ),
+                );
               }
             },
           )
@@ -75,12 +83,27 @@ class _PegawaiPageState extends State<PegawaiPage> {
           return PegawaiItem(
             pegawai: item,
             onDelete: () {
+              final deletedName = item.nama;
               setState(() {
                 listPegawai.removeAt(index);
               });
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Pegawai $deletedName berhasil dihapus!"),
+                  backgroundColor: Colors.red,
+                  duration: const Duration(seconds: 2),
+                ),
+              );
             },
             onUpdate: () {
               setState(() {});
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Data ${item.nama} berhasil diperbarui!"),
+                  backgroundColor: Colors.blue,
+                  duration: const Duration(seconds: 2),
+                ),
+              );
             },
           );
         },

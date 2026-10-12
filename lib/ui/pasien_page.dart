@@ -52,6 +52,7 @@ class _PasienPageState extends State<PasienPage> {
               child: Icon(Icons.add, size: 28),
             ),
             onTap: () async {
+              final messenger = ScaffoldMessenger.of(context);
               final newPasien = await Navigator.push<Pasien>(
                 context,
                 MaterialPageRoute(builder: (context) => const PasienForm()),
@@ -60,6 +61,13 @@ class _PasienPageState extends State<PasienPage> {
                 setState(() {
                   listPasien.add(newPasien);
                 });
+                messenger.showSnackBar(
+                  SnackBar(
+                    content: Text("Pasien ${newPasien.nama} berhasil ditambahkan!"),
+                    backgroundColor: Colors.green,
+                    duration: const Duration(seconds: 2),
+                  ),
+                );
               }
             },
           )
@@ -72,12 +80,27 @@ class _PasienPageState extends State<PasienPage> {
           return PasienItem(
             pasien: item,
             onDelete: () {
+              final deletedName = item.nama;
               setState(() {
                 listPasien.removeAt(index);
               });
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Pasien $deletedName berhasil dihapus!"),
+                  backgroundColor: Colors.red,
+                  duration: const Duration(seconds: 2),
+                ),
+              );
             },
             onUpdate: () {
               setState(() {});
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Data ${item.nama} berhasil diperbarui!"),
+                  backgroundColor: Colors.blue,
+                  duration: const Duration(seconds: 2),
+                ),
+              );
             },
           );
         },
