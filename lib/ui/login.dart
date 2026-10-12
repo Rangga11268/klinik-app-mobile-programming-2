@@ -79,6 +79,8 @@ class _LoginState extends State<Login> {
     );
   }
 
+  bool _obscurePassword = true;
+
   Widget _usernameTextField() {
     return TextFormField(
       decoration: const InputDecoration(
@@ -92,12 +94,22 @@ class _LoginState extends State<Login> {
 
   Widget _passwordTextField() {
     return TextFormField(
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         labelText: "Password",
-        border: OutlineInputBorder(),
-        prefixIcon: Icon(Icons.lock),
+        border: const OutlineInputBorder(),
+        prefixIcon: const Icon(Icons.lock),
+        suffixIcon: IconButton(
+          icon: Icon(
+            _obscurePassword ? Icons.visibility_off : Icons.visibility,
+          ),
+          onPressed: () {
+            setState(() {
+              _obscurePassword = !_obscurePassword;
+            });
+          },
+        ),
       ),
-      obscureText: true,
+      obscureText: _obscurePassword,
       controller: _passwordCtrl,
     );
   }

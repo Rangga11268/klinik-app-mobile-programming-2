@@ -162,13 +162,25 @@ class _PegawaiFormState extends State<PegawaiForm> {
     );
   }
 
+  bool _obscurePassword = true;
+
   Widget _fieldPassword() {
     return TextFormField(
       controller: _passwordCtrl,
-      obscureText: true,
-      decoration: const InputDecoration(
+      obscureText: _obscurePassword,
+      decoration: InputDecoration(
         labelText: "Password",
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
+        suffixIcon: IconButton(
+          icon: Icon(
+            _obscurePassword ? Icons.visibility_off : Icons.visibility,
+          ),
+          onPressed: () {
+            setState(() {
+              _obscurePassword = !_obscurePassword;
+            });
+          },
+        ),
       ),
       validator: (value) {
         if (value == null || value.trim().isEmpty) {

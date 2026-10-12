@@ -12,6 +12,8 @@ class PegawaiDetail extends StatefulWidget {
 }
 
 class _PegawaiDetailState extends State<PegawaiDetail> {
+  bool _showPassword = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +52,26 @@ class _PegawaiDetailState extends State<PegawaiDetail> {
                       "Email : ${widget.pegawai.email ?? '-'}",
                       style: const TextStyle(fontSize: 16),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "Password : ${'*' * (widget.pegawai.password?.length ?? 6)}",
-                      style: const TextStyle(fontSize: 16),
+                    Row(
+                      children: [
+                        Text(
+                          "Password : ${_showPassword ? (widget.pegawai.password ?? '-') : ('*' * (widget.pegawai.password?.length ?? 6))}",
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                        const SizedBox(width: 4),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              _showPassword = !_showPassword;
+                            });
+                          },
+                          child: Icon(
+                            _showPassword ? Icons.visibility_off : Icons.visibility,
+                            size: 18,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
