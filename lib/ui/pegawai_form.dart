@@ -16,6 +16,7 @@ class _PegawaiFormState extends State<PegawaiForm> {
   final _teleponCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
+  bool _obscurePassword = true;
 
   @override
   void dispose() {
@@ -161,8 +162,6 @@ class _PegawaiFormState extends State<PegawaiForm> {
       },
     );
   }
-
-  bool _obscurePassword = true;
 
   Widget _fieldPassword() {
     return TextFormField(

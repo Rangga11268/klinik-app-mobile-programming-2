@@ -18,6 +18,7 @@ class _PegawaiUpdateFormState extends State<PegawaiUpdateForm> {
   late TextEditingController _teleponCtrl;
   late TextEditingController _emailCtrl;
   late TextEditingController _passwordCtrl;
+  bool _obscurePassword = true;
 
   @override
   void initState() {
@@ -180,8 +181,6 @@ class _PegawaiUpdateFormState extends State<PegawaiUpdateForm> {
       },
     );
   }
-
-  bool _obscurePassword = true;
 
   Widget _fieldPassword() {
     return TextFormField(

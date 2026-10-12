@@ -12,6 +12,7 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final _usernameCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +79,6 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
-  bool _obscurePassword = true;
 
   Widget _usernameTextField() {
     return TextFormField(
