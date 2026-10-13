@@ -34,19 +34,6 @@ class Beranda extends StatelessWidget {
             ),
           ],
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14.0),
-            child: CircleAvatar(
-              radius: 19,
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 17,
-                backgroundImage: AssetImage("assets/img/profile-picture.png"),
-              ),
-            ),
-          ),
-        ],
       ),
       body: Center(
         child: SingleChildScrollView(

@@ -67,40 +67,9 @@ class _PasienPageState extends State<PasienPage> {
         ),
         actions: [
           GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  const CircleAvatar(
-                    radius: 19,
-                    backgroundColor: Colors.white,
-                    child: CircleAvatar(
-                      radius: 17,
-                      backgroundImage: AssetImage("assets/img/profile-picture.png"),
-                    ),
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    padding: const EdgeInsets.all(1.5),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                      padding: const EdgeInsets.all(2),
-                      child: const Icon(
-                        Icons.add,
-                        size: 11,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Icon(Icons.add, size: 28),
             ),
             onTap: () async {
               final messenger = ScaffoldMessenger.of(context);
