@@ -22,7 +22,10 @@ class Sidebar extends StatelessWidget {
             accountEmail: Text("No. Absen: 37 | Klinik APP"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.white,
-              child: Icon(Icons.local_hospital, color: Colors.blue, size: 36),
+              child: CircleAvatar(
+                radius: 34,
+                backgroundImage: AssetImage("assets/img/profile-picture.png"),
+              ),
             ),
           ),
           ListTile(

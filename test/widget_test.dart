@@ -3,21 +3,28 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:klinik37/main.dart';
 
 void main() {
-  testWidgets('Smoke test Pertemuan 4: Data Poli -> Form Tambah -> CRUD & Validasi', (
+  testWidgets('Smoke test Beranda Quick Actions & CRUD Flow', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(const MyApp());
 
-    // 1. VERIFIKASI HALAMAN AWAL (DATA POLI - PERTEMUAN 4)
+    // 1. VERIFIKASI HALAMAN BERANDA & QUICK ACTIONS
+    expect(find.text('Selamat Datang di Aplikasi'), findsOneWidget);
+    expect(find.text('Aplikasi ini memberikan pengalaman yang luar biasa'), findsOneWidget);
+    expect(find.byIcon(Icons.accessible), findsOneWidget); // Quick action Poli
+    expect(find.byIcon(Icons.people), findsOneWidget);     // Quick action Pegawai
+    expect(find.byIcon(Icons.account_box), findsOneWidget); // Quick action Pasien
+    expect(find.byIcon(Icons.logout_rounded), findsOneWidget); // Quick action Keluar
+
+    // 2. TAP QUICK ACTION POLI -> MASUK DATA POLI
+    await tester.tap(find.byIcon(Icons.accessible));
+    await tester.pumpAndSettle();
+
     expect(find.text('Data Poli - DARELL RANGGA PUTRA RACHMAN'), findsOneWidget);
     expect(find.text('No. Absen: 37'), findsOneWidget);
     expect(find.text('POLI MATA'), findsOneWidget);
-    expect(find.text('POLI PENYAKIT DALAM'), findsOneWidget);
-    expect(find.text('POLI KULIT'), findsOneWidget);
-    expect(find.text('POLI TULANG'), findsOneWidget);
-    expect(find.byIcon(Icons.add), findsOneWidget);
 
-    // 2. TEST VALIDASI FORM TAMBAH (FIELD KOSONG -> MUNCUL PESAN WAJIB DIISI)
+    // 3. TEST VALIDASI FORM TAMBAH (TAP TOMBOL TAMBAH FOTO DENGAN BADGE ADD)
     await tester.tap(find.byIcon(Icons.add));
     await tester.pumpAndSettle();
 
@@ -28,16 +35,15 @@ void main() {
     // Verifikasi pesan error validator muncul
     expect(find.text('Nama Poli wajib diisi'), findsOneWidget);
 
-    // 3. TEST INPUT & SIMPAN DATA BERHASIL (CREATE)
+    // 4. TEST INPUT & SIMPAN DATA BERHASIL (CREATE)
     await tester.enterText(find.byType(TextFormField), 'POLI GIGI TEST');
     await tester.tap(find.text('Simpan'));
     await tester.pumpAndSettle();
 
-    // Verifikasi data baru muncul di list utama dan SnackBar muncul
     expect(find.text('POLI GIGI TEST'), findsOneWidget);
     expect(find.text('Data POLI GIGI TEST berhasil ditambahkan!'), findsOneWidget);
 
-    // 4. TEST UBAH NAMA (UPDATE - PERTEMUAN 5)
+    // 5. TEST UBAH NAMA (UPDATE)
     await tester.tap(find.text('POLI GIGI TEST'));
     await tester.pumpAndSettle();
 
@@ -52,10 +58,9 @@ void main() {
     await tester.tap(find.text('Simpan Perubahan'));
     await tester.pumpAndSettle();
 
-    // Verifikasi nama berubah di detail
     expect(find.text('Nama Poli : POLI GIGI EDIT'), findsOneWidget);
 
-    // 5. TEST HAPUS DATA (DELETE DENGAN ALERTDIALOG - PERTEMUAN 5)
+    // 6. TEST HAPUS DATA (DELETE DENGAN ALERTDIALOG)
     await tester.tap(find.text('Hapus'));
     await tester.pumpAndSettle();
 
@@ -63,11 +68,10 @@ void main() {
     await tester.tap(find.text('YA'));
     await tester.pumpAndSettle();
 
-    // Verifikasi kembali ke list utama dan item terhapus
     expect(find.text('POLI GIGI EDIT'), findsNothing);
     expect(find.text('Data POLI GIGI EDIT berhasil dihapus!'), findsOneWidget);
 
-    // 6. TEST SIDEBAR DRAWER (PERTEMUAN 6)
+    // 7. TEST SIDEBAR DRAWER
     final ScaffoldState scaffoldState = tester.firstState(find.byType(Scaffold));
     scaffoldState.openDrawer();
     await tester.pumpAndSettle();

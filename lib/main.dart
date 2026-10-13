@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import './ui/poli_37.dart';
-// import './ui/login.dart'; // Aktifkan jika ingin mulai dari halaman Login (Pertemuan 6)
+import './ui/beranda.dart';
+// import './ui/poli_37.dart'; // Alternatif jika ingin langsung ke Poli
+// import './ui/login.dart';   // Alternatif jika ingin mulai dari Login
 
 void main() => runApp(const MyApp());
 
@@ -16,8 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
         primarySwatch: Colors.blue,
       ),
-      // Default ke Data Poli agar sesuai fokus penilaian Pertemuan 4
-      home: const Poli37(),
+      home: const Beranda(),
     );
   }
 }
