@@ -44,7 +44,27 @@ class _PasienPageState extends State<PasienPage> {
     return Scaffold(
       drawer: const Sidebar(),
       appBar: AppBar(
-        title: const Text("Data Pasien"),
+        title: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Data Pasien - DARELL RANGGA PUTRA RACHMAN",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 3),
+            Text(
+              "No. Absen: 37",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
         actions: [
           GestureDetector(
             child: const Padding(

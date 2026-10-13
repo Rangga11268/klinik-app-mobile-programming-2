@@ -47,7 +47,27 @@ class _PegawaiPageState extends State<PegawaiPage> {
     return Scaffold(
       drawer: const Sidebar(),
       appBar: AppBar(
-        title: const Text("Data Pegawai"),
+        title: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Data Pegawai - DARELL RANGGA PUTRA RACHMAN",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 3),
+            Text(
+              "No. Absen: 37",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
         actions: [
           GestureDetector(
             child: const Padding(
