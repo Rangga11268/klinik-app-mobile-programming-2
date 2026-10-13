@@ -13,11 +13,26 @@ class PegawaiDetail extends StatefulWidget {
 
 class _PegawaiDetailState extends State<PegawaiDetail> {
   bool _showPassword = false;
+  bool _isEdited = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Detail Pegawai")),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        Navigator.pop(context, _isEdited ? 'update' : null);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Detail Pegawai"),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context, _isEdited ? 'update' : null);
+            },
+          ),
+        ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -88,6 +103,7 @@ class _PegawaiDetailState extends State<PegawaiDetail> {
           ],
         ),
       ),
+    ),
     );
   }
 
@@ -101,7 +117,9 @@ class _PegawaiDetailState extends State<PegawaiDetail> {
           ),
         );
         if (updated != null) {
-          setState(() {});
+          setState(() {
+            _isEdited = true;
+          });
         }
       },
       style: ElevatedButton.styleFrom(backgroundColor: Colors.green),

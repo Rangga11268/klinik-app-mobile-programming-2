@@ -12,10 +12,26 @@ class PasienDetail extends StatefulWidget {
 }
 
 class _PasienDetailState extends State<PasienDetail> {
+  bool _isEdited = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Detail Pasien")),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        Navigator.pop(context, _isEdited ? 'update' : null);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Detail Pasien"),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context, _isEdited ? 'update' : null);
+            },
+          ),
+        ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -65,6 +81,7 @@ class _PasienDetailState extends State<PasienDetail> {
           ],
         ),
       ),
+    ),
     );
   }
 
@@ -78,7 +95,9 @@ class _PasienDetailState extends State<PasienDetail> {
           ),
         );
         if (updated != null) {
-          setState(() {});
+          setState(() {
+            _isEdited = true;
+          });
         }
       },
       style: ElevatedButton.styleFrom(backgroundColor: Colors.green),

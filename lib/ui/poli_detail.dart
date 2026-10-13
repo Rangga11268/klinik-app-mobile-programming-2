@@ -12,28 +12,45 @@ class PoliDetail extends StatefulWidget {
 }
 
 class _PoliDetailState extends State<PoliDetail> {
+  bool _isEdited = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Detail Poli")),
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 30),
-            Text(
-              "Nama Poli : ${widget.poli.namaPoli}",
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _tombolUbah(),
-                const SizedBox(width: 20),
-                _tombolHapus(),
-              ],
-            ),
-          ],
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        Navigator.pop(context, _isEdited ? 'update' : null);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Detail Poli"),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context, _isEdited ? 'update' : null);
+            },
+          ),
+        ),
+        body: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 30),
+              Text(
+                "Nama Poli : ${widget.poli.namaPoli}",
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _tombolUbah(),
+                  const SizedBox(width: 20),
+                  _tombolHapus(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -49,7 +66,9 @@ class _PoliDetailState extends State<PoliDetail> {
           ),
         );
         if (updated != null) {
-          setState(() {});
+          setState(() {
+            _isEdited = true;
+          });
         }
       },
       style: ElevatedButton.styleFrom(

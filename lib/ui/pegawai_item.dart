@@ -35,7 +35,7 @@ class PegawaiItem extends StatelessWidget {
         );
         if (result == 'delete') {
           onDelete?.call();
-        } else {
+        } else if (result == 'update') {
           onUpdate?.call();
         }
       },
