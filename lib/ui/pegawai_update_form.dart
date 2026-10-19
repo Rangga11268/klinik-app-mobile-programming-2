@@ -46,14 +46,19 @@ class _PegawaiUpdateFormState extends State<PegawaiUpdateForm> {
     DateTime initial = DateTime(1995, 1, 1);
     if (_tglLahirCtrl.text.isNotEmpty) {
       DateTime? parsed = DateTime.tryParse(_tglLahirCtrl.text);
-      if (parsed != null) initial = parsed;
+      if (parsed != null && parsed.isBefore(DateTime.now())) {
+        initial = parsed;
+      }
     }
 
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: initial,
-      firstDate: DateTime(1950),
+      firstDate: DateTime(1920),
       lastDate: DateTime.now(),
+      helpText: "PILIH TANGGAL LAHIR",
+      cancelText: "BATAL",
+      confirmText: "PILIH",
     );
     if (pickedDate != null) {
       String formattedDate =
@@ -133,11 +138,15 @@ class _PegawaiUpdateFormState extends State<PegawaiUpdateForm> {
       controller: _tglLahirCtrl,
       readOnly: true,
       onTap: () => _pilihTanggalLahir(context),
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         labelText: "Tanggal Lahir",
         hintText: "Pilih tanggal lahir",
-        border: OutlineInputBorder(),
-        suffixIcon: Icon(Icons.calendar_today),
+        border: const OutlineInputBorder(),
+        suffixIcon: IconButton(
+          icon: const Icon(Icons.calendar_month, color: Colors.blue),
+          onPressed: () => _pilihTanggalLahir(context),
+          tooltip: "Pilih Tanggal Lahir",
+        ),
       ),
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
