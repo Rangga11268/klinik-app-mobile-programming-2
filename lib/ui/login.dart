@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'beranda.dart';
+import 'registrasi.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -67,6 +68,8 @@ class _LoginState extends State<Login> {
                           _passwordTextField(),
                           const SizedBox(height: 30),
                           _tombolLogin(),
+                          const SizedBox(height: 16),
+                          _linkKeRegistrasi(),
                         ],
                       ),
                     ),
@@ -149,6 +152,33 @@ class _LoginState extends State<Login> {
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
+    );
+  }
+
+  Widget _linkKeRegistrasi() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("Belum punya akun?"),
+        TextButton(
+          onPressed: () async {
+            final registered = await Navigator.push<Map<String, String>>(
+              context,
+              MaterialPageRoute(builder: (context) => const Registrasi()),
+            );
+            if (registered != null && mounted) {
+              setState(() {
+                _usernameCtrl.text = registered['username'] ?? '';
+                _passwordCtrl.text = registered['password'] ?? '';
+              });
+            }
+          },
+          child: const Text(
+            "Daftar di sini",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
     );
   }
 }
