@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import './helpers/user_info.dart';
 import './ui/beranda.dart';
-// import './ui/poli_37.dart'; // Alternatif jika ingin langsung ke Poli
-// import './ui/login.dart';   // Alternatif jika ingin mulai dari Login
+import './ui/login.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var token = await UserInfo().getToken();
+  // ignore: avoid_print
+  print(token);
+  runApp(MyApp(token: token));
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String? token;
+  const MyApp({super.key, this.token});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: false,
         primarySwatch: Colors.blue,
       ),
-      home: const Beranda(),
+      home: token == null ? const Login() : const Beranda(),
     );
   }
 }

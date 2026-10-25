@@ -6,7 +6,7 @@ void main() {
   testWidgets('Smoke test Beranda Quick Actions & CRUD Flow', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const MyApp(token: "admin"));
 
     // 1. VERIFIKASI HALAMAN BERANDA & QUICK ACTIONS
     expect(find.text('Selamat Datang di Aplikasi'), findsOneWidget);

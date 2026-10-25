@@ -156,8 +156,9 @@ class _LoginState extends State<Login> {
   }
 
   Widget _linkKeRegistrasi() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         const Text("Belum punya akun?"),
         TextButton(
