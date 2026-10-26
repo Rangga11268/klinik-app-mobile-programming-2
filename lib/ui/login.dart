@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../service/login_service.dart';
 import 'beranda.dart';
 import 'registrasi.dart';
 
@@ -126,24 +127,34 @@ class _LoginState extends State<Login> {
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        onPressed: () {
+        onPressed: () async {
           String username = _usernameCtrl.text.trim();
           String password = _passwordCtrl.text.trim();
 
-          // Validasi login sederhana (admin / admin atau langsung masuk)
-          if ((username == "admin" && password == "admin") ||
-              (username.isNotEmpty && password.isNotEmpty) ||
-              (username.isEmpty && password.isEmpty)) {
+          bool value = await LoginService().login(username, password);
+          if (!mounted) return;
+
+          if (value == true) {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const Beranda()),
             );
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Username atau Password salah!"),
-                backgroundColor: Colors.red,
-              ),
+            AlertDialog alertDialog = AlertDialog(
+              content: const Text("Username atau Password Tidak Valid"),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  child: const Text("OK"),
+                )
+              ],
+            );
+            showDialog(
+              context: context,
+              builder: (context) => alertDialog,
             );
           }
         },
