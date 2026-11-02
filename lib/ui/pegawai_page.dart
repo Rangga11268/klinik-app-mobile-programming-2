@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/pegawai.dart';
+import '../service/pegawai_service.dart';
 import 'pegawai_form.dart';
 import 'pegawai_item.dart';
 import 'sidebar.dart';
@@ -12,35 +13,10 @@ class PegawaiPage extends StatefulWidget {
 }
 
 class _PegawaiPageState extends State<PegawaiPage> {
-  List<Pegawai> listPegawai = [
-    Pegawai(
-      id: "1",
-      nip: "198801012015011001",
-      nama: "Dr. Budi Santoso, Sp.A",
-      tanggalLahir: "1988-01-01",
-      nomorTelepon: "081234567890",
-      email: "budi@klinik.com",
-      password: "password123",
-    ),
-    Pegawai(
-      id: "2",
-      nip: "199002022016022002",
-      nama: "Siti Rahmawati, S.Kep",
-      tanggalLahir: "1990-02-02",
-      nomorTelepon: "081298765432",
-      email: "siti@klinik.com",
-      password: "password123",
-    ),
-    Pegawai(
-      id: "3",
-      nip: "199203032017031003",
-      nama: "Ahmad Fauzi, S.Farm",
-      tanggalLahir: "1992-03-03",
-      nomorTelepon: "081311223344",
-      email: "ahmad@klinik.com",
-      password: "password123",
-    ),
-  ];
+  Stream<List<Pegawai>> getList() async* {
+    List<Pegawai> data = await PegawaiService().listData();
+    yield data;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,55 +50,43 @@ class _PegawaiPageState extends State<PegawaiPage> {
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Icon(Icons.add, size: 28),
             ),
-            onTap: () async {
-              final messenger = ScaffoldMessenger.of(context);
-              final newPegawai = await Navigator.push<Pegawai>(
+            onTap: () {
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const PegawaiForm()),
-              );
-              if (newPegawai != null) {
-                setState(() {
-                  listPegawai.add(newPegawai);
-                });
-                messenger.showSnackBar(
-                  SnackBar(
-                    content: Text("Pegawai ${newPegawai.nama} berhasil ditambahkan!"),
-                    backgroundColor: Colors.green,
-                    duration: const Duration(seconds: 2),
-                  ),
-                );
-              }
+              ).then((value) {
+                setState(() {});
+              });
             },
           )
         ],
       ),
-      body: ListView.builder(
-        itemCount: listPegawai.length,
-        itemBuilder: (context, index) {
-          final item = listPegawai[index];
-          return PegawaiItem(
-            pegawai: item,
-            onDelete: () {
-              final deletedName = item.nama;
-              setState(() {
-                listPegawai.removeAt(index);
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Pegawai $deletedName berhasil dihapus!"),
-                  backgroundColor: Colors.red,
-                  duration: const Duration(seconds: 2),
-                ),
-              );
-            },
-            onUpdate: () {
-              setState(() {});
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Data ${item.nama} berhasil diperbarui!"),
-                  backgroundColor: Colors.blue,
-                  duration: const Duration(seconds: 2),
-                ),
+      body: StreamBuilder<List<Pegawai>>(
+        stream: getList(),
+        builder: (context, AsyncSnapshot<List<Pegawai>> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          }
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('Data Kosong'));
+          }
+
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              return PegawaiItem(
+                pegawai: snapshot.data![index],
+                onDelete: () {
+                  setState(() {});
+                },
+                onUpdate: () {
+                  setState(() {});
+                },
               );
             },
           );

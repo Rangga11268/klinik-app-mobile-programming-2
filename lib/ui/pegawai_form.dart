@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/pegawai.dart';
+import '../service/pegawai_service.dart';
+import 'pegawai_detail.dart';
 
 class PegawaiForm extends StatefulWidget {
   const PegawaiForm({super.key});
@@ -210,7 +212,7 @@ class _PegawaiFormState extends State<PegawaiForm> {
       width: double.infinity,
       height: 48,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
             Pegawai pegawaiBaru = Pegawai(
               nip: _nipCtrl.text.trim(),
@@ -220,7 +222,14 @@ class _PegawaiFormState extends State<PegawaiForm> {
               email: _emailCtrl.text.trim(),
               password: _passwordCtrl.text.trim(),
             );
-            Navigator.pop(context, pegawaiBaru);
+            Pegawai value = await PegawaiService().simpan(pegawaiBaru);
+            if (!mounted) return;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PegawaiDetail(pegawai: value),
+              ),
+            );
           }
         },
         child: const Text("Simpan", style: TextStyle(fontSize: 16)),

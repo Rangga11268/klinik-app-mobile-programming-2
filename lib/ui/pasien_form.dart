@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/pasien.dart';
+import '../service/pasien_service.dart';
+import 'pasien_detail.dart';
 
 class PasienForm extends StatefulWidget {
   const PasienForm({super.key});
@@ -178,7 +180,7 @@ class _PasienFormState extends State<PasienForm> {
       width: double.infinity,
       height: 48,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           if (_formKey.currentState!.validate()) {
             Pasien pasienBaru = Pasien(
               nomorRm: _nomorRmCtrl.text.trim(),
@@ -187,7 +189,14 @@ class _PasienFormState extends State<PasienForm> {
               nomorTelepon: _teleponCtrl.text.trim(),
               alamat: _alamatCtrl.text.trim(),
             );
-            Navigator.pop(context, pasienBaru);
+            Pasien value = await PasienService().simpan(pasienBaru);
+            if (!mounted) return;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PasienDetail(pasien: value),
+              ),
+            );
           }
         },
         child: const Text("Simpan", style: TextStyle(fontSize: 16)),

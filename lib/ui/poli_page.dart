@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/poli.dart';
+import '../service/poli_service.dart';
 import 'poli_form.dart';
 import 'poli_item.dart';
 import 'sidebar.dart';
@@ -12,12 +13,10 @@ class PoliPage extends StatefulWidget {
 }
 
 class _PoliPageState extends State<PoliPage> {
-  List<Poli> listPoli = [
-    Poli(namaPoli: "POLI MATA"),
-    Poli(namaPoli: "POLI PENYAKIT DALAM"),
-    Poli(namaPoli: "POLI KULIT"),
-    Poli(namaPoli: "POLI TULANG"),
-  ];
+  Stream<List<Poli>> getList() async* {
+    List<Poli> data = await PoliService().listData();
+    yield data;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,33 +50,44 @@ class _PoliPageState extends State<PoliPage> {
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Icon(Icons.add, size: 28),
             ),
-            onTap: () async {
-              final newPoli = await Navigator.push<Poli>(
+            onTap: () {
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const PoliForm()),
-              );
-              if (newPoli != null) {
-                setState(() {
-                  listPoli.add(newPoli);
-                });
-              }
+              ).then((value) {
+                setState(() {});
+              });
             },
           )
         ],
       ),
-      body: ListView.builder(
-        itemCount: listPoli.length,
-        itemBuilder: (context, index) {
-          final item = listPoli[index];
-          return PoliItem(
-            poli: item,
-            onDelete: () {
-              setState(() {
-                listPoli.removeAt(index);
-              });
-            },
-            onUpdate: () {
-              setState(() {});
+      body: StreamBuilder<List<Poli>>(
+        stream: getList(),
+        builder: (context, AsyncSnapshot<List<Poli>> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          }
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('Data Kosong'));
+          }
+
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              return PoliItem(
+                poli: snapshot.data![index],
+                onDelete: () {
+                  setState(() {});
+                },
+                onUpdate: () {
+                  setState(() {});
+                },
+              );
             },
           );
         },

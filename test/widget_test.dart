@@ -35,21 +35,16 @@ void main() {
     // Verifikasi pesan error validator muncul
     expect(find.text('Nama Poli wajib diisi'), findsOneWidget);
 
-    // 4. TEST INPUT & SIMPAN DATA BERHASIL (CREATE)
+    // 4. TEST INPUT & SIMPAN DATA BERHASIL KE API (CREATE & PUSH REPLACEMENT KE DETAIL)
     await tester.enterText(find.byType(TextFormField), 'POLI GIGI TEST');
     await tester.tap(find.text('Simpan'));
     await tester.pumpAndSettle();
 
-    expect(find.text('POLI GIGI TEST'), findsOneWidget);
-    expect(find.text('Data POLI GIGI TEST berhasil ditambahkan!'), findsOneWidget);
-
-    // 5. TEST UBAH NAMA (UPDATE)
-    await tester.tap(find.text('POLI GIGI TEST'));
-    await tester.pumpAndSettle();
-
+    // Sesuai modul Pertemuan 12 hal 50: Simpan langsung mengarahkan ke Detail Poli
     expect(find.text('Detail Poli'), findsOneWidget);
     expect(find.text('Nama Poli : POLI GIGI TEST'), findsOneWidget);
 
+    // 5. TEST UBAH NAMA (UPDATE)
     await tester.tap(find.text('Ubah'));
     await tester.pumpAndSettle();
 
@@ -69,7 +64,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('POLI GIGI EDIT'), findsNothing);
-    expect(find.text('Data POLI GIGI EDIT berhasil dihapus!'), findsOneWidget);
+    expect(find.text('Data Poli - DARELL RANGGA PUTRA RACHMAN'), findsOneWidget);
 
     // 7. TEST SIDEBAR DRAWER
     final ScaffoldState scaffoldState = tester.firstState(find.byType(Scaffold));

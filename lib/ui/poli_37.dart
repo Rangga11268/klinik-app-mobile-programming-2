@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/poli.dart';
+import '../service/poli_service.dart';
 import 'poli_form.dart';
 import 'poli_item.dart';
 import 'sidebar.dart';
@@ -12,12 +13,10 @@ class Poli37 extends StatefulWidget {
 }
 
 class _Poli37State extends State<Poli37> {
-  List<Poli> listPoli = [
-    Poli(namaPoli: "POLI MATA"),
-    Poli(namaPoli: "POLI PENYAKIT DALAM"),
-    Poli(namaPoli: "POLI KULIT"),
-    Poli(namaPoli: "POLI TULANG"),
-  ];
+  Stream<List<Poli>> getList() async* {
+    List<Poli> data = await PoliService().listData();
+    yield data;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,55 +50,43 @@ class _Poli37State extends State<Poli37> {
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Icon(Icons.add, size: 28),
             ),
-            onTap: () async {
-              final messenger = ScaffoldMessenger.of(context);
-              final newPoli = await Navigator.push<Poli>(
+            onTap: () {
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const PoliForm()),
-              );
-              if (newPoli != null) {
-                setState(() {
-                  listPoli.add(newPoli);
-                });
-                messenger.showSnackBar(
-                  SnackBar(
-                    content: Text("Data ${newPoli.namaPoli} berhasil ditambahkan!"),
-                    backgroundColor: Colors.green,
-                    duration: const Duration(seconds: 2),
-                  ),
-                );
-              }
+              ).then((value) {
+                setState(() {});
+              });
             },
           )
         ],
       ),
-      body: ListView.builder(
-        itemCount: listPoli.length,
-        itemBuilder: (context, index) {
-          final item = listPoli[index];
-          return PoliItem(
-            poli: item,
-            onDelete: () {
-              final deletedName = item.namaPoli;
-              setState(() {
-                listPoli.removeAt(index);
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Data $deletedName berhasil dihapus!"),
-                  backgroundColor: Colors.red,
-                  duration: const Duration(seconds: 2),
-                ),
-              );
-            },
-            onUpdate: () {
-              setState(() {});
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Data ${item.namaPoli} berhasil diperbarui!"),
-                  backgroundColor: Colors.blue,
-                  duration: const Duration(seconds: 2),
-                ),
+      body: StreamBuilder<List<Poli>>(
+        stream: getList(),
+        builder: (context, AsyncSnapshot<List<Poli>> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          }
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('Data Kosong'));
+          }
+
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              return PoliItem(
+                poli: snapshot.data![index],
+                onDelete: () {
+                  setState(() {});
+                },
+                onUpdate: () {
+                  setState(() {});
+                },
               );
             },
           );
