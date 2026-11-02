@@ -60,3 +60,17 @@
   - No. Absen: 30, 23, 32
 - **Mahasiswa Tidak Hadir:**
   - No. Absen: **7, 12, 16**
+
+---
+
+### 5. Pertemuan 6 (P6)
+- *Tidak ada pengambilan poin / penilaian pada pertemuan ini.*
+
+---
+
+### 6. Pertemuan 7 (P7) — *Poin Tambahan & Kehadiran*
+- **Poin Tambahan +15:**
+  - No. Absen: **39** (+15)
+  - No. Absen: **40** (+15)
+- **Mahasiswa Tidak Hadir P7:**
+  - No. Absen: **2, 11, 33**
