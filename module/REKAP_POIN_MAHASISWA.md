@@ -6,7 +6,34 @@
 
 ---
 
-## 🏆 KARTU SKOR DARELL (ABSEN 37)
+## 🏆 KLASEMEN / RANKING POIN KELAS (AKUMULASI S/D PERTEMUAN 7)
+
+| Peringkat | No. Absen | Total Poin | Keterangan & Rincian |
+|:---:|:---:|:---:|---|
+| 🥇 **Rank 1** | **39** | **140 Poin** | P2: 25 \| P3: 20 \| P4: 50 \| P5: 30 \| P7 Bonus: +15 |
+| 🥈 **Rank 2** | **40** | **130 Poin** | P2: 25 \| P3: 20 \| P4: 50 \| P5: 20 \| P7 Bonus: +15 |
+| 🥉 **Rank 3** | **37 (DARELL)** | **125 Poin** | **P2: 25 \| P3: 20 \| P4: 50 \| P5: 30 (Top Tier Murni)** |
+| 🥉 **Rank 3** | **18** | **125 Poin** | P2: 25 \| P3: 20 \| P4: 50 \| P5: 30 |
+| 🥉 **Rank 3** | **20** | **125 Poin** | P2: 25 \| P3: 20 \| P4: 50 \| P5: 30 |
+| 🥉 **Rank 3** | **27** | **125 Poin** | P2: 25 \| P3: 20 \| P4: 50 \| P5: 30 |
+| 🥉 **Rank 3** | **29** | **125 Poin** | P2: 25 \| P3: 20 \| P4: 50 \| P5: 30 |
+| 🥉 **Rank 3** | **36** | **125 Poin** | P2: 25 \| P3: 20 \| P4: 50 \| P5: 30 |
+| **Rank 9** | **1, 3, 11, 14, 15, 19** | **115 Poin** | Kelompok Papan Atas |
+| **Rank 15** | **5, 13, 26** | **105 Poin** | Kelompok 100+ |
+| **Rank 18** | **9** | **100 Poin** | Kelompok 100+ |
+| **Rank 19** | **23, 32** | **90 Poin** | - |
+| **Rank 21** | **4, 16, 17** | **85 Poin** | - |
+| **Rank 24** | **33** | **75 Poin** | - |
+| **Rank 25** | **8** | **70 Poin** | - |
+| **Rank 26** | **21, 22, 25, 31, 38** | **65 Poin** | - |
+| **Rank 31** | **10, 30** | **55 Poin** | - |
+| **Rank 33** | **6** | **40 Poin** | - |
+| **Rank 34** | **28, 34** | **35 Poin** | - |
+| **Rank 36** | **24, 35** | **30 Poin** | - |
+| **Rank 38** | **2, 12** | **10 Poin** | - |
+| **Rank 40** | **7** | **0 Poin** | Tidak hadir / belum ada poin |
+
+---
 
 | Pertemuan | Tanggal / Catatan | Poin Diperoleh | Poin Maksimal Kelas | Status Performa |
 |:---:|:---:|:---:|:---:|:---:|
