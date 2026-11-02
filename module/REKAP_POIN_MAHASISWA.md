@@ -6,6 +6,27 @@
 
 ---
 
+## 🎯 TARGET KHUSUS DARELL (AUTO-A / BEBAS PROJEK & PRESENTASI)
+
+> ### 🚀 GOAL: **150 POIN**
+> **Keuntungan Utama:**
+> - ✅ **NILAI AKHIR OTOMATIS A (MUTLAK)**
+> - ✅ **BEBAS DARI TUGAS PROJEK AKHIR**
+> - ✅ **BEBAS DARI PRESENTASI PROJEK (Pertemuan 14 & 15)**
+>
+> ---
+>
+> ### 📊 PROGRESS METER:
+> - **Poin Saat Ini:** `125 Poin`
+> - **Target Goal:** `150 Poin`
+> - **SISA KEBUTUHAN:** **`25 POIN LAGI!`** 🎯
+> - **Persentase Pencapaian:** `83.3%` [████████████████░░░░]
+>
+> 👉 **Strategi Besok:**  
+> Dosen biasanya memberikan challenge berbobot **20 s/d 30 poin**. Jika besok kita berhasil mengeksekusi challenge dengan sempurna (skor minimal +25), maka poinmu langsung menjadi **150 - 155 Poin**, artinya **TARGET TERCAPAI BESOK JUGA & RESMI LULUS DENGAN NILAI A TANPA PROJEK/PRESENTASI!** 🔥
+
+---
+
 ## 🏆 KLASEMEN / RANKING POIN KELAS (AKUMULASI S/D PERTEMUAN 7)
 
 | Peringkat | No. Absen | Total Poin | Keterangan & Rincian |
