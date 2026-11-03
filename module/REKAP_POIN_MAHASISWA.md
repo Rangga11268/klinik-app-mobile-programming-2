@@ -7,20 +7,28 @@
 
 ---
 
-## 📌 KETENTUAN AKADEMIK & HAK ISTIMEWA POIN (AMBANG BATAS >= 150 POIN)
+## 📌 KETENTUAN POIN & TINGKAT FASILITAS AKADEMIK
 
-Berdasarkan regulasi perkuliahan Mobile Programming II, mahasiswa yang berhasil mencapai akumulasi **minimal 150 Poin** berhak memperoleh hak istimewa sebagai berikut:
-1. **Nilai Akhir Mutlak A (Skor 100)** pada mata kuliah Mobile Programming II.
-2. **Bebas dari Tugas Projek Akhir Semester**.
-3. **Bebas dari Kewajiban Presentasi Projek (Pertemuan 14 & 15)**.
-4. **Hak Dispensasi Presensi (Jatah Bebas Absen)** sebanyak **1 (satu) pertemuan**.
-5. **Regulasi Transfer Poin**: Mahasiswa yang telah melampaui 150 poin diperbolehkan mentransfer sisa kelebihan poinnya (*surplus*) kepada mahasiswa lain yang membutuhkan penambahan poin.
+Berdasarkan regulasi perkuliahan Mobile Programming II, sistem apresiasi keaktifan mahasiswa diatur dalam tingkatan (*tier*) capaian poin sebagai berikut:
+
+1. **Tier 1 (150 s/d 199 Poin)**:
+   - ✅ **Nilai Akhir Mutlak A (Skor 100)**
+   - ✅ **Bebas dari Tugas Projek Akhir Semester**
+   - ✅ **Bebas dari Presentasi Projek (Pertemuan 14 & 15)**
+   - ✅ **Hak Dispensasi Presensi (Jatah Bebas Absen): 1 (Satu) Pertemuan**
+   - 🔄 **Regulasi Transfer Poin**: Berhak mentransfer kelebihan poin (*surplus >150*) ke mahasiswa lain.
+
+2. **Tier 2 (>= 200 Poin - Prestasi Tertinggi)**:
+   - 🌟 **Nilai Akhir Mutlak A (Skor 100)**
+   - 🌟 **Bebas Tugas Projek Akhir Semester & Presentasi (Pertemuan 14 & 15)**
+   - 🌟 **Hak Dispensasi Presensi (Jatah Bebas Absen): 2 (Dua) Pertemuan**
+   - 🔄 **Regulasi Transfer Poin**: Seluruh kelebihan poin di atas 150/200 berhak ditransfer ke mahasiswa lain.
 
 ---
 
 ## 🏆 KLASEMEN AKUMULASI NILAI KELAS 19.5A.05 (UPDATE P8)
 
-| Rank | No. Absen | NIM | Nama Mahasiswa | Total Poin | Surplus (>150) | Status Kelulusan & Fasilitas |
+| Rank | No. Absen | NIM | Nama Mahasiswa | Total Poin | Surplus (>150) | Status Kelulusan & Dispensasi |
 |:---:|:---:|:---:|---|:---:|:---:|---|
 | 🥇 1 | 39 | 19241058 | TIRTA ADI MULYA | **170** | +20 Poin | ✅ Memenuhi Syarat (Nilai A + Dispensasi Presensi 1X) |
 | 🥈 2 | 40 | 19241060 | WAHYU NOVIANTO | **160** | +10 Poin | ✅ Memenuhi Syarat (Nilai A + Dispensasi Presensi 1X) |

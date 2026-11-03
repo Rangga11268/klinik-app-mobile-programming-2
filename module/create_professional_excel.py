@@ -17,6 +17,8 @@ RESULT_HEADER = "1D4ED8"     # Royal blue for final results
 
 GREEN_BG = "DCFCE7"          # Soft Emerald for >= 150
 GREEN_TXT = "166534"
+GOLD_BG = "FEF3C7"           # Gold tint for >= 200 (Double dispensation)
+GOLD_TXT = "92400E"
 ZEBRA_BG = "F8FAFC"
 BORDER_COLOR = "CBD5E1"
 WHITE = "FFFFFF"
@@ -36,6 +38,7 @@ font_header = Font(name="Segoe UI", size=9.5, bold=True, color=WHITE)
 font_data = Font(name="Segoe UI", size=9.5, color="0F172A")
 font_bold = Font(name="Segoe UI", size=9.5, bold=True, color="0F172A")
 font_pass = Font(name="Segoe UI", size=9.5, bold=True, color=GREEN_TXT)
+font_tier200 = Font(name="Segoe UI", size=9.5, bold=True, color=GOLD_TXT)
 
 # Fills
 fill_header_main = PatternFill(start_color=NAVY_HEADER, end_color=NAVY_HEADER, fill_type="solid")
@@ -46,6 +49,7 @@ fill_header_result = PatternFill(start_color=RESULT_HEADER, end_color=RESULT_HEA
 
 fill_zebra = PatternFill(start_color=ZEBRA_BG, end_color=ZEBRA_BG, fill_type="solid")
 fill_green_pass = PatternFill(start_color=GREEN_BG, end_color=GREEN_BG, fill_type="solid")
+fill_gold_tier = PatternFill(start_color=GOLD_BG, end_color=GOLD_BG, fill_type="solid")
 fill_card = PatternFill(start_color=CARD_BG, end_color=CARD_BG, fill_type="solid")
 
 # Borders
@@ -71,19 +75,19 @@ ws["A2"] = "Mata Kuliah: Mobile Programming II (19.5A.05) | Dosen Pengampu: Cep 
 ws["A2"].font = font_subtitle
 ws.row_dimensions[2].height = 18
 
-# Ketentuan Akademik & Aturan Transfer Poin (Rows 4-6)
+# Ketentuan Akademik & Aturan Fasilitas (Rows 4-6)
 ws.merge_cells("B4:V4")
-ws["B4"] = "📌 KETENTUAN POIN & FASILITAS AKADEMIK (AMBANG BATAS >= 150 POIN):"
+ws["B4"] = "📌 KETENTUAN POIN & TINGKAT FASILITAS AKADEMIK:"
 ws["B4"].font = font_rule_title
 ws["B4"].alignment = Alignment(horizontal="left", vertical="center")
 
 ws.merge_cells("B5:V5")
-ws["B5"] = "1. Nilai Akhir Otomatis A (Mutlak) | 2. Bebas Tugas Akhir Semester & Presentasi Projek (P14-P15) | 3. Hak Dispensasi Presensi (Jatah Bebas Absen) Sebanyak 1 Pertemuan"
+ws["B5"] = "• 150 - 199 Poin : Nilai Akhir Mutlak A + Bebas Projek/Presentasi (P14-P15) + Hak Dispensasi Presensi 1 Pertemuan (1x)"
 ws["B5"].font = font_rule_desc
 ws["B5"].alignment = Alignment(horizontal="left", vertical="center")
 
 ws.merge_cells("B6:V6")
-ws["B6"] = "4. Regulasi Transfer Poin: Mahasiswa dengan capaian > 150 Poin berhak mentransfer kelebihan poin (surplus) kepada mahasiswa lain yang membutuhkan."
+ws["B6"] = "• >= 200 Poin    : Nilai Akhir Mutlak A + Bebas Projek/Presentasi (P14-P15) + Hak Dispensasi Presensi 2 Pertemuan (2x) | Surplus >150 Poin Berhak Ditransfer"
 ws["B6"].font = font_rule_desc
 ws["B6"].alignment = Alignment(horizontal="left", vertical="center")
 
@@ -174,7 +178,7 @@ headers = [
     ("Total Poin Akhir", align_center, 16, fill_header_result),
     ("Surplus (>150)", align_center, 14, fill_header_transfer),
     ("Status Kelulusan & Dispensasi", align_center, 38, fill_header_result),
-    ("Keterangan Capaian", align_left, 42, fill_header_result)
+    ("Keterangan Capaian", align_left, 45, fill_header_result)
 ]
 
 header_row = 11
@@ -247,6 +251,7 @@ for rank_idx, s in enumerate(sorted_roster, 1):
     jk = s[3]
     p2, p3, p4, p5, p7, p8 = s[4], s[5], s[6], s[7], s[8], s[9]
     total_val = p2 + p3 + p4 + p5 + p7 + p8
+    is_tier200 = (total_val >= 200)
     is_auto_a = (total_val >= 150)
     
     ws.row_dimensions[curr_row].height = 20
@@ -277,11 +282,11 @@ for rank_idx, s in enumerate(sorted_roster, 1):
     c_tot_ak.alignment = align_center
     c_tot_ak.font = font_bold
     
-    # Col 17 (Q): Transfer Keluar (-) (User can type points transferred out to others)
+    # Col 17 (Q): Transfer Keluar (-)
     c_tr_out = ws.cell(curr_row, 17, 0)
     c_tr_out.alignment = align_center
     
-    # Col 18 (R): Transfer Masuk (+) (User can type points received from others)
+    # Col 18 (R): Transfer Masuk (+)
     c_tr_in = ws.cell(curr_row, 18, 0)
     c_tr_in.alignment = align_center
     
@@ -294,19 +299,28 @@ for rank_idx, s in enumerate(sorted_roster, 1):
     c_surplus = ws.cell(curr_row, 20, f'=IF(S{curr_row}>150, S{curr_row}-150, 0)')
     c_surplus.alignment = align_center
     
-    # Col 21 (U): Status Kelulusan & Dispensasi Presensi 1X
-    c_stat = ws.cell(curr_row, 21, f'=IF(S{curr_row}>=150, "MEMENUHI SYARAT (NILAI A + DISPENSASI 1X)", "BELUM MEMENUHI SYARAT")')
+    # Col 21 (U): Status Kelulusan & Dispensasi Presensi (1X jika >=150, 2X jika >=200)
+    c_stat = ws.cell(curr_row, 21, f'=IF(S{curr_row}>=200, "MEMENUHI SYARAT (NILAI A + DISPENSASI 2X)", IF(S{curr_row}>=150, "MEMENUHI SYARAT (NILAI A + DISPENSASI 1X)", "BELUM MEMENUHI SYARAT"))')
     c_stat.alignment = align_center
     
     # Col 22 (V): Keterangan Capaian
-    c_ket = ws.cell(curr_row, 22, f'=IF(S{curr_row}>=150, "Bebas Projek & Presentasi | Surplus: " & T{curr_row} & " Poin", "Kurang " & (150-S{curr_row}) & " poin lagi")')
+    c_ket = ws.cell(curr_row, 22, f'=IF(S{curr_row}>=200, "Bebas Projek/Presentasi | Dispensasi 2x | Surplus: " & T{curr_row} & " Poin", IF(S{curr_row}>=150, "Bebas Projek/Presentasi | Dispensasi 1x | Surplus: " & T{curr_row} & " Poin", "Kurang " & (150-S{curr_row}) & " poin lagi"))')
     c_ket.alignment = align_left
     
     # Universal styling (Equal for ALL students)
-    # Highlight all students who meet >= 150 with clean green pass, zebra for others
-    row_fill = fill_green_pass if is_auto_a else (fill_zebra if rank_idx % 2 == 0 else None)
-    row_font = font_pass if is_auto_a else font_data
-    
+    if is_tier200:
+        row_fill = fill_gold_tier
+        row_font = font_tier200
+    elif is_auto_a:
+        row_fill = fill_green_pass
+        row_font = font_pass
+    elif rank_idx % 2 == 0:
+        row_fill = fill_zebra
+        row_font = font_data
+    else:
+        row_fill = None
+        row_font = font_data
+        
     for col in range(1, 23):
         cell = ws.cell(curr_row, col)
         cell.border = border_cell
@@ -335,9 +349,9 @@ ws.cell(sum_row, 22, "").fill = fill_card
 for col in range(1, 23):
     ws.cell(sum_row, col).border = border_total
 
-# Freeze Panes at E12 (Rank, Absen, NIM, Nama always visible when scrolling)
+# Freeze Panes at E12
 ws.freeze_panes = "E12"
 
 excel_path = "d:/laragon/www/klinik37/module/Rekap_Poin_Mobile_Programming_2_Kelas_195A05.xlsx"
 wb.save(excel_path)
-print(f"File Excel resmi berhasil di-generate di: {excel_path}")
+print(f"File Excel resmi 200 poin berhasil diperbarui di: {excel_path}")
