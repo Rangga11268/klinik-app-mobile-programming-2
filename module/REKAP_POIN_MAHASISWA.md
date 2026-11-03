@@ -3,7 +3,7 @@
 **Dosen Pengampu:** Cep Adiwiharja  
 **Program Studi:** Sistem Informasi  
 **Perguruan Tinggi:** Universitas Bina Sarana Informatika (UBSI)  
-**Periode Update:** Pertemuan 8 (Challenge REST API MockAPI - 3 November 2026)  
+**Periode Update:** Pertemuan 7 (Challenge REST API MockAPI - 3 November 2026)  
 
 ---
 
@@ -26,7 +26,7 @@ Berdasarkan regulasi perkuliahan Mobile Programming II, sistem apresiasi keaktif
 
 ---
 
-## 🏆 KLASEMEN AKUMULASI NILAI KELAS 19.5A.05 (UPDATE P8)
+## 🏆 KLASEMEN AKUMULASI NILAI KELAS 19.5A.05 (UPDATE PERTEMUAN 7)
 
 | Rank | No. Absen | NIM | Nama Mahasiswa | Total Poin | Surplus (>150) | Status Kelulusan & Dispensasi |
 |:---:|:---:|:---:|---|:---:|:---:|---|
@@ -75,9 +75,11 @@ Berdasarkan regulasi perkuliahan Mobile Programming II, sistem apresiasi keaktif
 
 ## 📑 RIWAYAT LENGKAP POIN PER PERTEMUAN
 
-1. **Pertemuan 2 (P2)**: 25 poin (15 mhs), 15 poin (16 mhs), 10 poin (7 mhs).
-2. **Pertemuan 3 (P3)**: 20 poin (23 mhs).
-3. **Pertemuan 4 (P4)**: 50 poin (21 mhs), 30 poin (8 mhs), 20 poin (2 mhs), 15 poin (1 mhs).
-4. **Pertemuan 5 (P5)**: 30 poin (16 mhs), 20 poin (15 mhs), 10 poin (3 mhs).
-5. **Pertemuan 7 (P7)**: Bonus 15 poin (Absen 39, 40).
-6. **Pertemuan 8 (P8 - Challenge MockAPI 3 Nov 2026)**: 30 poin (30 mhs), 20 poin (5 mhs).
+1. **Pertemuan 1 (P1)**: Pengenalan Perkuliahan & Pengantar Mobile Programming II (Tidak ada challenge / 0 poin).
+2. **Pertemuan 2 (P2)**: Challenge Dasar Flutter & State (25 poin 15 mhs, 15 poin 16 mhs, 10 poin 7 mhs).
+3. **Pertemuan 3 (P3)**: Challenge Navigation & Routing (20 poin 23 mhs).
+4. **Pertemuan 4 (P4)**: Challenge Form Validation & UI Component (50 poin 21 mhs, 30 poin 8 mhs, 20 poin 2 mhs, 15 poin 1 mhs).
+5. **Pertemuan 5 (P5 - Dosen Pengganti)**: Sesi materi oleh dosen pengganti, tidak ada challenge/poin (0 poin).
+6. **Pertemuan 6 (P6)**: Challenge HTTP Request & JSON Parsing (30 poin 16 mhs, 20 poin 15 mhs, 10 poin 3 mhs, serta bonus poin keaktifan 15 poin untuk Absen 39 & 40).
+7. **Pertemuan 7 (P7 - Challenge MockAPI 3 November 2026)**: Challenge REST API MockAPI Database Sekolah (30 poin 30 mhs, 20 poin 5 mhs).
+8. **Pertemuan 8 (UTS) s/d P11**: Pertemuan mendatang (Tersedia kolom input di Excel & Dashboard).

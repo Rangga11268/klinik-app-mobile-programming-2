@@ -34,7 +34,7 @@
       <div class="flex items-center space-x-3">
         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800">
           <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
-          Update Pertemuan 8 (Live)
+          Update Pertemuan 7 (Live)
         </span>
         <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700 flex items-center">
           <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
@@ -151,7 +151,7 @@
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">Catatan / Keterangan:</label>
-              <input type="text" id="transfer-note" placeholder="Misal: Bantuan Tugas P8" class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 p-2.5 border">
+              <input type="text" id="transfer-note" placeholder="Misal: Bantuan Tugas P7" class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 p-2.5 border">
             </div>
             <div>
               <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-200 transition flex items-center justify-center space-x-1.5">
@@ -173,7 +173,7 @@
           </span>
           <div>
             <h3 class="text-base font-bold text-slate-900">Input Poin Pertemuan Baru</h3>
-            <p class="text-xs text-slate-500">Pembaruan nilai langsung untuk P9 s/d P14</p>
+            <p class="text-xs text-slate-500">Pembaruan nilai langsung untuk P8 s/d P14</p>
           </div>
         </div>
 
@@ -188,6 +188,7 @@
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1">Pertemuan:</label>
               <select id="point-meeting" class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white p-2.5 border font-semibold">
+                <option value="P8">Pertemuan 8 (P8 - UTS)</option>
                 <option value="P9">Pertemuan 9 (P9)</option>
                 <option value="P10">Pertemuan 10 (P10)</option>
                 <option value="P11">Pertemuan 11 (P11)</option>
@@ -287,9 +288,9 @@
               <th class="py-3 px-2 text-center bg-slate-800">P2</th>
               <th class="py-3 px-2 text-center bg-slate-800">P3</th>
               <th class="py-3 px-2 text-center bg-slate-800">P4</th>
-              <th class="py-3 px-2 text-center bg-slate-800">P5</th>
+              <th class="py-3 px-2 text-center bg-slate-700">P5 (Pengganti)</th>
+              <th class="py-3 px-2 text-center bg-slate-800">P6</th>
               <th class="py-3 px-2 text-center bg-slate-800">P7</th>
-              <th class="py-3 px-2 text-center bg-slate-800">P8</th>
               <th class="py-3 px-3 text-center font-extrabold bg-blue-950 text-blue-200">Total Akumulasi</th>
               <th class="py-3 px-3 text-center bg-indigo-950 text-indigo-200">Trf Keluar (-)</th>
               <th class="py-3 px-3 text-center bg-indigo-950 text-indigo-200">Trf Masuk (+)</th>
@@ -345,50 +346,50 @@
   <script>
     // Master Data 40 Mahasiswa
     let students = [
-      { absen: 1, nim: "19240001", nama: "RIFKI WAHYU", jk: "L", p: [25, 20, 50, 20, 0, 30], out: 0, in: 0 },
+      { absen: 1, nim: "19240001", nama: "RIFKI WAHYU", jk: "L", p: [25, 20, 50, 0, 20, 30], out: 0, in: 0 },
       { absen: 2, nim: "19240002", nama: "MUHAMMAD SYAUQI", jk: "L", p: [10, 0, 0, 0, 0, 0], out: 0, in: 0 },
-      { absen: 3, nim: "19240052", nama: "MICHIO CHRISTIAN HADY", jk: "L", p: [15, 20, 50, 30, 0, 30], out: 0, in: 0 },
-      { absen: 4, nim: "19240078", nama: "NASVIRA MELANI PUTRI", jk: "P", p: [25, 0, 30, 30, 0, 30], out: 0, in: 0 },
-      { absen: 5, nim: "19240092", nama: "MUHAMMAD FADHLI AKBAR RABBANI", jk: "L", p: [15, 20, 50, 20, 0, 0], out: 0, in: 0 },
-      { absen: 6, nim: "19240152", nama: "NUNING SAWITRI", jk: "P", p: [10, 0, 0, 30, 0, 30], out: 0, in: 0 },
+      { absen: 3, nim: "19240052", nama: "MICHIO CHRISTIAN HADY", jk: "L", p: [15, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 4, nim: "19240078", nama: "NASVIRA MELANI PUTRI", jk: "P", p: [25, 0, 30, 0, 30, 30], out: 0, in: 0 },
+      { absen: 5, nim: "19240092", nama: "MUHAMMAD FADHLI AKBAR RABBANI", jk: "L", p: [15, 20, 50, 0, 20, 0], out: 0, in: 0 },
+      { absen: 6, nim: "19240152", nama: "NUNING SAWITRI", jk: "P", p: [10, 0, 0, 0, 30, 30], out: 0, in: 0 },
       { absen: 7, nim: "19240197", nama: "SITI KOMARIYAH", jk: "P", p: [0, 0, 0, 0, 0, 0], out: 0, in: 0 },
-      { absen: 8, nim: "19240198", nama: "MAULISYA EKA PUTRI", jk: "P", p: [10, 0, 30, 30, 0, 30], out: 0, in: 0 },
-      { absen: 9, nim: "19240219", nama: "ILHAM FAJRIAN", jk: "L", p: [0, 20, 50, 30, 0, 30], out: 0, in: 0 },
-      { absen: 10, nim: "19240227", nama: "REFI FAUZAN", jk: "L", p: [25, 0, 0, 30, 0, 30], out: 0, in: 0 },
-      { absen: 11, nim: "19240230", nama: "RAHMADI CAHYO SAPUTRO", jk: "L", p: [15, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 8, nim: "19240198", nama: "MAULISYA EKA PUTRI", jk: "P", p: [10, 0, 30, 0, 30, 30], out: 0, in: 0 },
+      { absen: 9, nim: "19240219", nama: "ILHAM FAJRIAN", jk: "L", p: [0, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 10, nim: "19240227", nama: "REFI FAUZAN", jk: "L", p: [25, 0, 0, 0, 30, 30], out: 0, in: 0 },
+      { absen: 11, nim: "19240230", nama: "RAHMADI CAHYO SAPUTRO", jk: "L", p: [15, 20, 50, 0, 30, 30], out: 0, in: 0 },
       { absen: 12, nim: "19240237", nama: "ADESKY JAMIL SYARIFUDDIN", jk: "L", p: [10, 0, 0, 0, 0, 0], out: 0, in: 0 },
-      { absen: 13, nim: "19240239", nama: "NASYWA ZAIN", jk: "P", p: [15, 20, 50, 20, 0, 30], out: 0, in: 0 },
-      { absen: 14, nim: "19240247", nama: "CHESA AWALIA REFANA", jk: "P", p: [25, 20, 50, 20, 0, 30], out: 0, in: 0 },
-      { absen: 15, nim: "19240259", nama: "KATHERINE JULIAN ANASTASIA MANURUNG", jk: "P", p: [25, 20, 50, 20, 0, 30], out: 0, in: 0 },
+      { absen: 13, nim: "19240239", nama: "NASYWA ZAIN", jk: "P", p: [15, 20, 50, 0, 20, 30], out: 0, in: 0 },
+      { absen: 14, nim: "19240247", nama: "CHESA AWALIA REFANA", jk: "P", p: [25, 20, 50, 0, 20, 30], out: 0, in: 0 },
+      { absen: 15, nim: "19240259", nama: "KATHERINE JULIAN ANASTASIA MANURUNG", jk: "P", p: [25, 20, 50, 0, 20, 30], out: 0, in: 0 },
       { absen: 16, nim: "19240356", nama: "RIFA DINI ARIFAH", jk: "P", p: [15, 20, 50, 0, 0, 30], out: 0, in: 0 },
-      { absen: 17, nim: "19240463", nama: "NAJMI NATA LAZUARDI", jk: "L", p: [25, 0, 30, 30, 0, 30], out: 0, in: 0 },
-      { absen: 18, nim: "19240465", nama: "NABILA INTAN FADHILAH", jk: "P", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
-      { absen: 19, nim: "19240488", nama: "MEGI REFKIANSYAH ANANDA PRATAMA GUMAY", jk: "L", p: [15, 20, 50, 30, 0, 30], out: 0, in: 0 },
-      { absen: 20, nim: "19240491", nama: "SITI NUR AISYAH", jk: "P", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 17, nim: "19240463", nama: "NAJMI NATA LAZUARDI", jk: "L", p: [25, 0, 30, 0, 30, 30], out: 0, in: 0 },
+      { absen: 18, nim: "19240465", nama: "NABILA INTAN FADHILAH", jk: "P", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 19, nim: "19240488", nama: "MEGI REFKIANSYAH ANANDA PRATAMA GUMAY", jk: "L", p: [15, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 20, nim: "19240491", nama: "SITI NUR AISYAH", jk: "P", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
       { absen: 21, nim: "19240493", nama: "WAHYU RIZKY KHOIRUDIN", jk: "L", p: [25, 20, 20, 0, 0, 20], out: 0, in: 0 },
-      { absen: 22, nim: "19240516", nama: "DENADA PUTRI HIDAYAT", jk: "P", p: [15, 0, 30, 20, 0, 20], out: 0, in: 0 },
-      { absen: 23, nim: "19240540", nama: "NUR AZIZAH", jk: "P", p: [10, 20, 50, 10, 0, 30], out: 0, in: 0 },
+      { absen: 22, nim: "19240516", nama: "DENADA PUTRI HIDAYAT", jk: "P", p: [15, 0, 30, 0, 20, 20], out: 0, in: 0 },
+      { absen: 23, nim: "19240540", nama: "NUR AZIZAH", jk: "P", p: [10, 20, 50, 0, 10, 30], out: 0, in: 0 },
       { absen: 24, nim: "19240629", nama: "MUHAMAD RAFI AFDHAL", jk: "L", p: [15, 0, 15, 0, 0, 30], out: 0, in: 0 },
-      { absen: 25, nim: "19240670", nama: "NDARU PRIYAMBODO", jk: "L", p: [15, 0, 30, 20, 0, 20], out: 0, in: 0 },
-      { absen: 26, nim: "19240697", nama: "SYIFA AULIA", jk: "P", p: [15, 20, 50, 20, 0, 30], out: 0, in: 0 },
-      { absen: 27, nim: "19240729", nama: "BIANCA BINTANG DACHLAN", jk: "P", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
-      { absen: 28, nim: "19240732", nama: "IMAN SYAHRUDIN SUSANTO", jk: "L", p: [15, 0, 0, 20, 0, 20], out: 0, in: 0 },
-      { absen: 29, nim: "19240757", nama: "DAVIN FIGO DANENDRA", jk: "L", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
-      { absen: 30, nim: "19240780", nama: "NAYLA AMALIAH HUTAMI", jk: "P", p: [15, 0, 30, 10, 0, 20], out: 0, in: 0 },
-      { absen: 31, nim: "19240782", nama: "MUHAMAD RIFKI SAPUTRA", jk: "L", p: [15, 0, 30, 20, 0, 0], out: 0, in: 0 },
-      { absen: 32, nim: "19240852", name: "INNESYA ZAHWA SUTA", nama: "INNESYA ZAHWA SUTA", jk: "P", p: [10, 20, 50, 10, 0, 30], out: 0, in: 0 },
-      { absen: 33, nim: "19240872", nama: "MUHAMMAD ADITYA ANANDA", jk: "L", p: [15, 20, 20, 20, 0, 30], out: 0, in: 0 },
-      { absen: 34, nim: "19240895", nama: "NAUFAL HAKIM", jk: "L", p: [15, 0, 0, 20, 0, 30], out: 0, in: 0 },
-      { absen: 35, nim: "19240918", nama: "NOEL VALDES SIMORANGKIR", jk: "L", p: [10, 0, 0, 20, 0, 30], out: 0, in: 0 },
-      { absen: 36, nim: "19240953", nama: "MUHAMAD RAJIB", jk: "L", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
-      { absen: 37, nim: "19241009", nama: "DARELL RANGGA PUTRA RACHMAN", jk: "L", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
-      { absen: 38, nim: "19241018", nama: "ABI ABRAR ROBBANI", jk: "L", p: [15, 0, 30, 20, 0, 30], out: 0, in: 0 },
-      { absen: 39, nim: "19241058", nama: "TIRTA ADI MULYA", jk: "L", p: [25, 20, 50, 30, 15, 30], out: 0, in: 0 },
-      { absen: 40, nim: "19241060", nama: "WAHYU NOVIANTO", jk: "L", p: [25, 20, 50, 20, 15, 30], out: 0, in: 0 }
+      { absen: 25, nim: "19240670", nama: "NDARU PRIYAMBODO", jk: "L", p: [15, 0, 30, 0, 20, 20], out: 0, in: 0 },
+      { absen: 26, nim: "19240697", nama: "SYIFA AULIA", jk: "P", p: [15, 20, 50, 0, 20, 30], out: 0, in: 0 },
+      { absen: 27, nim: "19240729", nama: "BIANCA BINTANG DACHLAN", jk: "P", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 28, nim: "19240732", nama: "IMAN SYAHRUDIN SUSANTO", jk: "L", p: [15, 0, 0, 0, 20, 20], out: 0, in: 0 },
+      { absen: 29, nim: "19240757", nama: "DAVIN FIGO DANENDRA", jk: "L", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 30, nim: "19240780", nama: "NAYLA AMALIAH HUTAMI", jk: "P", p: [15, 0, 30, 0, 10, 20], out: 0, in: 0 },
+      { absen: 31, nim: "19240782", nama: "MUHAMAD RIFKI SAPUTRA", jk: "L", p: [15, 0, 30, 0, 20, 0], out: 0, in: 0 },
+      { absen: 32, nim: "19240852", nama: "INNESYA ZAHWA SUTA", jk: "P", p: [10, 20, 50, 0, 10, 30], out: 0, in: 0 },
+      { absen: 33, nim: "19240872", nama: "MUHAMMAD ADITYA ANANDA", jk: "L", p: [15, 20, 20, 0, 20, 30], out: 0, in: 0 },
+      { absen: 34, nim: "19240895", nama: "NAUFAL HAKIM", jk: "L", p: [15, 0, 0, 0, 20, 30], out: 0, in: 0 },
+      { absen: 35, nim: "19240918", nama: "NOEL VALDES SIMORANGKIR", jk: "L", p: [10, 0, 0, 0, 20, 30], out: 0, in: 0 },
+      { absen: 36, nim: "19240953", nama: "MUHAMAD RAJIB", jk: "L", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 37, nim: "19241009", nama: "DARELL RANGGA PUTRA RACHMAN", jk: "L", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 38, nim: "19241018", nama: "ABI ABRAR ROBBANI", jk: "L", p: [15, 0, 30, 0, 20, 30], out: 0, in: 0 },
+      { absen: 39, nim: "19241058", nama: "TIRTA ADI MULYA", jk: "L", p: [25, 20, 50, 0, 45, 30], out: 0, in: 0 },
+      { absen: 40, nim: "19241060", nama: "WAHYU NOVIANTO", jk: "L", p: [25, 20, 50, 0, 35, 30], out: 0, in: 0 }
     ];
 
     let transferLogs = [
-      { time: "03/11/2026 15:30", from: "TIRTA ADI MULYA (Absen 39)", to: "RIFKI WAHYU (Absen 1)", points: 5, note: "Bantuan P8", status: "Berhasil" }
+      { time: "03/11/2026 15:30", from: "TIRTA ADI MULYA (Absen 39)", to: "RIFKI WAHYU (Absen 1)", points: 5, note: "Bantuan P7", status: "Berhasil" }
     ];
 
     let currentFilter = 'all';
@@ -482,7 +483,7 @@
           <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[0]}</td>
           <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[1]}</td>
           <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[2]}</td>
-          <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[3]}</td>
+          <td class="py-3 px-2 text-center text-slate-400 bg-slate-100/70 font-semibold">${s.p[3] === 0 ? '-' : s.p[3]}</td>
           <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[4]}</td>
           <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[5]}</td>
           <td class="py-3 px-3 text-center font-bold text-slate-900 bg-blue-50/60">${accum}</td>
