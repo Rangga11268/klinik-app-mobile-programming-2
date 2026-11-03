@@ -473,52 +473,50 @@
     // Master Dataset: 40 Mahasiswa Kelas 19.5A.05
     // p array: [P2, P3, P4, P5_sub, P6, P7]
     const students = [
-      { absen: 1, nim: "19240001", nama: "RIFKI WAHYU", jk: "L", p: [25, 20, 50, 0, 20, 30], out: 0, in: 0 },
+      { absen: 1, nim: "19240001", nama: "RIFKI WAHYU", jk: "L", p: [25, 50, 20, 0, 0, 30], out: 0, in: 0 },
       { absen: 2, nim: "19240002", nama: "MUHAMMAD SYAUQI", jk: "L", p: [10, 0, 0, 0, 0, 0], out: 0, in: 0 },
-      { absen: 3, nim: "19240052", nama: "MICHIO CHRISTIAN HADY", jk: "L", p: [15, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 4, nim: "19240078", nama: "NASVIRA MELANI PUTRI", jk: "P", p: [25, 0, 30, 0, 30, 30], out: 0, in: 0 },
-      { absen: 5, nim: "19240092", nama: "MUHAMMAD FADHLI AKBAR RABBANI", jk: "L", p: [15, 20, 50, 0, 20, 0], out: 0, in: 0 },
-      { absen: 6, nim: "19240152", nama: "NUNING SAWITRI", jk: "P", p: [10, 0, 0, 0, 30, 30], out: 0, in: 0 },
+      { absen: 3, nim: "19240052", nama: "MICHIO CHRISTIAN HADY", jk: "L", p: [15, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 4, nim: "19240078", nama: "NASVIRA MELANI PUTRI", jk: "P", p: [25, 30, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 5, nim: "19240092", nama: "MUHAMMAD FADHLI AKBAR RABBANI", jk: "L", p: [15, 50, 20, 0, 0, 0], out: 0, in: 0 },
+      { absen: 6, nim: "19240152", nama: "NUNING SAWITRI", jk: "P", p: [10, 0, 30, 0, 0, 30], out: 0, in: 0 },
       { absen: 7, nim: "19240197", nama: "SITI KOMARIYAH", jk: "P", p: [0, 0, 0, 0, 0, 0], out: 0, in: 0 },
-      { absen: 8, nim: "19240198", nama: "MAULISYA EKA PUTRI", jk: "P", p: [10, 0, 30, 0, 30, 30], out: 0, in: 0 },
-      { absen: 9, nim: "19240219", nama: "ILHAM FAJRIAN", jk: "L", p: [0, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 10, nim: "19240227", nama: "REFI FAUZAN", jk: "L", p: [25, 0, 0, 0, 30, 30], out: 0, in: 0 },
-      { absen: 11, nim: "19240230", nama: "RAHMADI CAHYO SAPUTRO", jk: "L", p: [15, 20, 50, 0, 30, 30], out: 0, in: 0 },
+      { absen: 8, nim: "19240198", nama: "MAULISYA EKA PUTRI", jk: "P", p: [10, 30, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 9, nim: "19240219", nama: "ILHAM FAJRIAN", jk: "L", p: [0, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 10, nim: "19240227", nama: "REFI FAUZAN", jk: "L", p: [25, 0, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 11, nim: "19240230", nama: "RAHMADI CAHYO SAPUTRO", jk: "L", p: [15, 50, 30, 0, 0, 30], out: 0, in: 0 },
       { absen: 12, nim: "19240237", nama: "ADESKY JAMIL SYARIFUDDIN", jk: "L", p: [10, 0, 0, 0, 0, 0], out: 0, in: 0 },
-      { absen: 13, nim: "19240239", nama: "NASYWA ZAIN", jk: "P", p: [15, 20, 50, 0, 20, 30], out: 0, in: 0 },
-      { absen: 14, nim: "19240247", nama: "CHESA AWALIA REFANA", jk: "P", p: [25, 20, 50, 0, 20, 30], out: 0, in: 0 },
-      { absen: 15, nim: "19240259", nama: "KATHERINE JULIAN ANASTASIA MANURUNG", jk: "P", p: [25, 20, 50, 0, 20, 30], out: 0, in: 0 },
-      { absen: 16, nim: "19240356", nama: "RIFA DINI ARIFAH", jk: "P", p: [15, 20, 50, 0, 0, 30], out: 0, in: 0 },
-      { absen: 17, nim: "19240463", nama: "NAJMI NATA LAZUARDI", jk: "L", p: [25, 0, 30, 0, 30, 30], out: 0, in: 0 },
-      { absen: 18, nim: "19240465", nama: "NABILA INTAN FADHILAH", jk: "P", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 19, nim: "19240488", nama: "MEGI REFKIANSYAH ANANDA PRATAMA GUMAY", jk: "L", p: [15, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 20, nim: "19240491", nama: "SITI NUR AISYAH", jk: "P", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 21, nim: "19240493", nama: "WAHYU RIZKY KHOIRUDIN", jk: "L", p: [25, 20, 20, 0, 0, 20], out: 0, in: 0 },
-      { absen: 22, nim: "19240516", nama: "DENADA PUTRI HIDAYAT", jk: "P", p: [15, 0, 30, 0, 20, 20], out: 0, in: 0 },
-      { absen: 23, nim: "19240540", nama: "NUR AZIZAH", jk: "P", p: [10, 20, 50, 0, 10, 30], out: 0, in: 0 },
-      { absen: 24, nim: "19240629", nama: "MUHAMAD RAFI AFDHAL", jk: "L", p: [15, 0, 15, 0, 0, 30], out: 0, in: 0 },
-      { absen: 25, nim: "19240670", nama: "NDARU PRIYAMBODO", jk: "L", p: [15, 0, 30, 0, 20, 20], out: 0, in: 0 },
-      { absen: 26, nim: "19240697", nama: "SYIFA AULIA", jk: "P", p: [15, 20, 50, 0, 20, 30], out: 0, in: 0 },
-      { absen: 27, nim: "19240729", nama: "BIANCA BINTANG DACHLAN", jk: "P", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 28, nim: "19240732", nama: "IMAN SYAHRUDIN SUSANTO", jk: "L", p: [15, 0, 0, 0, 20, 20], out: 0, in: 0 },
-      { absen: 29, nim: "19240757", nama: "DAVIN FIGO DANENDRA", jk: "L", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 30, nim: "19240780", nama: "NAYLA AMALIAH HUTAMI", jk: "P", p: [15, 0, 30, 0, 10, 20], out: 0, in: 0 },
-      { absen: 31, nim: "19240782", nama: "MUHAMAD RIFKI SAPUTRA", jk: "L", p: [15, 0, 30, 0, 20, 0], out: 0, in: 0 },
-      { absen: 32, nim: "19240852", nama: "INNESYA ZAHWA SUTA", jk: "P", p: [10, 20, 50, 0, 10, 30], out: 0, in: 0 },
-      { absen: 33, nim: "19240872", nama: "MUHAMMAD ADITYA ANANDA", jk: "L", p: [15, 20, 20, 0, 20, 30], out: 0, in: 0 },
-      { absen: 34, nim: "19240895", nama: "NAUFAL HAKIM", jk: "L", p: [15, 0, 0, 0, 20, 30], out: 0, in: 0 },
-      { absen: 35, nim: "19240918", nama: "NOEL VALDES SIMORANGKIR", jk: "L", p: [10, 0, 0, 0, 20, 30], out: 0, in: 0 },
-      { absen: 36, nim: "19240953", nama: "MUHAMAD RAJIB", jk: "L", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 37, nim: "19241009", nama: "DARELL RANGGA PUTRA RACHMAN", jk: "L", p: [25, 20, 50, 0, 30, 30], out: 0, in: 0 },
-      { absen: 38, nim: "19241018", nama: "ABI ABRAR ROBBANI", jk: "L", p: [15, 0, 30, 0, 20, 30], out: 0, in: 0 },
-      { absen: 39, nim: "19241058", nama: "TIRTA ADI MULYA", jk: "L", p: [25, 20, 50, 0, 45, 30], out: 0, in: 0 },
-      { absen: 40, nim: "19241060", nama: "WAHYU NOVIANTO", jk: "L", p: [25, 20, 50, 0, 35, 30], out: 0, in: 0 }
+      { absen: 13, nim: "19240239", nama: "NASYWA ZAIN", jk: "P", p: [15, 50, 20, 0, 0, 30], out: 0, in: 0 },
+      { absen: 14, nim: "19240247", nama: "CHESA AWALIA REFANA", jk: "P", p: [25, 50, 20, 0, 0, 30], out: 0, in: 0 },
+      { absen: 15, nim: "19240259", nama: "KATHERINE JULIAN ANASTASIA MANURUNG", jk: "P", p: [25, 50, 20, 0, 0, 30], out: 0, in: 0 },
+      { absen: 16, nim: "19240356", nama: "RIFA DINI ARIFAH", jk: "P", p: [15, 50, 0, 0, 0, 30], out: 0, in: 0 },
+      { absen: 17, nim: "19240463", nama: "NAJMI NATA LAZUARDI", jk: "L", p: [25, 30, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 18, nim: "19240465", nama: "NABILA INTAN FADHILAH", jk: "P", p: [25, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 19, nim: "19240488", nama: "MEGI REFKIANSYAH ANANDA PRATAMA GUMAY", jk: "L", p: [15, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 20, nim: "19240491", nama: "SITI NUR AISYAH", jk: "P", p: [25, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 21, nim: "19240493", nama: "WAHYU RIZKY KHOIRUDIN", jk: "L", p: [25, 20, 0, 0, 0, 20], out: 0, in: 0 },
+      { absen: 22, nim: "19240516", nama: "DENADA PUTRI HIDAYAT", jk: "P", p: [15, 30, 20, 0, 0, 20], out: 0, in: 0 },
+      { absen: 23, nim: "19240540", nama: "NUR AZIZAH", jk: "P", p: [10, 50, 10, 0, 0, 30], out: 0, in: 0 },
+      { absen: 24, nim: "19240629", nama: "MUHAMAD RAFI AFDHAL", jk: "L", p: [15, 15, 0, 0, 0, 30], out: 0, in: 0 },
+      { absen: 25, nim: "19240670", nama: "NDARU PRIYAMBODO", jk: "L", p: [15, 30, 20, 0, 0, 20], out: 0, in: 0 },
+      { absen: 26, nim: "19240697", nama: "SYIFA AULIA", jk: "P", p: [15, 50, 20, 0, 0, 30], out: 0, in: 0 },
+      { absen: 27, nim: "19240729", nama: "BIANCA BINTANG DACHLAN", jk: "P", p: [25, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 28, nim: "19240732", nama: "IMAN SYAHRUDIN SUSANTO", jk: "L", p: [15, 0, 20, 0, 0, 20], out: 0, in: 0 },
+      { absen: 29, nim: "19240757", nama: "DAVIN FIGO DANENDRA", jk: "L", p: [25, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 30, nim: "19240780", nama: "NAYLA AMALIAH HUTAMI", jk: "P", p: [15, 30, 10, 0, 0, 20], out: 0, in: 0 },
+      { absen: 31, nim: "19240782", nama: "MUHAMAD RIFKI SAPUTRA", jk: "L", p: [15, 30, 20, 0, 0, 0], out: 0, in: 0 },
+      { absen: 32, nim: "19240852", nama: "INNESYA ZAHWA SUTA", jk: "P", p: [10, 50, 10, 0, 0, 30], out: 0, in: 0 },
+      { absen: 33, nim: "19240872", nama: "MUHAMMAD ADITYA ANANDA", jk: "L", p: [15, 20, 20, 0, 0, 30], out: 0, in: 0 },
+      { absen: 34, nim: "19240895", nama: "NAUFAL HAKIM", jk: "L", p: [15, 0, 20, 0, 0, 30], out: 0, in: 0 },
+      { absen: 35, nim: "19240918", nama: "NOEL VALDES SIMORANGKIR", jk: "L", p: [10, 0, 20, 0, 0, 30], out: 0, in: 0 },
+      { absen: 36, nim: "19240953", nama: "MUHAMAD RAJIB", jk: "L", p: [25, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 37, nim: "19241009", nama: "DARELL RANGGA PUTRA RACHMAN", jk: "L", p: [25, 50, 30, 0, 0, 30], out: 0, in: 0 },
+      { absen: 38, nim: "19241018", nama: "ABI ABRAR ROBBANI", jk: "L", p: [15, 30, 20, 0, 0, 30], out: 0, in: 0 },
+      { absen: 39, nim: "19241058", nama: "TIRTA ADI MULYA", jk: "L", p: [25, 50, 30, 0, 15, 30], out: 0, in: 0 },
+      { absen: 40, nim: "19241060", nama: "WAHYU NOVIANTO", jk: "L", p: [25, 50, 20, 0, 15, 30], out: 0, in: 0 }
     ];
 
     // Transfer Audit Log
-    const transferLogs = [
-      { time: "03/11/2026 15:30", from: "TIRTA ADI MULYA (#39)", to: "RIFKI WAHYU (#1)", points: 5, note: "Bantuan P7 MockAPI", status: "Tercatat" }
-    ];
+    const transferLogs = [];
 
     let currentFilter = 'all';
 
@@ -599,6 +597,8 @@
     function renderKPIs() {
       const totalMhs = students.length;
       let countAutoA = 0;
+      let countSurplus = 0;
+      let countNeed = 0;
       let totalSurplus = 0;
       let totalPoints = 0;
 
@@ -606,6 +606,8 @@
         const final = getFinal(s);
         totalPoints += final;
         if (final >= 150) countAutoA++;
+        if (getSurplus(s) > 0) countSurplus++;
+        if (final < 150) countNeed++;
         totalSurplus += getSurplus(s);
       });
 
@@ -617,6 +619,12 @@
       document.getElementById('kpi-surplus').textContent = totalSurplus;
       document.getElementById('kpi-avg').textContent = avg;
       document.getElementById('kpi-total-points').textContent = totalPoints.toLocaleString('id-ID');
+
+      // Update Filter Button counts dynamically
+      document.getElementById('btn-filter-all').textContent = `Semua (${totalMhs})`;
+      document.getElementById('btn-filter-pass').textContent = `Auto-A (${countAutoA})`;
+      document.getElementById('btn-filter-surplus').textContent = `Surplus (${countSurplus})`;
+      document.getElementById('btn-filter-need').textContent = `Belum (${countNeed})`;
     }
 
     function setFilter(f) {
