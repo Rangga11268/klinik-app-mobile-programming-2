@@ -7,44 +7,49 @@ ws = wb.active
 ws.title = "Rekap Poin Kelas 19.5A.05"
 ws.views.sheetView[0].showGridLines = True
 
-# Colors
+# Professional Palette
 NAVY = "1B365D"
-LIGHT_NAVY = "2E5B88"
-GOLD = "D4AF37"
-LIGHT_GOLD = "FFF9E6"
-EMERALD = "1E7E34"
-LIGHT_GREEN = "E8F5E9"
-DARK_GREEN_TXT = "155724"
-ZEBRA = "F8F9FA"
-BORDER_GRAY = "D1D5DB"
+LIGHT_NAVY = "2B4C7E"
+GOLD_ACCENT = "B45309"
+LIGHT_GOLD = "FEF3C7"
+EMERALD = "15803D"
+LIGHT_GREEN = "DCFCE7"
+DARK_GREEN_TXT = "166534"
+ZEBRA = "F8FAFC"
+BORDER_GRAY = "CBD5E1"
 WHITE = "FFFFFF"
+DARELL_BLUE = "EFF6FF"
+DARELL_TXT = "1E40AF"
 
 # Fonts
 font_title = Font(name="Segoe UI", size=16, bold=True, color=NAVY)
-font_subtitle = Font(name="Segoe UI", size=10, italic=True, color="4B5563")
-font_kpi_num = Font(name="Segoe UI", size=18, bold=True, color=NAVY)
-font_kpi_label = Font(name="Segoe UI", size=9, bold=True, color="4B5563")
+font_subtitle = Font(name="Segoe UI", size=10, italic=True, color="475569")
+font_kpi_label = Font(name="Segoe UI", size=9, bold=True, color="475569")
+font_kpi_num = Font(name="Segoe UI", size=16, bold=True, color=NAVY)
 font_header = Font(name="Segoe UI", size=10, bold=True, color=WHITE)
-font_darell_header = Font(name="Segoe UI", size=10, bold=True, color=WHITE)
-font_data = Font(name="Segoe UI", size=10)
-font_bold = Font(name="Segoe UI", size=10, bold=True)
-font_darell = Font(name="Segoe UI", size=10, bold=True, color="0D47A1")
+font_header_meeting = Font(name="Segoe UI", size=10, bold=True, color=WHITE)
+font_header_future = Font(name="Segoe UI", size=9, bold=True, color="E2E8F0")
+font_data = Font(name="Segoe UI", size=10, color="0F172A")
+font_bold = Font(name="Segoe UI", size=10, bold=True, color="0F172A")
+font_darell = Font(name="Segoe UI", size=10, bold=True, color=DARELL_TXT)
+font_pass = Font(name="Segoe UI", size=10, bold=True, color=DARK_GREEN_TXT)
 
 # Fills
-fill_header = PatternFill(start_color=NAVY, end_color=NAVY, fill_type="solid")
-fill_header_accent = PatternFill(start_color=LIGHT_NAVY, end_color=LIGHT_NAVY, fill_type="solid")
+fill_header_main = PatternFill(start_color=NAVY, end_color=NAVY, fill_type="solid")
+fill_header_meeting = PatternFill(start_color="334155", end_color="334155", fill_type="solid")
+fill_header_future = PatternFill(start_color="64748B", end_color="64748B", fill_type="solid")
+fill_header_result = PatternFill(start_color="1E3A8A", end_color="1E3A8A", fill_type="solid")
+
 fill_zebra = PatternFill(start_color=ZEBRA, end_color=ZEBRA, fill_type="solid")
-fill_gold_kpi = PatternFill(start_color="FFF3CD", end_color="FFF3CD", fill_type="solid")
 fill_green_pass = PatternFill(start_color=LIGHT_GREEN, end_color=LIGHT_GREEN, fill_type="solid")
-fill_darell = PatternFill(start_color="D6E4FF", end_color="D6E4FF", fill_type="solid")
+fill_darell = PatternFill(start_color=DARELL_BLUE, end_color=DARELL_BLUE, fill_type="solid")
 fill_kpi = PatternFill(start_color="F1F5F9", end_color="F1F5F9", fill_type="solid")
 
 # Borders
 thin_side = Side(border_style="thin", color=BORDER_GRAY)
 border_cell = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
-border_kpi = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
 double_bottom = Side(border_style="double", color=NAVY)
-border_total = Border(top=thin_side, bottom=double_bottom)
+border_total = Border(top=thin_side, bottom=double_bottom, left=thin_side, right=thin_side)
 
 # Alignments
 align_center = Alignment(horizontal="center", vertical="center")
@@ -52,14 +57,14 @@ align_left = Alignment(horizontal="left", vertical="center")
 align_right = Alignment(horizontal="right", vertical="center")
 
 # Title Block
-ws.merge_cells("A1:N1")
-ws["A1"] = "DAFTAR NILAI AKUMULASI POIN & KLASEMEN MAHASISWA"
+ws.merge_cells("A1:R1")
+ws["A1"] = "SISTEM REKAPITULASI POIN & KLASEMEN AKUMULASI MAHASISWA"
 ws["A1"].font = font_title
 ws["A1"].alignment = Alignment(horizontal="left", vertical="center")
 ws.row_dimensions[1].height = 28
 
-ws.merge_cells("A2:N2")
-ws["A2"] = "Mata Kuliah: Mobile Programming II (19.5A.05) | Dosen: Cep Adiwiharja | Kampus: Universitas Bina Sarana Informatika (UBSI) | Update: P8 (3 Nov 2026)"
+ws.merge_cells("A2:R2")
+ws["A2"] = "Mata Kuliah: Mobile Programming II (19.5A.05) | Dosen Pengampu: Cep Adiwiharja | Kampus: Universitas Bina Sarana Informatika (UBSI)"
 ws["A2"].font = font_subtitle
 ws.row_dimensions[2].height = 18
 
@@ -76,65 +81,70 @@ ws["B5"].font = font_kpi_num
 ws["B5"].alignment = align_center
 ws["B5"].fill = fill_kpi
 
-# Card 2: Lolos Auto-A (>=150)
-ws.merge_cells("E4:G4")
-ws.merge_cells("E5:G5")
-ws["E4"] = "LOLOS AMBANG BATAS AUTO-A (>=150 POIN)"
+# Card 2: Lolos Auto-A (Formula Dinamis)
+ws.merge_cells("E4:H4")
+ws.merge_cells("E5:H5")
+ws["E4"] = "LOLOS AMBANG BATAS AUTO-A (TOTAL >= 150 POIN)"
 ws["E4"].font = font_kpi_label
 ws["E4"].alignment = align_center
 ws["E4"].fill = fill_green_pass
-ws["E5"] = '=COUNTIF(L11:L50, ">=150") & " Mahasiswa (Bebas Projek)"'
+ws["E5"] = '=COUNTIF(P11:P50, ">=150") & " Mahasiswa (Bebas Projek & Presentasi)"'
 ws["E5"].font = Font(name="Segoe UI", size=13, bold=True, color=DARK_GREEN_TXT)
 ws["E5"].alignment = align_center
 ws["E5"].fill = fill_green_pass
 
-# Card 3: Status Darell Rangga Putra Rachman (Absen 37)
-ws.merge_cells("I4:M4")
-ws.merge_cells("I5:M5")
-ws["I4"] = "STATUS DARELL RANGGA PUTRA RACHMAN (ABSEN 37 / NIM: 19241009)"
-ws["I4"].font = font_kpi_label
-ws["I4"].alignment = align_center
-ws["I4"].fill = fill_darell
-ws["I5"] = '155 POIN - AUTO-A MUTLAK (BEBAS TUGAS AKHIR & PRESENTASI)'
-ws["I5"].font = Font(name="Segoe UI", size=12, bold=True, color="0D47A1")
-ws["I5"].alignment = align_center
-ws["I5"].fill = fill_darell
+# Card 3: Highlight Khusus Darell Rangga Putra Rachman (Absen 37)
+ws.merge_cells("J4:Q4")
+ws.merge_cells("J5:Q5")
+ws["J4"] = "STATUS DARELL RANGGA PUTRA RACHMAN (NO. ABSEN: 37 / NIM: 19241009)"
+ws["J4"].font = font_kpi_label
+ws["J4"].alignment = align_center
+ws["J4"].fill = fill_darell
+ws["J5"] = '155 POIN - RESMI TEMBUS AUTO-A (BEBAS TUGAS AKHIR & PRESENTASI)'
+ws["J5"].font = Font(name="Segoe UI", size=12, bold=True, color=DARELL_TXT)
+ws["J5"].alignment = align_center
+ws["J5"].fill = fill_darell
 
 for r in range(4, 6):
-    for c in range(1, 15):
+    for c in range(1, 19):
         cell = ws.cell(r, c)
         if cell.value:
-            cell.border = border_kpi
+            cell.border = border_cell
 
 ws.row_dimensions[4].height = 18
 ws.row_dimensions[5].height = 26
-ws.row_dimensions[6].height = 10
+ws.row_dimensions[6].height = 12
 
 # Table Headers (Row 10)
+# Complete columns with generous widths so NO text is clipped
 headers = [
-    ("No", align_center, 6),
-    ("Absen", align_center, 8),
-    ("NIM", align_center, 12),
-    ("Nama Lengkap Mahasiswa", align_left, 38),
-    ("JK", align_center, 6),
-    ("P2", align_center, 8),
-    ("P3", align_center, 8),
-    ("P4", align_center, 8),
-    ("P5", align_center, 8),
-    ("P7", align_center, 8),
-    ("P8", align_center, 8),
-    ("Total Poin", align_center, 12),
-    ("Status Kelulusan", align_center, 28),
-    ("Keterangan Capaian", align_left, 36)
+    ("Rank", align_center, 8, fill_header_main),
+    ("Absen", align_center, 9, fill_header_main),
+    ("NIM", align_center, 14, fill_header_main),
+    ("Nama Lengkap Mahasiswa", align_left, 45, fill_header_main),
+    ("JK", align_center, 6, fill_header_main),
+    ("P2", align_center, 8, fill_header_meeting),
+    ("P3", align_center, 8, fill_header_meeting),
+    ("P4", align_center, 8, fill_header_meeting),
+    ("P5", align_center, 8, fill_header_meeting),
+    ("P7", align_center, 8, fill_header_meeting),
+    ("P8", align_center, 8, fill_header_meeting),
+    ("P9", align_center, 8, fill_header_future),
+    ("P10", align_center, 8, fill_header_future),
+    ("P11", align_center, 8, fill_header_future),
+    ("P12", align_center, 8, fill_header_future),
+    ("Total Poin", align_center, 14, fill_header_result),
+    ("Status Kelulusan", align_center, 34, fill_header_result),
+    ("Keterangan Capaian", align_left, 44, fill_header_result)
 ]
 
 header_row = 10
-ws.row_dimensions[header_row].height = 26
+ws.row_dimensions[header_row].height = 28
 
-for col_idx, (h_title, h_align, h_width) in enumerate(headers, 1):
+for col_idx, (h_title, h_align, h_width, h_fill) in enumerate(headers, 1):
     cell = ws.cell(header_row, col_idx, h_title)
     cell.font = font_header
-    cell.fill = fill_header if col_idx < 12 else fill_header_accent
+    cell.fill = h_fill
     cell.alignment = align_center
     cell.border = border_cell
     col_letter = get_column_letter(col_idx)
@@ -184,7 +194,6 @@ roster_data = [
     (40, "19241060", "WAHYU NOVIANTO", "L", 25, 20, 50, 20, 15, 30)
 ]
 
-# Sort by calculated total descending to get rank
 def calc_total(row):
     return sum(row[4:])
 
@@ -203,7 +212,7 @@ for rank_idx, s in enumerate(sorted_roster, 1):
     is_darell = (absen == 37)
     is_auto_a = (total_val >= 150)
     
-    ws.row_dimensions[curr_row].height = 20
+    ws.row_dimensions[curr_row].height = 21
     
     # Cells
     c_no = ws.cell(curr_row, 1, rank_idx)
@@ -211,27 +220,34 @@ for rank_idx, s in enumerate(sorted_roster, 1):
     c_nim = ws.cell(curr_row, 3, nim if nim != "-" else "")
     c_nama = ws.cell(curr_row, 4, nama)
     c_jk = ws.cell(curr_row, 5, jk)
-    c_p2 = ws.cell(curr_row, 6, p2)
-    c_p3 = ws.cell(curr_row, 7, p3)
-    c_p4 = ws.cell(curr_row, 8, p4)
-    c_p5 = ws.cell(curr_row, 9, p5)
-    c_p7 = ws.cell(curr_row, 10, p7)
-    c_p8 = ws.cell(curr_row, 11, p8)
     
-    # Formula for Total
-    c_tot = ws.cell(curr_row, 12, f"=SUM(F{curr_row}:K{curr_row})")
+    # Past Meetings (P2 to P8)
+    ws.cell(curr_row, 6, p2).alignment = align_center
+    ws.cell(curr_row, 7, p3).alignment = align_center
+    ws.cell(curr_row, 8, p4).alignment = align_center
+    ws.cell(curr_row, 9, p5).alignment = align_center
+    ws.cell(curr_row, 10, p7).alignment = align_center
+    ws.cell(curr_row, 11, p8).alignment = align_center
     
-    # Formula for Status
-    c_stat = ws.cell(curr_row, 13, f'=IF(L{curr_row}>=150, "LULUS AUTO-A (BEBAS PROJEK)", "BELUM MEMENUHI")')
+    # Future Meetings (P9 to P12) - Blank/0 so user can directly type numbers here anytime!
+    ws.cell(curr_row, 12, None).alignment = align_center
+    ws.cell(curr_row, 13, None).alignment = align_center
+    ws.cell(curr_row, 14, None).alignment = align_center
+    ws.cell(curr_row, 15, None).alignment = align_center
     
-    # Keterangan
-    if is_darell:
-        ket_text = "👑 TARGET 150+ TERCAPAI (NILAI AKHIR A)"
-    elif is_auto_a:
-        ket_text = "✅ Lolos Ambang Batas 150 Poin"
-    else:
-        ket_text = f"Kurang {150 - total_val} poin lagi"
-    c_ket = ws.cell(curr_row, 14, ket_text)
+    # DYNAMIC FORMULA FOR TOTAL POIN: SUM from F to O (P2 to P12)!
+    # Whenever the user types a number in P9, P10, P11, or P12, TOTAL AUTOMATICALLY UPDATES!
+    c_tot = ws.cell(curr_row, 16, f"=SUM(F{curr_row}:O{curr_row})")
+    c_tot.alignment = align_center
+    c_tot.font = font_bold
+    
+    # DYNAMIC FORMULA FOR STATUS:
+    c_stat = ws.cell(curr_row, 17, f'=IF(P{curr_row}>=150, "✅ LULUS AUTO-A (BEBAS PROJEK)", "⏳ BELUM MEMENUHI")')
+    c_stat.alignment = align_center
+    
+    # DYNAMIC FORMULA FOR KETERANGAN:
+    c_ket = ws.cell(curr_row, 18, f'=IF(B{curr_row}=37, "👑 TARGET 150+ TERCAPAI (NILAI AKHIR A)", IF(P{curr_row}>=150, "✅ Lolos Ambang Batas 150 Poin", "Kurang " & (150-P{curr_row}) & " poin lagi"))')
+    c_ket.alignment = align_left
     
     # Alignments
     c_no.alignment = align_center
@@ -239,15 +255,6 @@ for rank_idx, s in enumerate(sorted_roster, 1):
     c_nim.alignment = align_center
     c_nama.alignment = align_left
     c_jk.alignment = align_center
-    c_p2.alignment = align_center
-    c_p3.alignment = align_center
-    c_p4.alignment = align_center
-    c_p5.alignment = align_center
-    c_p7.alignment = align_center
-    c_p8.alignment = align_center
-    c_tot.alignment = align_center
-    c_stat.alignment = align_center
-    c_ket.alignment = align_left
     
     # Styling per row
     row_fill = None
@@ -263,7 +270,7 @@ for rank_idx, s in enumerate(sorted_roster, 1):
     else:
         row_font = font_data
         
-    for col in range(1, 15):
+    for col in range(1, 19):
         cell = ws.cell(curr_row, col)
         cell.border = border_cell
         cell.font = row_font
@@ -278,19 +285,22 @@ ws[f"A{sum_row}"] = "RATA-RATA KELAS (AVERAGE)"
 ws[f"A{sum_row}"].font = font_bold
 ws[f"A{sum_row}"].alignment = Alignment(horizontal="right", vertical="center")
 
-for col_idx in range(6, 13):
+for col_idx in range(6, 17):
     col_letter = get_column_letter(col_idx)
     cell = ws.cell(sum_row, col_idx, f"=ROUND(AVERAGE({col_letter}11:{col_letter}50), 1)")
     cell.font = font_bold
     cell.alignment = align_center
     cell.fill = fill_kpi
 
-for col in range(1, 15):
+ws.cell(sum_row, 17, "").fill = fill_kpi
+ws.cell(sum_row, 18, "").fill = fill_kpi
+
+for col in range(1, 19):
     ws.cell(sum_row, col).border = border_total
 
-# Freeze pane below header
+# Freeze panes at cell E11 (Rank, Absen, NIM, Nama lock in place while scrolling)
 ws.freeze_panes = "E11"
 
 excel_path = "d:/laragon/www/klinik37/module/Rekap_Poin_Mobile_Programming_2_Kelas_195A05.xlsx"
 wb.save(excel_path)
-print(f"File Excel profesional berhasil disimpan di: {excel_path}")
+print(f"File Excel otomatis berhasil diperbarui di: {excel_path}")
