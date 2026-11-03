@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "perpus-app-darell-37",
+		"name": "Perpustakaan API - Postman Collection (Darell - Absen 37)",
+		"description": "Koleksi Postman Lengkap Tantangan MockAPI Perpustakaan (Anggota & Buku) untuk Dosen Pak Cep Adiwiharja.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Anggota",
+			"item": [
+				{
+					"name": "GET All Anggota",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/anggota",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"anggota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Anggota by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/anggota/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"anggota",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Anggota",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_anggota\": \"Darell Rangga Putra Rachman\",\n  \"jenis_kelamin\": \"Laki-laki\",\n  \"alamat\": \"Jl. Salemba Raya No. 37, Jakarta Pusat\",\n  \"no_telepon\": \"081298765437\",\n  \"email\": \"darell.absen37@perpus.ac.id\",\n  \"tanggal_daftar\": \"2026-11-03T08:00:00.000Z\",\n  \"status\": \"Aktif\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/anggota",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"anggota"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Anggota",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_anggota\": \"Darell Rangga Putra Rachman (Absen 37)\",\n  \"jenis_kelamin\": \"Laki-laki\",\n  \"alamat\": \"Jl. Kramat Raya No. 37, Senen, Jakarta Pusat\",\n  \"no_telepon\": \"081298765437\",\n  \"email\": \"darell.absen37@perpus.ac.id\",\n  \"status\": \"Aktif\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/anggota/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"anggota",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Anggota",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/anggota/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"anggota",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Buku",
+			"item": [
+				{
+					"name": "GET All Buku",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/buku",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"buku"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Buku by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/buku/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"buku",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Buku",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isbn\": \"978-602-03-8888-1\",\n  \"judul_buku\": \"Pemrograman Mobile dengan Flutter & Dart\",\n  \"id_kategori\": 1,\n  \"id_penerbit\": 1,\n  \"tahun_terbit\": \"2024-01-15T00:00:00.000Z\",\n  \"deskripsi\": \"Buku panduan praktis dan fundamental membuat aplikasi mobile modern dengan Flutter.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/buku",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"buku"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Buku",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isbn\": \"978-602-03-8888-1\",\n  \"judul_buku\": \"Pemrograman Mobile Flutter & REST API (Revisi 2026)\",\n  \"id_kategori\": 1,\n  \"id_penerbit\": 1,\n  \"tahun_terbit\": \"2024-01-15T00:00:00.000Z\",\n  \"deskripsi\": \"Edisi revisi terbaru pengintegrasian REST API dan MockAPI.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/buku/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"buku",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Buku",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/buku/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"buku",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://6ae951e91a7b15aaa5101572.mockapi.io/api/v1",
+			"type": "string"
+		}
+	]
+}
