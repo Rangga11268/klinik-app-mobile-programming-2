@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Rekapitulasi Poin & Dashboard Akademik 19.5A.05</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .badge-gold { background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; }
+    .badge-green { background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; }
+    .badge-blue { background: #DBEAFE; color: #1E40AF; border: 1px solid #BFDBFE; }
+    .badge-gray { background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-slate-900 border-b border-slate-800 text-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-extrabold text-lg shadow-inner">
+          MP
+        </div>
+        <div>
+          <h1 class="text-base font-bold tracking-tight">Portal Nilai & Keaktifan Mobile Programming II</h1>
+          <p class="text-xs text-slate-400">Kelas 19.5A.05 &bull; Dosen: Cep Adiwiharja &bull; UBSI</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>
+          Update Pertemuan 8 (Live)
+        </span>
+        <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700 flex items-center">
+          <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+          Cetak Rekap
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- Academic Policy Banner -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-50 to-indigo-50 rounded-full blur-3xl -z-10"></div>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-blue-600 tracking-wider uppercase">Regulasi Akademik Resmi</span>
+          <h2 class="text-lg font-bold text-slate-900 mt-1">Sistem Apresiasi Poin Keaktifan & Hak Fasilitas Kuliah</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3 text-xs text-slate-600">
+            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200 flex items-start space-x-2">
+              <span class="text-emerald-600 font-bold text-sm">Tier 1:</span>
+              <span><strong>150 - 199 Poin</strong>: Nilai Akhir Mutlak A + Bebas Projek/Presentasi (P14-15) + <strong>Dispensasi 1x</strong></span>
+            </div>
+            <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 flex items-start space-x-2">
+              <span class="text-amber-600 font-bold text-sm">Tier 2:</span>
+              <span><strong>&ge; 200 Poin</strong>: Nilai Akhir Mutlak A + Bebas Projek/Presentasi (P14-15) + <strong>Dispensasi 2x</strong></span>
+            </div>
+            <div class="p-3 rounded-xl bg-indigo-50/70 border border-indigo-200 flex items-start space-x-2">
+              <span class="text-indigo-600 font-bold text-sm">Transfer:</span>
+              <span>Poin surplus di atas 150 <strong>sah ditransfer</strong> ke mahasiswa lain yang membutuhkan.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 KPI Metric Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Mahasiswa</p>
+        <p class="text-2xl font-extrabold text-slate-900 mt-1" id="kpi-total-mhs">40</p>
+        <p class="text-[11px] text-slate-400 mt-0.5">Kelas 19.5A.05</p>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-emerald-200 bg-emerald-50/30 shadow-sm">
+        <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wider">Lolos Auto-A (&ge;150)</p>
+        <p class="text-2xl font-extrabold text-emerald-600 mt-1" id="kpi-auto-a">8</p>
+        <p class="text-[11px] text-emerald-700 mt-0.5" id="kpi-auto-a-pct">20.0% dari kelas</p>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-amber-200 bg-amber-50/30 shadow-sm">
+        <p class="text-xs font-semibold text-amber-700 uppercase tracking-wider">Tier 2 (&ge;200 Poin)</p>
+        <p class="text-2xl font-extrabold text-amber-600 mt-1" id="kpi-tier2">0</p>
+        <p class="text-[11px] text-amber-700 mt-0.5">Dispensasi Presensi 2x</p>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-indigo-200 bg-indigo-50/30 shadow-sm">
+        <p class="text-xs font-semibold text-indigo-700 uppercase tracking-wider">Surplus Siap Transfer</p>
+        <p class="text-2xl font-extrabold text-indigo-600 mt-1" id="kpi-surplus">60</p>
+        <p class="text-[11px] text-indigo-700 mt-0.5">Total poin sedia</p>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Rata-rata Kelas</p>
+        <p class="text-2xl font-extrabold text-slate-900 mt-1" id="kpi-avg">102.5</p>
+        <p class="text-[11px] text-slate-400 mt-0.5">Akumulasi per mhs</p>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-rose-200 bg-rose-50/30 shadow-sm">
+        <p class="text-xs font-semibold text-rose-700 uppercase tracking-wider">Di Ambang Lolos</p>
+        <p class="text-2xl font-extrabold text-rose-600 mt-1" id="kpi-bubble">6</p>
+        <p class="text-[11px] text-rose-700 mt-0.5">Kurang &le; 10 poin</p>
+      </div>
+    </div>
+
+    <!-- Quick Action Hub (Two Cards Side-by-Side) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Action 1: Transfer Poin Widget -->
+      <div class="lg:col-span-7 bg-white rounded-2xl p-6 border border-indigo-100 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-2">
+            <span class="p-2 rounded-xl bg-indigo-100 text-indigo-600">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+            </span>
+            <div>
+              <h3 class="text-base font-bold text-slate-900">Quick Action: Transfer Poin Mahasiswa</h3>
+              <p class="text-xs text-slate-500">Kirimkan kelebihan poin surplus ke rekan yang membutuhkan</p>
+            </div>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 font-semibold border border-indigo-200">
+            Validasi Realtime
+          </span>
+        </div>
+
+        <form id="transfer-form" onsubmit="handleTransfer(event)" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Pengirim (Mhs Punya Surplus > 150):</label>
+              <select id="transfer-from" onchange="onSenderChange()" class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 p-2.5 border font-medium">
+                <!-- populated by JS -->
+              </select>
+              <p class="text-[11px] text-slate-500 mt-1" id="sender-info">Pilih pengirim untuk melihat kuota surplus.</p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Penerima Poin:</label>
+              <select id="transfer-to" onchange="onReceiverChange()" class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 p-2.5 border font-medium">
+                <!-- populated by JS -->
+              </select>
+              <p class="text-[11px] text-slate-500 mt-1" id="receiver-info">Pilih penerima untuk melihat status kebutuhan.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Jumlah Poin Ditransfer:</label>
+              <input type="number" id="transfer-amount" min="1" max="100" placeholder="Contoh: 5" required class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 p-2.5 border font-bold text-slate-900">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Catatan / Keterangan:</label>
+              <input type="text" id="transfer-note" placeholder="Misal: Bantuan Tugas P8" class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 p-2.5 border">
+            </div>
+            <div>
+              <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-200 transition flex items-center justify-center space-x-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                <span>Kirim Transfer Poin</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div id="transfer-alert" class="hidden mt-3 p-3 rounded-xl text-xs font-semibold flex items-center justify-between"></div>
+      </div>
+
+      <!-- Action 2: Quick Add Meeting Points -->
+      <div class="lg:col-span-5 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+        <div class="flex items-center space-x-2 mb-4">
+          <span class="p-2 rounded-xl bg-emerald-100 text-emerald-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+          </span>
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Input Poin Pertemuan Baru</h3>
+            <p class="text-xs text-slate-500">Pembaruan nilai langsung untuk P9 s/d P14</p>
+          </div>
+        </div>
+
+        <form id="add-point-form" onsubmit="handleAddPoint(event)" class="space-y-3">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Pilih Mahasiswa:</label>
+              <select id="point-mhs" class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white p-2.5 border font-medium">
+                <!-- populated by JS -->
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">Pertemuan:</label>
+              <select id="point-meeting" class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white p-2.5 border font-semibold">
+                <option value="P9">Pertemuan 9 (P9)</option>
+                <option value="P10">Pertemuan 10 (P10)</option>
+                <option value="P11">Pertemuan 11 (P11)</option>
+                <option value="P12">Pertemuan 12 (P12)</option>
+                <option value="P13">Pertemuan 13 (P13)</option>
+                <option value="P14">Pertemuan 14 (P14)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 items-end">
+            <div class="col-span-2">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Nilai Poin:</label>
+              <input type="number" id="point-val" min="1" max="100" placeholder="Misal: 30" required class="w-full text-xs rounded-xl border-slate-300 bg-slate-50 focus:bg-white p-2.5 border font-bold">
+            </div>
+            <div>
+              <button type="submit" class="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-sm transition">
+                + Tambah
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Charts Visualization -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="lg:col-span-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <h3 class="text-sm font-bold text-slate-900 mb-1">Top 10 Klasemen Poin Mahasiswa</h3>
+        <p class="text-xs text-slate-500 mb-4">Peringkat akumulasi poin tertinggi kelas 19.5A.05</p>
+        <div class="h-64">
+          <canvas id="topChart"></canvas>
+        </div>
+      </div>
+      <div class="lg:col-span-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <h3 class="text-sm font-bold text-slate-900 mb-1">Distribusi Kelulusan Kelas</h3>
+          <p class="text-xs text-slate-500 mb-4">Persentase capaian ambang batas Auto-A</p>
+          <div class="h-48 relative flex items-center justify-center">
+            <canvas id="statusChart"></canvas>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 text-center text-xs mt-4 pt-4 border-t border-slate-100">
+          <div>
+            <span class="block font-bold text-emerald-600" id="stat-pass-num">8</span>
+            <span class="text-[11px] text-slate-400">Lolos Auto-A</span>
+          </div>
+          <div>
+            <span class="block font-bold text-amber-600" id="stat-tier2-num">0</span>
+            <span class="text-[11px] text-slate-400">Tier 2 (200+)</span>
+          </div>
+          <div>
+            <span class="block font-bold text-slate-600" id="stat-pending-num">32</span>
+            <span class="text-[11px] text-slate-400">Belum Lolos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Table Component -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <!-- Table Header & Controls -->
+      <div class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-base font-bold text-slate-900">Tabel Master Rekapitulasi & Klasemen Kelas</h3>
+          <p class="text-xs text-slate-500">Data live 40 mahasiswa &bull; Realtime calculation</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Filter Tabs -->
+          <div class="inline-flex rounded-xl bg-slate-100 p-1 text-xs font-semibold">
+            <button onclick="setFilter('all')" id="btn-filter-all" class="px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-900">Semua (40)</button>
+            <button onclick="setFilter('pass')" id="btn-filter-pass" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">Lolos (&ge;150)</button>
+            <button onclick="setFilter('surplus')" id="btn-filter-surplus" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">Ada Surplus</button>
+            <button onclick="setFilter('need')" id="btn-filter-need" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900">Kurang Poin</button>
+          </div>
+
+          <!-- Search Box -->
+          <div class="relative">
+            <input type="text" id="search-input" oninput="renderTable()" placeholder="Cari nama, NIM, atau absen..." class="text-xs pl-8 pr-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-56">
+            <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Data Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs whitespace-nowrap">
+          <thead class="bg-slate-900 text-slate-200 uppercase text-[10px] tracking-wider font-bold">
+            <tr>
+              <th class="py-3 px-3 text-center">Rank</th>
+              <th class="py-3 px-3 text-center">Absen</th>
+              <th class="py-3 px-3">NIM</th>
+              <th class="py-3 px-4">Nama Lengkap Mahasiswa</th>
+              <th class="py-3 px-2 text-center">JK</th>
+              <th class="py-3 px-2 text-center bg-slate-800">P2</th>
+              <th class="py-3 px-2 text-center bg-slate-800">P3</th>
+              <th class="py-3 px-2 text-center bg-slate-800">P4</th>
+              <th class="py-3 px-2 text-center bg-slate-800">P5</th>
+              <th class="py-3 px-2 text-center bg-slate-800">P7</th>
+              <th class="py-3 px-2 text-center bg-slate-800">P8</th>
+              <th class="py-3 px-3 text-center font-extrabold bg-blue-950 text-blue-200">Total Akumulasi</th>
+              <th class="py-3 px-3 text-center bg-indigo-950 text-indigo-200">Trf Keluar (-)</th>
+              <th class="py-3 px-3 text-center bg-indigo-950 text-indigo-200">Trf Masuk (+)</th>
+              <th class="py-3 px-3 text-center font-extrabold bg-blue-900 text-white">Total Akhir</th>
+              <th class="py-3 px-3 text-center bg-indigo-900 text-indigo-100">Surplus (>150)</th>
+              <th class="py-3 px-4 text-center">Status Kelulusan & Dispensasi</th>
+              <th class="py-3 px-4">Keterangan</th>
+            </tr>
+          </thead>
+          <tbody id="table-body" class="divide-y divide-slate-100 text-slate-700">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Audit Trail: Riwayat Transfer Log -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-base font-bold text-slate-900">Log Riwayat Transaksi Transfer Poin</h3>
+          <p class="text-xs text-slate-500">Pencatatan resmi mutasi transfer poin antar mahasiswa</p>
+        </div>
+        <button onclick="clearLogs()" class="text-xs text-rose-600 hover:text-rose-800 font-semibold">Reset Riwayat</button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs whitespace-nowrap">
+          <thead class="bg-slate-50 text-slate-500 font-bold uppercase text-[10px]">
+            <tr>
+              <th class="py-2.5 px-3">Waktu</th>
+              <th class="py-2.5 px-3">Dari (Pengirim)</th>
+              <th class="py-2.5 px-3">Kepada (Penerima)</th>
+              <th class="py-2.5 px-3 text-center">Jumlah Poin</th>
+              <th class="py-2.5 px-4">Keterangan</th>
+              <th class="py-2.5 px-3 text-center">Status</th>
+            </tr>
+          </thead>
+          <tbody id="transfer-log-body" class="divide-y divide-slate-100 text-slate-600">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 py-6 text-center text-xs">
+    <p>&copy; 2026 Portal Akademik Sistem Informasi UBSI &bull; Mobile Programming II (19.5A.05)</p>
+  </footer>
+
+  <!-- SCRIPT LOGIC & DATA -->
+  <script>
+    // Master Data 40 Mahasiswa
+    let students = [
+      { absen: 1, nim: "19240001", nama: "RIFKI WAHYU", jk: "L", p: [25, 20, 50, 20, 0, 30], out: 0, in: 0 },
+      { absen: 2, nim: "19240002", nama: "MUHAMMAD SYAUQI", jk: "L", p: [10, 0, 0, 0, 0, 0], out: 0, in: 0 },
+      { absen: 3, nim: "19240052", nama: "MICHIO CHRISTIAN HADY", jk: "L", p: [15, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 4, nim: "19240078", nama: "NASVIRA MELANI PUTRI", jk: "P", p: [25, 0, 30, 30, 0, 30], out: 0, in: 0 },
+      { absen: 5, nim: "19240092", nama: "MUHAMMAD FADHLI AKBAR RABBANI", jk: "L", p: [15, 20, 50, 20, 0, 0], out: 0, in: 0 },
+      { absen: 6, nim: "19240152", nama: "NUNING SAWITRI", jk: "P", p: [10, 0, 0, 30, 0, 30], out: 0, in: 0 },
+      { absen: 7, nim: "19240197", nama: "SITI KOMARIYAH", jk: "P", p: [0, 0, 0, 0, 0, 0], out: 0, in: 0 },
+      { absen: 8, nim: "19240198", nama: "MAULISYA EKA PUTRI", jk: "P", p: [10, 0, 30, 30, 0, 30], out: 0, in: 0 },
+      { absen: 9, nim: "19240219", nama: "ILHAM FAJRIAN", jk: "L", p: [0, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 10, nim: "19240227", nama: "REFI FAUZAN", jk: "L", p: [25, 0, 0, 30, 0, 30], out: 0, in: 0 },
+      { absen: 11, nim: "19240230", nama: "RAHMADI CAHYO SAPUTRO", jk: "L", p: [15, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 12, nim: "19240237", nama: "ADESKY JAMIL SYARIFUDDIN", jk: "L", p: [10, 0, 0, 0, 0, 0], out: 0, in: 0 },
+      { absen: 13, nim: "19240239", nama: "NASYWA ZAIN", jk: "P", p: [15, 20, 50, 20, 0, 30], out: 0, in: 0 },
+      { absen: 14, nim: "19240247", nama: "CHESA AWALIA REFANA", jk: "P", p: [25, 20, 50, 20, 0, 30], out: 0, in: 0 },
+      { absen: 15, nim: "19240259", nama: "KATHERINE JULIAN ANASTASIA MANURUNG", jk: "P", p: [25, 20, 50, 20, 0, 30], out: 0, in: 0 },
+      { absen: 16, nim: "19240356", nama: "RIFA DINI ARIFAH", jk: "P", p: [15, 20, 50, 0, 0, 30], out: 0, in: 0 },
+      { absen: 17, nim: "19240463", nama: "NAJMI NATA LAZUARDI", jk: "L", p: [25, 0, 30, 30, 0, 30], out: 0, in: 0 },
+      { absen: 18, nim: "19240465", nama: "NABILA INTAN FADHILAH", jk: "P", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 19, nim: "19240488", nama: "MEGI REFKIANSYAH ANANDA PRATAMA GUMAY", jk: "L", p: [15, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 20, nim: "19240491", nama: "SITI NUR AISYAH", jk: "P", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 21, nim: "19240493", nama: "WAHYU RIZKY KHOIRUDIN", jk: "L", p: [25, 20, 20, 0, 0, 20], out: 0, in: 0 },
+      { absen: 22, nim: "19240516", nama: "DENADA PUTRI HIDAYAT", jk: "P", p: [15, 0, 30, 20, 0, 20], out: 0, in: 0 },
+      { absen: 23, nim: "19240540", nama: "NUR AZIZAH", jk: "P", p: [10, 20, 50, 10, 0, 30], out: 0, in: 0 },
+      { absen: 24, nim: "19240629", nama: "MUHAMAD RAFI AFDHAL", jk: "L", p: [15, 0, 15, 0, 0, 30], out: 0, in: 0 },
+      { absen: 25, nim: "19240670", nama: "NDARU PRIYAMBODO", jk: "L", p: [15, 0, 30, 20, 0, 20], out: 0, in: 0 },
+      { absen: 26, nim: "19240697", nama: "SYIFA AULIA", jk: "P", p: [15, 20, 50, 20, 0, 30], out: 0, in: 0 },
+      { absen: 27, nim: "19240729", nama: "BIANCA BINTANG DACHLAN", jk: "P", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 28, nim: "19240732", nama: "IMAN SYAHRUDIN SUSANTO", jk: "L", p: [15, 0, 0, 20, 0, 20], out: 0, in: 0 },
+      { absen: 29, nim: "19240757", nama: "DAVIN FIGO DANENDRA", jk: "L", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 30, nim: "19240780", nama: "NAYLA AMALIAH HUTAMI", jk: "P", p: [15, 0, 30, 10, 0, 20], out: 0, in: 0 },
+      { absen: 31, nim: "19240782", nama: "MUHAMAD RIFKI SAPUTRA", jk: "L", p: [15, 0, 30, 20, 0, 0], out: 0, in: 0 },
+      { absen: 32, nim: "19240852", name: "INNESYA ZAHWA SUTA", nama: "INNESYA ZAHWA SUTA", jk: "P", p: [10, 20, 50, 10, 0, 30], out: 0, in: 0 },
+      { absen: 33, nim: "19240872", nama: "MUHAMMAD ADITYA ANANDA", jk: "L", p: [15, 20, 20, 20, 0, 30], out: 0, in: 0 },
+      { absen: 34, nim: "19240895", nama: "NAUFAL HAKIM", jk: "L", p: [15, 0, 0, 20, 0, 30], out: 0, in: 0 },
+      { absen: 35, nim: "19240918", nama: "NOEL VALDES SIMORANGKIR", jk: "L", p: [10, 0, 0, 20, 0, 30], out: 0, in: 0 },
+      { absen: 36, nim: "19240953", nama: "MUHAMAD RAJIB", jk: "L", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 37, nim: "19241009", nama: "DARELL RANGGA PUTRA RACHMAN", jk: "L", p: [25, 20, 50, 30, 0, 30], out: 0, in: 0 },
+      { absen: 38, nim: "19241018", nama: "ABI ABRAR ROBBANI", jk: "L", p: [15, 0, 30, 20, 0, 30], out: 0, in: 0 },
+      { absen: 39, nim: "19241058", nama: "TIRTA ADI MULYA", jk: "L", p: [25, 20, 50, 30, 15, 30], out: 0, in: 0 },
+      { absen: 40, nim: "19241060", nama: "WAHYU NOVIANTO", jk: "L", p: [25, 20, 50, 20, 15, 30], out: 0, in: 0 }
+    ];
+
+    let transferLogs = [
+      { time: "03/11/2026 15:30", from: "TIRTA ADI MULYA (Absen 39)", to: "RIFKI WAHYU (Absen 1)", points: 5, note: "Bantuan P8", status: "Berhasil" }
+    ];
+
+    let currentFilter = 'all';
+    let topChartInstance = null;
+    let statusChartInstance = null;
+
+    // Helpers
+    function getAccumulated(s) {
+      return s.p.reduce((a, b) => a + b, 0);
+    }
+    function getFinal(s) {
+      return getAccumulated(s) - s.out + s.in;
+    }
+    function getSurplus(s) {
+      const final = getFinal(s);
+      return final > 150 ? final - 150 : 0;
+    }
+
+    function init() {
+      renderTable();
+      populateSelects();
+      renderKPIs();
+      renderCharts();
+      renderLogs();
+    }
+
+    function setFilter(f) {
+      currentFilter = f;
+      ['all', 'pass', 'surplus', 'need'].forEach(id => {
+        const btn = document.getElementById('btn-filter-' + id);
+        if (id === f) {
+          btn.className = "px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-900 font-bold";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900";
+        }
+      });
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('table-body');
+      const query = document.getElementById('search-input').value.toLowerCase();
+
+      // Sort by final score descending
+      let sorted = [...students].sort((a, b) => {
+        const diff = getFinal(b) - getFinal(a);
+        return diff !== 0 ? diff : a.absen - b.absen;
+      });
+
+      let filtered = sorted.filter(s => {
+        const matchSearch = s.nama.toLowerCase().includes(query) || 
+                            s.nim.toLowerCase().includes(query) || 
+                            String(s.absen).includes(query);
+        if (!matchSearch) return false;
+
+        const final = getFinal(s);
+        if (currentFilter === 'pass') return final >= 150;
+        if (currentFilter === 'surplus') return getSurplus(s) > 0;
+        if (currentFilter === 'need') return final < 150;
+        return true;
+      });
+
+      tbody.innerHTML = '';
+      filtered.forEach((s, idx) => {
+        const final = getFinal(s);
+        const accum = getAccumulated(s);
+        const surplus = getSurplus(s);
+        const rank = sorted.findIndex(item => item.absen === s.absen) + 1;
+
+        let statusBadge = '';
+        let rowClass = 'hover:bg-slate-50 transition';
+
+        if (final >= 200) {
+          statusBadge = '<span class="px-2.5 py-1 rounded-full text-xs font-bold badge-gold">⭐ MEMENUHI (NILAI A + DISPEN 2X)</span>';
+          rowClass = 'bg-amber-50/40 hover:bg-amber-50 transition';
+        } else if (final >= 150) {
+          statusBadge = '<span class="px-2.5 py-1 rounded-full text-xs font-bold badge-green">✅ MEMENUHI (NILAI A + DISPEN 1X)</span>';
+          rowClass = 'bg-emerald-50/30 hover:bg-emerald-50 transition';
+        } else {
+          statusBadge = '<span class="px-2.5 py-1 rounded-full text-xs font-semibold badge-gray">⏳ BELUM MEMENUHI</span>';
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = rowClass;
+        tr.innerHTML = `
+          <td class="py-3 px-3 text-center font-bold text-slate-700">${rank}</td>
+          <td class="py-3 px-3 text-center font-semibold text-slate-500">${s.absen}</td>
+          <td class="py-3 px-3 font-mono text-slate-600">${s.nim}</td>
+          <td class="py-3 px-4 font-bold text-slate-900">${s.nama}</td>
+          <td class="py-3 px-2 text-center text-slate-500">${s.jk}</td>
+          <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[0]}</td>
+          <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[1]}</td>
+          <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[2]}</td>
+          <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[3]}</td>
+          <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[4]}</td>
+          <td class="py-3 px-2 text-center text-slate-600 bg-slate-50/80">${s.p[5]}</td>
+          <td class="py-3 px-3 text-center font-bold text-slate-900 bg-blue-50/60">${accum}</td>
+          <td class="py-3 px-3 text-center text-rose-600 font-semibold bg-indigo-50/40">${s.out > 0 ? '-' + s.out : '0'}</td>
+          <td class="py-3 px-3 text-center text-emerald-600 font-semibold bg-indigo-50/40">${s.in > 0 ? '+' + s.in : '0'}</td>
+          <td class="py-3 px-3 text-center font-extrabold text-blue-700 bg-blue-50 text-sm">${final}</td>
+          <td class="py-3 px-3 text-center font-bold text-indigo-700">${surplus > 0 ? '+' + surplus : '0'}</td>
+          <td class="py-3 px-4 text-center">${statusBadge}</td>
+          <td class="py-3 px-4 text-slate-500 text-[11px]">${final >= 150 ? 'Bebas Projek & Presentasi | Surplus ' + surplus + ' Poin' : 'Kurang ' + (150 - final) + ' poin lagi'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function populateSelects() {
+      const fromSel = document.getElementById('transfer-from');
+      const toSel = document.getElementById('transfer-to');
+      const mhsSel = document.getElementById('point-mhs');
+
+      fromSel.innerHTML = '<option value="">-- Pilih Pengirim (Punya Surplus) --</option>';
+      toSel.innerHTML = '<option value="">-- Pilih Penerima Poin --</option>';
+      mhsSel.innerHTML = '<option value="">-- Pilih Mahasiswa --</option>';
+
+      // Sort by Absen
+      const byAbsen = [...students].sort((a, b) => a.absen - b.absen);
+
+      byAbsen.forEach(s => {
+        const surplus = getSurplus(s);
+        const final = getFinal(s);
+
+        // Sender option only if surplus > 0
+        if (surplus > 0) {
+          const opt = document.createElement('option');
+          opt.value = s.absen;
+          opt.textContent = `Absen ${s.absen}: ${s.nama} (Surplus: +${surplus} Poin)`;
+          fromSel.appendChild(opt);
+        }
+
+        // Receiver option
+        const optTo = document.createElement('option');
+        optTo.value = s.absen;
+        optTo.textContent = `Absen ${s.absen}: ${s.nama} (Total: ${final} | Kurang: ${final < 150 ? 150 - final : 0})`;
+        toSel.appendChild(optTo);
+
+        // Mhs option for adding points
+        const optMhs = document.createElement('option');
+        optMhs.value = s.absen;
+        optMhs.textContent = `Absen ${s.absen}: ${s.nama}`;
+        mhsSel.appendChild(optMhs);
+      });
+    }
+
+    function onSenderChange() {
+      const val = document.getElementById('transfer-from').value;
+      const info = document.getElementById('sender-info');
+      const amtInput = document.getElementById('transfer-amount');
+
+      if (!val) {
+        info.textContent = "Pilih pengirim untuk melihat kuota surplus.";
+        return;
+      }
+      const s = students.find(item => item.absen == val);
+      const surplus = getSurplus(s);
+      info.innerHTML = `<span class="text-indigo-600 font-bold">${s.nama}</span> memiliki surplus maksimal <strong class="text-emerald-600">${surplus} poin</strong> yang sah ditransfer.`;
+      amtInput.max = surplus;
+      amtInput.placeholder = `Maks: ${surplus}`;
+    }
+
+    function onReceiverChange() {
+      const val = document.getElementById('transfer-to').value;
+      const info = document.getElementById('receiver-info');
+      if (!val) {
+        info.textContent = "Pilih penerima untuk melihat status kebutuhan.";
+        return;
+      }
+      const s = students.find(item => item.absen == val);
+      const final = getFinal(s);
+      const need = final < 150 ? 150 - final : 0;
+      info.innerHTML = `<span class="text-indigo-600 font-bold">${s.nama}</span> saat ini memiliki <strong>${final} poin</strong> (Butuh <strong class="text-rose-600">${need} poin</strong> menuju 150).`;
+    }
+
+    function handleTransfer(e) {
+      e.preventDefault();
+      const fromAbsen = parseInt(document.getElementById('transfer-from').value);
+      const toAbsen = parseInt(document.getElementById('transfer-to').value);
+      const amount = parseInt(document.getElementById('transfer-amount').value);
+      const note = document.getElementById('transfer-note').value || "Bantuan Poin Kuliah";
+
+      const alertBox = document.getElementById('transfer-alert');
+
+      if (fromAbsen === toAbsen) {
+        showAlert("Pengirim dan penerima tidak boleh orang yang sama!", "rose");
+        return;
+      }
+
+      const sender = students.find(s => s.absen === fromAbsen);
+      const receiver = students.find(s => s.absen === toAbsen);
+
+      const surplus = getSurplus(sender);
+      if (amount > surplus) {
+        showAlert(`Gagal: Jumlah transfer (${amount} poin) melebihi surplus yang dimiliki (${surplus} poin)!`, "rose");
+        return;
+      }
+
+      // Execute transfer
+      sender.out += amount;
+      receiver.in += amount;
+
+      // Add to logs
+      const now = new Date();
+      const timeStr = now.toLocaleDateString('id-ID') + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      transferLogs.unshift({
+        time: timeStr,
+        from: `${sender.nama} (Absen ${sender.absen})`,
+        to: `${receiver.nama} (Absen ${receiver.absen})`,
+        points: amount,
+        note: note,
+        status: "Berhasil"
+      });
+
+      showAlert(`✅ Berhasil mentransfer ${amount} poin dari ${sender.nama} ke ${receiver.nama}!`, "emerald");
+
+      // Reset form & re-render
+      document.getElementById('transfer-form').reset();
+      renderTable();
+      populateSelects();
+      renderKPIs();
+      renderCharts();
+      renderLogs();
+    }
+
+    function handleAddPoint(e) {
+      e.preventDefault();
+      const mhsAbsen = parseInt(document.getElementById('point-mhs').value);
+      const meet = document.getElementById('point-meeting').value;
+      const pts = parseInt(document.getElementById('point-val').value);
+
+      if (!mhsAbsen || isNaN(pts)) return;
+
+      const s = students.find(item => item.absen === mhsAbsen);
+      // Push to custom meeting
+      s.p.push(pts);
+
+      alert(`✅ Berhasil menambahkan ${pts} poin pada ${meet} untuk ${s.nama}!`);
+      document.getElementById('add-point-form').reset();
+
+      renderTable();
+      populateSelects();
+      renderKPIs();
+      renderCharts();
+    }
+
+    function showAlert(msg, color) {
+      const alertBox = document.getElementById('transfer-alert');
+      alertBox.className = `mt-3 p-3 rounded-xl text-xs font-semibold flex items-center justify-between bg-${color}-50 text-${color}-800 border border-${color}-200`;
+      alertBox.innerHTML = `<span>${msg}</span><button type="button" onclick="this.parentElement.classList.add('hidden')" class="text-xs font-bold ml-2">&times;</button>`;
+      alertBox.classList.remove('hidden');
+    }
+
+    function renderKPIs() {
+      const totalMhs = students.length;
+      let countAutoA = 0;
+      let countTier2 = 0;
+      let totalSurplus = 0;
+      let sumFinal = 0;
+      let bubbleCount = 0;
+
+      students.forEach(s => {
+        const final = getFinal(s);
+        sumFinal += final;
+        if (final >= 200) countTier2++;
+        if (final >= 150) countAutoA++;
+        if (final < 150 && (150 - final) <= 10) bubbleCount++;
+        totalSurplus += getSurplus(s);
+      });
+
+      document.getElementById('kpi-total-mhs').textContent = totalMhs;
+      document.getElementById('kpi-auto-a').textContent = countAutoA;
+      document.getElementById('kpi-auto-a-pct').textContent = ((countAutoA / totalMhs) * 100).toFixed(1) + "% dari kelas";
+      document.getElementById('kpi-tier2').textContent = countTier2;
+      document.getElementById('kpi-surplus').textContent = totalSurplus;
+      document.getElementById('kpi-avg').textContent = (sumFinal / totalMhs).toFixed(1);
+      document.getElementById('kpi-bubble').textContent = bubbleCount;
+
+      document.getElementById('stat-pass-num').textContent = countAutoA;
+      document.getElementById('stat-tier2-num').textContent = countTier2;
+      document.getElementById('stat-pending-num').textContent = totalMhs - countAutoA;
+    }
+
+    function renderLogs() {
+      const tbody = document.getElementById('transfer-log-body');
+      tbody.innerHTML = '';
+      if (transferLogs.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-slate-400">Belum ada riwayat transaksi transfer poin.</td></tr>';
+        return;
+      }
+      transferLogs.forEach(log => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 font-mono text-[11px] text-slate-500">${log.time}</td>
+          <td class="py-2.5 px-3 font-semibold text-slate-800">${log.from}</td>
+          <td class="py-2.5 px-3 font-semibold text-slate-800">${log.to}</td>
+          <td class="py-2.5 px-3 text-center font-bold text-indigo-600">+${log.points} Poin</td>
+          <td class="py-2.5 px-4 text-slate-500">${log.note}</td>
+          <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Berhasil</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function clearLogs() {
+      if (confirm("Reset seluruh catatan riwayat transfer poin?")) {
+        transferLogs = [];
+        renderLogs();
+      }
+    }
+
+    function renderCharts() {
+      const sorted = [...students].sort((a, b) => getFinal(b) - getFinal(a)).slice(0, 10);
+      const labels = sorted.map(s => `Absen ${s.absen}: ` + s.nama.split(' ')[0]);
+      const scores = sorted.map(s => getFinal(s));
+
+      const ctxTop = document.getElementById('topChart').getContext('2d');
+      if (topChartInstance) topChartInstance.destroy();
+      topChartInstance = new Chart(ctxTop, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Total Poin',
+            data: scores,
+            backgroundColor: scores.map(sc => sc >= 150 ? '#10B981' : '#3B82F6'),
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#F1F5F9' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+
+      let pass = 0, tier2 = 0, pending = 0;
+      students.forEach(s => {
+        const f = getFinal(s);
+        if (f >= 200) tier2++;
+        else if (f >= 150) pass++;
+        else pending++;
+      });
+
+      const ctxStat = document.getElementById('statusChart').getContext('2d');
+      if (statusChartInstance) statusChartInstance.destroy();
+      statusChartInstance = new Chart(ctxStat, {
+        type: 'doughnut',
+        data: {
+          labels: ['Lolos Auto-A', 'Tier 2 (200+)', 'Belum Memenuhi'],
+          datasets: [{
+            data: [pass, tier2, pending],
+            backgroundColor: ['#10B981', '#F59E0B', '#94A3B8'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          cutout: '72%'
+        }
+      });
+    }
+
+    // Launch
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
