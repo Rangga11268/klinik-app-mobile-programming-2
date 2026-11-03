@@ -1,50 +1,58 @@
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.datavalidation import DataValidation
 
 wb = openpyxl.Workbook()
 
-# Sheet 1: Klasemen & Rekapitulasi Utama
+# Sheet 1: Master Klasemen
 ws1 = wb.active
 ws1.title = "Klasemen & Rekap Poin"
 ws1.views.sheetView[0].showGridLines = True
 
-# Sheet 2: Log Riwayat Transfer Poin
-ws2 = wb.create_sheet(title="Log Transfer Poin")
+# Sheet 2: Quick Action Transfer & Log Mutasi
+ws2 = wb.create_sheet(title="Quick Transfer & Log Mutasi")
 ws2.views.sheetView[0].showGridLines = True
 
-# Sheet 3: Simulator Transfer
-ws3 = wb.create_sheet(title="Simulator Transfer Poin")
-ws3.views.sheetView[0].showGridLines = True
-
 # Palette
-NAVY_HEADER = "1E293B"
-MEETING_HEADER = "334155"
-FUTURE_HEADER = "475569"
-TRANSFER_HEADER = "4338CA"
-RESULT_HEADER = "1D4ED8"
-GREEN_BG = "DCFCE7"
+NAVY_HEADER = "1E293B"       # Slate Navy
+NAVY_ACCENT = "0F172A"
+MEETING_HEADER = "334155"    # Slate
+FUTURE_HEADER = "475569"     # Slate medium
+TRANSFER_HEADER = "4338CA"   # Indigo for transfer
+RESULT_HEADER = "1D4ED8"     # Royal blue
+
+GREEN_BG = "DCFCE7"          # Soft Emerald for >= 150
 GREEN_TXT = "166534"
-GOLD_BG = "FEF3C7"
+GOLD_BG = "FEF3C7"           # Gold for >= 200
 GOLD_TXT = "92400E"
 ZEBRA_BG = "F8FAFC"
 BORDER_COLOR = "CBD5E1"
 WHITE = "FFFFFF"
 CARD_BG = "F1F5F9"
+ACTION_BG = "EEF2FF"        # Light Indigo for Quick Action area
+ACTION_TXT = "3730A3"
 
+# Fonts
 font_title = Font(name="Segoe UI", size=15, bold=True, color="0F172A")
 font_subtitle = Font(name="Segoe UI", size=9.5, italic=True, color="475569")
 font_rule_title = Font(name="Segoe UI", size=9.5, bold=True, color="0F172A")
 font_rule_desc = Font(name="Segoe UI", size=9, color="334155")
+
 font_kpi_label = Font(name="Segoe UI", size=8.5, bold=True, color="475569")
 font_kpi_num = Font(name="Segoe UI", size=15, bold=True, color="0F172A")
 font_kpi_green = Font(name="Segoe UI", size=15, bold=True, color=GREEN_TXT)
+
 font_header = Font(name="Segoe UI", size=9.5, bold=True, color=WHITE)
 font_data = Font(name="Segoe UI", size=9.5, color="0F172A")
 font_bold = Font(name="Segoe UI", size=9.5, bold=True, color="0F172A")
 font_pass = Font(name="Segoe UI", size=9.5, bold=True, color=GREEN_TXT)
 font_tier200 = Font(name="Segoe UI", size=9.5, bold=True, color=GOLD_TXT)
 
+font_action_title = Font(name="Segoe UI", size=11, bold=True, color=ACTION_TXT)
+font_action_desc = Font(name="Segoe UI", size=9, color="4338CA")
+
+# Fills
 fill_header_main = PatternFill(start_color=NAVY_HEADER, end_color=NAVY_HEADER, fill_type="solid")
 fill_header_meeting = PatternFill(start_color=MEETING_HEADER, end_color=MEETING_HEADER, fill_type="solid")
 fill_header_future = PatternFill(start_color=FUTURE_HEADER, end_color=FUTURE_HEADER, fill_type="solid")
@@ -55,17 +63,27 @@ fill_zebra = PatternFill(start_color=ZEBRA_BG, end_color=ZEBRA_BG, fill_type="so
 fill_green_pass = PatternFill(start_color=GREEN_BG, end_color=GREEN_BG, fill_type="solid")
 fill_gold_tier = PatternFill(start_color=GOLD_BG, end_color=GOLD_BG, fill_type="solid")
 fill_card = PatternFill(start_color=CARD_BG, end_color=CARD_BG, fill_type="solid")
+fill_action = PatternFill(start_color=ACTION_BG, end_color=ACTION_BG, fill_type="solid")
+fill_action_input = PatternFill(start_color=WHITE, end_color=WHITE, fill_type="solid")
 
+# Borders
 thin_side = Side(border_style="thin", color=BORDER_COLOR)
 border_cell = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
 double_bottom = Side(border_style="double", color="0F172A")
 border_total = Border(top=thin_side, bottom=double_bottom, left=thin_side, right=thin_side)
+border_action = Border(left=Side(border_style="medium", color="6366F1"),
+                       right=Side(border_style="medium", color="6366F1"),
+                       top=Side(border_style="medium", color="6366F1"),
+                       bottom=Side(border_style="medium", color="6366F1"))
 
 align_center = Alignment(horizontal="center", vertical="center")
 align_left = Alignment(horizontal="left", vertical="center")
 align_right = Alignment(horizontal="right", vertical="center")
 
-# ==================== SHEET 1 BUILD ====================
+
+# ==============================================================================
+# SHEET 1: KLASEMEN & REKAP POIN
+# ==============================================================================
 ws1.merge_cells("A1:V1")
 ws1["A1"] = "REKAPITULASI POIN KEAKTIFAN & KLASEMEN AKADEMIK MAHASISWA"
 ws1["A1"].font = font_title
@@ -96,7 +114,7 @@ ws1.row_dimensions[4].height = 16
 ws1.row_dimensions[5].height = 16
 ws1.row_dimensions[6].height = 16
 
-# KPI
+# KPI Cards
 ws1.merge_cells("B8:C8")
 ws1.merge_cells("B9:C9")
 ws1["B8"] = "TOTAL MAHASISWA"
@@ -271,17 +289,18 @@ for rank_idx, s in enumerate(sorted_roster, 1):
     ws1.cell(curr_row, 16, f"=SUM(F{curr_row}:O{curr_row})").alignment = align_center
     ws1.cell(curr_row, 16).font = font_bold
     
-    # Transfer Keluar
-    ws1.cell(curr_row, 17, 0).alignment = align_center
+    # AUTOMATIC LINK TO SHEET 2 QUICK ACTION TRANSFER TABLE:
+    # Transfer Keluar = SUMIF on Sheet 2 Column C (Pengirim Absen)
+    ws1.cell(curr_row, 17, f"=SUMIF('Quick Transfer & Log Mutasi'!$C$11:$C$100, B{curr_row}, 'Quick Transfer & Log Mutasi'!$G$11:$G$100)").alignment = align_center
     
-    # Transfer Masuk
-    ws1.cell(curr_row, 18, 0).alignment = align_center
+    # Transfer Masuk = SUMIF on Sheet 2 Column E (Penerima Absen)
+    ws1.cell(curr_row, 18, f"=SUMIF('Quick Transfer & Log Mutasi'!$E$11:$E$100, B{curr_row}, 'Quick Transfer & Log Mutasi'!$G$11:$G$100)").alignment = align_center
     
-    # Total Akhir
+    # Total Poin Akhir
     ws1.cell(curr_row, 19, f"=P{curr_row}-Q{curr_row}+R{curr_row}").alignment = align_center
     ws1.cell(curr_row, 19).font = font_bold
     
-    # Surplus
+    # Surplus (>150)
     ws1.cell(curr_row, 20, f'=IF(S{curr_row}>150, S{curr_row}-150, 0)').alignment = align_center
     
     # Status
@@ -333,97 +352,126 @@ for col in range(1, 23):
 ws1.freeze_panes = "E12"
 
 
-# ==================== SHEET 2: LOG RIWAYAT TRANSFER ====================
-ws2.merge_cells("A1:G1")
-ws2["A1"] = "BUKU CATATAN MUTASI & RIWAYAT TRANSFER POIN AKADEMIK"
+# ==============================================================================
+# SHEET 2: QUICK ACTION TRANSFER POIN LANGSUNG DI EXCEL
+# ==============================================================================
+ws2.merge_cells("A1:I1")
+ws2["A1"] = "⚡ QUICK ACTION: FORM & TABEL MUTASI TRANSFER POIN"
 ws2["A1"].font = font_title
 ws2["A1"].alignment = align_left
 ws2.row_dimensions[1].height = 24
 
-ws2.merge_cells("A2:G2")
-ws2["A2"] = "Audit trail mutasi poin antar mahasiswa kelas 19.5A.05 (Validasi resmi persetujuan dosen)"
+ws2.merge_cells("A2:I2")
+ws2["A2"] = "Petunjuk: Cukup pilih No. Absen Pengirim, No. Absen Penerima, dan isi Poin. Nama otomatis muncul dan Sheet Utama otomatis ter-update seketika!"
 ws2["A2"].font = font_subtitle
 ws2.row_dimensions[2].height = 18
 
+# Quick Action Instructions Box (Rows 4-6)
+ws2.merge_cells("B4:H4")
+ws2["B4"] = "CARA MENGGUNAKAN FITUR TRANSFER POIN LANGSUNG DI EXCEL INI:"
+ws2["B4"].font = font_action_title
+ws2["B4"].fill = fill_action
+ws2["B4"].alignment = align_left
+
+ws2.merge_cells("B5:H5")
+ws2["B5"] = "1. Pada tabel di bawah (Kolom C & E), klik dropdown panah kecil untuk memilih No. Absen Pengirim & Penerima (1 s/d 40)."
+ws2["B5"].font = font_action_desc
+ws2["B5"].fill = fill_action
+ws2["B5"].alignment = align_left
+
+ws2.merge_cells("B6:H6")
+ws2["B6"] = "2. Nama Mahasiswa (Kolom D & F) akan MUNCUL OTOMATIS via rumus VLOOKUP. Lalu ketik Jumlah Poin di Kolom G."
+ws2["B6"].font = font_action_desc
+ws2["B6"].fill = fill_action
+ws2["B6"].alignment = align_left
+
+ws2.merge_cells("B7:H7")
+ws2["B7"] = "3. Selesai! Buka Sheet 'Klasemen & Rekap Poin', Anda akan melihat poin kedua mahasiswa langsung berubah otomatis!"
+ws2["B7"].font = font_action_desc
+ws2["B7"].fill = fill_action
+ws2["B7"].alignment = align_left
+
+for r in range(4, 8):
+    for c in range(2, 9):
+        ws2.cell(r, c).border = border_cell
+
+ws2.row_dimensions[4].height = 18
+ws2.row_dimensions[5].height = 16
+ws2.row_dimensions[6].height = 16
+ws2.row_dimensions[7].height = 16
+ws2.row_dimensions[8].height = 8
+
+# Headers for Transfer Table (Row 10)
 headers2 = [
     ("No", align_center, 6),
-    ("Waktu / Tanggal", align_center, 18),
-    ("Mahasiswa Pengirim", align_left, 38),
-    ("Mahasiswa Penerima", align_left, 38),
-    ("Jumlah Poin", align_center, 14),
-    ("Keperluan / Keterangan", align_left, 32),
-    ("Status Verifikasi", align_center, 18)
+    ("Tanggal / Waktu", align_center, 18),
+    ("Absen Pengirim", align_center, 15),
+    ("Nama Mahasiswa Pengirim (Otomatis)", align_left, 36),
+    ("Absen Penerima", align_center, 15),
+    ("Nama Mahasiswa Penerima (Otomatis)", align_left, 36),
+    ("Poin Ditransfer", align_center, 16),
+    ("Status Formula", align_center, 18),
+    ("Keterangan / Catatan", align_left, 32)
 ]
 
-ws2.row_dimensions[4].height = 24
+header_row2 = 10
+ws2.row_dimensions[header_row2].height = 26
+
 for c_idx, (h_name, h_align, h_w) in enumerate(headers2, 1):
-    c = ws2.cell(4, c_idx, h_name)
+    c = ws2.cell(header_row2, c_idx, h_name)
     c.font = font_header
-    c.fill = fill_header_main
+    c.fill = fill_header_transfer
     c.alignment = align_center
     c.border = border_cell
     ws2.column_dimensions[get_column_letter(c_idx)].width = h_w
 
-sample_logs = [
-    (1, "03/11/2026 15:30", "Absen 39: TIRTA ADI MULYA", "Absen 01: RIFKI WAHYU", 5, "Bantuan Capaian P8", "Terverifikasi")
-]
+# Add Data Validation (Dropdown 1 to 40) for Absen Pengirim (Col C) and Absen Penerima (Col E)
+dv_absen = DataValidation(type="list", formula1='"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40"', allow_blank=True)
+dv_absen.error = 'Pilih nomor absen 1 s/d 40 dari dropdown!'
+dv_absen.errorTitle = 'Nomor Absen Tidak Valid'
+dv_absen.prompt = 'Pilih No. Absen dari daftar dropdown'
+dv_absen.promptTitle = 'Pilih Nomor Absen'
 
-for l_idx, log in enumerate(sample_logs, 1):
-    r = 4 + l_idx
-    ws2.row_dimensions[r].height = 20
-    ws2.cell(r, 1, log[0]).alignment = align_center
-    ws2.cell(r, 2, log[1]).alignment = align_center
-    ws2.cell(r, 3, log[2]).alignment = align_left
-    ws2.cell(r, 4, log[3]).alignment = align_left
-    ws2.cell(r, 5, log[4]).alignment = align_center
-    ws2.cell(r, 6, log[5]).alignment = align_left
-    ws2.cell(r, 7, log[6]).alignment = align_center
-    for c in range(1, 8):
-        cell = ws2.cell(r, c)
+ws2.add_data_validation(dv_absen)
+dv_absen.add(f"C11:C60")
+dv_absen.add(f"E11:E60")
+
+# Pre-populate row 11 with sample live transaction
+ws2.cell(11, 1, 1).alignment = align_center
+ws2.cell(11, 2, "03/11/2026 15:30").alignment = align_center
+ws2.cell(11, 3, 39).alignment = align_center  # Tirta
+ws2.cell(11, 4, "=IFERROR(VLOOKUP(C11, 'Klasemen & Rekap Poin'!$B$12:$D$51, 3, FALSE), \"\")").alignment = align_left  # Auto Name
+ws2.cell(11, 5, 1).alignment = align_center   # Rifki Wahyu
+ws2.cell(11, 6, "=IFERROR(VLOOKUP(E11, 'Klasemen & Rekap Poin'!$B$12:$D$51, 3, FALSE), \"\")").alignment = align_left  # Auto Name
+ws2.cell(11, 7, 5).alignment = align_center   # 5 Poin
+ws2.cell(11, 8, '=IF(G11="","", "✅ Sukses Terhubung")').alignment = align_center
+ws2.cell(11, 9, "Bantuan Capaian P8").alignment = align_left
+
+for c in range(1, 10):
+    ws2.cell(11, c).font = font_bold
+    ws2.cell(11, c).border = border_cell
+    ws2.cell(11, c).fill = fill_green_pass
+
+# Create empty, ready-to-use template rows 12 to 50
+for r_idx in range(12, 51):
+    ws2.row_dimensions[r_idx].height = 20
+    ws2.cell(r_idx, 1, r_idx - 10).alignment = align_center
+    ws2.cell(r_idx, 2, "").alignment = align_center
+    ws2.cell(r_idx, 3, "").alignment = align_center
+    ws2.cell(r_idx, 4, f"=IFERROR(VLOOKUP(C{r_idx}, 'Klasemen & Rekap Poin'!$B$12:$D$51, 3, FALSE), \"\")").alignment = align_left
+    ws2.cell(r_idx, 5, "").alignment = align_center
+    ws2.cell(r_idx, 6, f"=IFERROR(VLOOKUP(E{r_idx}, 'Klasemen & Rekap Poin'!$B$12:$D$51, 3, FALSE), \"\")").alignment = align_left
+    ws2.cell(r_idx, 7, "").alignment = align_center
+    ws2.cell(r_idx, 8, f'=IF(OR(C{r_idx}="", G{r_idx}=""), "", "✅ Sukses Terhubung")').alignment = align_center
+    ws2.cell(r_idx, 9, "").alignment = align_left
+
+    for c in range(1, 10):
+        cell = ws2.cell(r_idx, c)
         cell.font = font_data
         cell.border = border_cell
-
-
-# ==================== SHEET 3: SIMULATOR TRANSFER ====================
-ws3.merge_cells("A1:G1")
-ws3["A1"] = "SIMULATOR TRANSFER & PROYEKSI POIN MAHASISWA"
-ws3["A1"].font = font_title
-ws3["A1"].alignment = align_left
-ws3.row_dimensions[1].height = 24
-
-ws3.merge_cells("A2:G2")
-ws3["A2"] = "Gunakan lembar simulasi ini untuk menghitung dampak transfer poin sebelum diterapkan ke lembar utama."
-ws3["A2"].font = font_subtitle
-ws3.row_dimensions[2].height = 18
-
-ws3.merge_cells("B4:F4")
-ws3["B4"] = "PANDUAN OPERASIONAL CEPAT:"
-ws3["B4"].font = font_rule_title
-
-ws3.merge_cells("B5:F5")
-ws3["B5"] = "1. Buka Sheet 'Klasemen & Rekap Poin'."
-ws3["B5"].font = font_rule_desc
-
-ws3.merge_cells("B6:F6")
-ws3["B6"] = "2. Isi jumlah poin di kolom 'Transfer Keluar (-)' pada baris mahasiswa pengirim."
-ws3["B6"].font = font_rule_desc
-
-ws3.merge_cells("B7:F7")
-ws3["B7"] = "3. Isi jumlah poin yang sama di kolom 'Transfer Masuk (+)' pada baris mahasiswa penerima."
-ws3["B7"].font = font_rule_desc
-
-ws3.merge_cells("B8:F8")
-ws3["B8"] = "4. Total Poin Akhir, Surplus, dan Status Kelulusan akan otomatis ter-update seketika!"
-ws3["B8"].font = font_rule_desc
-
-for r in range(4, 9):
-    for c in range(2, 7):
-        ws3.cell(r, c).fill = fill_card
-        ws3.cell(r, c).border = border_cell
-
-for col_idx, w in enumerate([6, 12, 35, 35, 20, 25, 20], 1):
-    ws3.column_dimensions[get_column_letter(col_idx)].width = w
+        if r_idx % 2 == 1:
+            cell.fill = fill_zebra
 
 excel_path = "d:/laragon/www/klinik37/module/Rekap_Poin_Mobile_Programming_2_Kelas_195A05.xlsx"
 wb.save(excel_path)
-print(f"File Excel komprehensif 3-sheet berhasil disimpan di: {excel_path}")
+print(f"File Excel dengan fitur QUICK ACTION TRANSFER LANGSUNG DI EXCEL berhasil disimpan di: {excel_path}")
