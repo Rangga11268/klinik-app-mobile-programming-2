@@ -1,0 +1,402 @@
+[
+  {
+    "id_anggota": "1",
+    "nama_anggota": "RIFKI WAHYU",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 1, Jakarta",
+    "no_telepon": "081201765432",
+    "email": "rifki.wahyu@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "2",
+    "nama_anggota": "MUHAMMAD SYAUQI",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 2, Jakarta",
+    "no_telepon": "081202765432",
+    "email": "muhammad.syauqi@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "3",
+    "nama_anggota": "MICHIO CHRISTIAN HADY",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 3, Jakarta",
+    "no_telepon": "081203765432",
+    "email": "michio.christian@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "4",
+    "nama_anggota": "NASVIRA MELANI PUTRI",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 4, Jakarta",
+    "no_telepon": "081204765432",
+    "email": "nasvira.melani.p@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "5",
+    "nama_anggota": "MUHAMMAD FADHLI AKBAR RABBANI",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 5, Jakarta",
+    "no_telepon": "081205765432",
+    "email": "muhammad.fadhli.@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "6",
+    "nama_anggota": "NUNING SAWITRI",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 6, Jakarta",
+    "no_telepon": "081206765432",
+    "email": "nuning.sawitri@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "7",
+    "nama_anggota": "SITI KOMARIYAH",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 7, Jakarta",
+    "no_telepon": "081207765432",
+    "email": "siti.komariyah@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "8",
+    "nama_anggota": "MAULISYA EKA PUTRI",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 8, Jakarta",
+    "no_telepon": "081208765432",
+    "email": "maulisya.eka.put@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "9",
+    "nama_anggota": "ILHAM FAJRIAN",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 9, Jakarta",
+    "no_telepon": "081209765432",
+    "email": "ilham.fajrian@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "10",
+    "nama_anggota": "REFI FAUZAN",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 10, Jakarta",
+    "no_telepon": "081210765432",
+    "email": "refi.fauzan@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "11",
+    "nama_anggota": "RAHMADI CAHYO SAPUTRO",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 11, Jakarta",
+    "no_telepon": "081211765432",
+    "email": "rahmadi.cahyo.sa@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "12",
+    "nama_anggota": "ADESKY JAMIL SYARIFUDDIN",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 12, Jakarta",
+    "no_telepon": "081212765432",
+    "email": "adesky.jamil.sya@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "13",
+    "nama_anggota": "NASYWA ZAIN",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 13, Jakarta",
+    "no_telepon": "081213765432",
+    "email": "nasywa.zain@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "14",
+    "nama_anggota": "CHESA AWALIA REFANA",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 14, Jakarta",
+    "no_telepon": "081214765432",
+    "email": "chesa.awalia.ref@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "15",
+    "nama_anggota": "KATHERINE JULIAN ANASTASIA MANURUNG",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 15, Jakarta",
+    "no_telepon": "081215765432",
+    "email": "katherine.julian@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "16",
+    "nama_anggota": "RIFA DINI ARIFAH",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 16, Jakarta",
+    "no_telepon": "081216765432",
+    "email": "rifa.dini.arifah@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "17",
+    "nama_anggota": "NAJMI NATA LAZUARDI",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 17, Jakarta",
+    "no_telepon": "081217765432",
+    "email": "najmi.nata.lazua@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "18",
+    "nama_anggota": "NABILA INTAN FADHILAH",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 18, Jakarta",
+    "no_telepon": "081218765432",
+    "email": "nabila.intan.fad@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "19",
+    "nama_anggota": "MEGI REFKIANSYAH ANANDA PRATAMA GUMAY",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 19, Jakarta",
+    "no_telepon": "081219765432",
+    "email": "megi.refkiansyah@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "20",
+    "nama_anggota": "SITI NUR AISYAH",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 20, Jakarta",
+    "no_telepon": "081220765432",
+    "email": "siti.nur.aisyah@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "21",
+    "nama_anggota": "WAHYU RIZKY KHOIRUDIN",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 21, Jakarta",
+    "no_telepon": "081221765432",
+    "email": "wahyu.rizky.khoi@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "22",
+    "nama_anggota": "DENADA PUTRI HIDAYAT",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 22, Jakarta",
+    "no_telepon": "081222765432",
+    "email": "denada.putri.hid@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "23",
+    "nama_anggota": "NUR AZIZAH",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 23, Jakarta",
+    "no_telepon": "081223765432",
+    "email": "nur.azizah@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "24",
+    "nama_anggota": "MUHAMAD RAFI AFDHAL",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 24, Jakarta",
+    "no_telepon": "081224765432",
+    "email": "muhamad.rafi.afd@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "25",
+    "nama_anggota": "NDARU PRIYAMBODO",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 25, Jakarta",
+    "no_telepon": "081225765432",
+    "email": "ndaru.priyambodo@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "26",
+    "nama_anggota": "SYIFA AULIA",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 26, Jakarta",
+    "no_telepon": "081226765432",
+    "email": "syifa.aulia@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "27",
+    "nama_anggota": "BIANCA BINTANG DACHLAN",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 27, Jakarta",
+    "no_telepon": "081227765432",
+    "email": "bianca.bintang.d@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "28",
+    "nama_anggota": "IMAN SYAHRUDIN SUSANTO",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 28, Jakarta",
+    "no_telepon": "081228765432",
+    "email": "iman.syahrudin.s@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "29",
+    "nama_anggota": "DAVIN FIGO DANENDRA",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 29, Jakarta",
+    "no_telepon": "081229765432",
+    "email": "davin.figo.danen@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "30",
+    "nama_anggota": "NAYLA AMALIAH HUTAMI",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 30, Jakarta",
+    "no_telepon": "081230765432",
+    "email": "nayla.amaliah.hu@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "31",
+    "nama_anggota": "MUHAMAD RIFKI SAPUTRA",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 31, Jakarta",
+    "no_telepon": "081231765432",
+    "email": "muhamad.rifki.sa@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "32",
+    "nama_anggota": "INNESYA ZAHWA SUTA",
+    "jenis_kelamin": "Perempuan",
+    "alamat": "Jl. Kampus UBSI No. 32, Jakarta",
+    "no_telepon": "081232765432",
+    "email": "innesya.zahwa.su@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "33",
+    "nama_anggota": "MUHAMMAD ADITYA ANANDA",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 33, Jakarta",
+    "no_telepon": "081233765432",
+    "email": "muhammad.aditya.@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "34",
+    "nama_anggota": "NAUFAL HAKIM",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 34, Jakarta",
+    "no_telepon": "081234765432",
+    "email": "naufal.hakim@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "35",
+    "nama_anggota": "NOEL VALDES SIMORANGKIR",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 35, Jakarta",
+    "no_telepon": "081235765432",
+    "email": "noel.valdes.simo@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "36",
+    "nama_anggota": "MUHAMAD RAJIB",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 36, Jakarta",
+    "no_telepon": "081236765432",
+    "email": "muhamad.rajib@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "37",
+    "nama_anggota": "DARELL RANGGA PUTRA RACHMAN",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 37, Jakarta",
+    "no_telepon": "081237765432",
+    "email": "darell.rangga.pu@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "38",
+    "nama_anggota": "ABI ABRAR ROBBANI",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 38, Jakarta",
+    "no_telepon": "081238765432",
+    "email": "abi.abrar.robban@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "39",
+    "nama_anggota": "TIRTA ADI MULYA",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 39, Jakarta",
+    "no_telepon": "081239765432",
+    "email": "tirta.adi.mulya@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  },
+  {
+    "id_anggota": "40",
+    "nama_anggota": "WAHYU NOVIANTO",
+    "jenis_kelamin": "Laki-laki",
+    "alamat": "Jl. Kampus UBSI No. 40, Jakarta",
+    "no_telepon": "081240765432",
+    "email": "wahyu.novianto@perpus.ac.id",
+    "tanggal_daftar": "2026-11-03T08:00:00.000Z",
+    "status": "Aktif"
+  }
+]

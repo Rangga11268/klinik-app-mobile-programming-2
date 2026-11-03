@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "isbn": "978-602-03-8801-1",
+    "judul_buku": "Pemrograman Mobile dengan Flutter & Dart",
+    "id_kategori": 1,
+    "id_penerbit": 1,
+    "tahun_terbit": "2024-01-15T00:00:00.000Z",
+    "deskripsi": "Panduan komprehensif membangun aplikasi mobile cross-platform Android dan iOS menggunakan Flutter dan Dart."
+  },
+  {
+    "id": "2",
+    "isbn": "978-602-03-8802-2",
+    "judul_buku": "Mastering RESTful API & Postman Client Testing",
+    "id_kategori": 1,
+    "id_penerbit": 2,
+    "tahun_terbit": "2023-09-10T00:00:00.000Z",
+    "deskripsi": "Teknik mendesain, menguji, dan mendokumentasikan REST API modern menggunakan Postman dan MockAPI."
+  },
+  {
+    "id": "3",
+    "isbn": "978-602-03-8803-3",
+    "judul_buku": "Fundamental Rekayasa Perangkat Lunak Berorientasi Objek",
+    "id_kategori": 2,
+    "id_penerbit": 1,
+    "tahun_terbit": "2022-04-18T00:00:00.000Z",
+    "deskripsi": "Konsep dasar SDLC, diagram UML, analisis perancangan sistem informasi, dan metodologi Agile Scrum."
+  },
+  {
+    "id": "4",
+    "isbn": "978-602-03-8804-4",
+    "judul_buku": "Desain Antarmuka UI/UX Aplikasi Mobile Modern",
+    "id_kategori": 3,
+    "id_penerbit": 3,
+    "tahun_terbit": "2023-11-25T00:00:00.000Z",
+    "deskripsi": "Prinsip Human-Computer Interaction, micro-interactions, responsive design, dan prototyping Figma."
+  },
+  {
+    "id": "5",
+    "isbn": "978-602-03-8805-5",
+    "judul_buku": "Pengantar Kecerdasan Buatan & Machine Learning",
+    "id_kategori": 4,
+    "id_penerbit": 2,
+    "tahun_terbit": "2024-02-20T00:00:00.000Z",
+    "deskripsi": "Eksplorasi konsep dasar model kecerdasan buatan, deep learning, dan integrasi API AI pada aplikasi mobile."
+  },
+  {
+    "id": "6",
+    "isbn": "978-602-03-8806-6",
+    "judul_buku": "Perancangan Basis Data Relasional & NoSQL",
+    "id_kategori": 2,
+    "id_penerbit": 1,
+    "tahun_terbit": "2022-08-14T00:00:00.000Z",
+    "deskripsi": "Teori normalisasi tabel, optimasi query SQL, serta implementasi NoSQL database skala besar."
+  },
+  {
+    "id": "7",
+    "isbn": "978-602-03-8807-7",
+    "judul_buku": "Arsitektur State Management Flutter (Bloc & Riverpod)",
+    "id_kategori": 1,
+    "id_penerbit": 3,
+    "tahun_terbit": "2024-03-05T00:00:00.000Z",
+    "deskripsi": "Penerapan arsitektur clean code dan manajemen state reaktif berskala produksi pada Flutter."
+  },
+  {
+    "id": "8",
+    "isbn": "978-602-03-8808-8",
+    "judul_buku": "Keamanan Sistem Informasi & Cyber Security",
+    "id_kategori": 5,
+    "id_penerbit": 2,
+    "tahun_terbit": "2023-06-30T00:00:00.000Z",
+    "deskripsi": "Proteksi aplikasi dari kerentanan OWASP, enkripsi data, token authentication, dan SSL/TLS pinning."
+  },
+  {
+    "id": "9",
+    "isbn": "978-602-03-8809-9",
+    "judul_buku": "Cloud Computing & DevOps CI/CD Pipeline",
+    "id_kategori": 5,
+    "id_penerbit": 1,
+    "tahun_terbit": "2023-12-12T00:00:00.000Z",
+    "deskripsi": "Otomatisasi pengujian dan deployment aplikasi mobile menggunakan GitHub Actions dan cloud service."
+  },
+  {
+    "id": "10",
+    "isbn": "978-602-03-8810-0",
+    "judul_buku": "Metodologi Penelitian Bidang Ilmu Komputer",
+    "id_kategori": 2,
+    "id_penerbit": 1,
+    "tahun_terbit": "2021-10-10T00:00:00.000Z",
+    "deskripsi": "Panduan penulisan tugas akhir, skripsi, dan artikel ilmiah bagi mahasiswa sistem informasi."
+  }
+]
