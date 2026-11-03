@@ -3,19 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Klinik 37 &bull; Portal Akademik & Klasemen Poin Keaktifan 19.5A.05 | UBSI</title>
+  <title>Buku Rekapitulasi Poin Keaktifan 19.5A.05 | Mobile Programming II - UBSI</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
           },
           colors: {
             brand: {
@@ -24,6 +22,7 @@
               500: '#3b82f6',
               600: '#2563eb',
               700: '#1d4ed8',
+              800: '#1e40af',
               900: '#1e3a8a',
             }
           }
@@ -32,7 +31,7 @@
     }
   </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
     
     * {
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -42,23 +41,20 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* Custom Scrollbars */
+    /* Precision hairline scrollbars */
     ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
+      width: 5px;
+      height: 5px;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: #94a3b8;
-      border-radius: 9999px;
+      background: #cbd5e1;
+      border-radius: 2px;
     }
     .dark ::-webkit-scrollbar-thumb {
       background: #334155;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #64748b;
     }
 
     /* Print Formatting */
@@ -70,104 +66,67 @@
       .no-print {
         display: none !important;
       }
+      table {
+        font-size: 9px !important;
+      }
     }
 
-    /* Badge & Tag Treatments */
-    .badge-tier1 {
-      background: rgba(16, 185, 129, 0.12);
-      color: #059669;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-    .dark .badge-tier1 {
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.25);
-    }
-    .badge-tier2 {
-      background: rgba(245, 158, 11, 0.12);
-      color: #d97706;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-    .dark .badge-tier2 {
-      background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.25);
-    }
-    .badge-neutral {
-      background: rgba(100, 116, 139, 0.1);
-      color: #475569;
-      border: 1px solid rgba(100, 116, 139, 0.25);
-    }
-    .dark .badge-neutral {
-      background: rgba(100, 116, 139, 0.15);
-      color: #94a3b8;
-      border: 1px solid rgba(100, 116, 139, 0.2);
-    }
-
-    /* Pulse animation for transfer update */
-    @keyframes highlightRow {
-      0% { background-color: rgba(59, 130, 246, 0.4); }
+    /* Row update flash */
+    @keyframes rowFlash {
+      0% { background-color: rgba(37, 99, 235, 0.22); }
       100% { background-color: transparent; }
     }
-    .row-highlight {
-      animation: highlightRow 2s ease-out;
+    .flash-highlight {
+      animation: rowFlash 1.6s ease-out;
     }
   </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen selection:bg-blue-600 selection:text-white transition-colors duration-200 antialiased">
+<body class="bg-slate-50 dark:bg-[#0b0f17] text-slate-800 dark:text-slate-200 min-h-screen selection:bg-slate-700 selection:text-white transition-colors duration-150 antialiased font-sans">
 
-  <!-- TOP HEADER / MASTHEAD -->
-  <header class="border-b border-slate-200 dark:border-slate-800/80 bg-white/95 dark:bg-slate-900/90 backdrop-blur-md sticky top-0 z-40 transition-colors duration-200">
+  <!-- TOP MASTHEAD -->
+  <header class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f1523] transition-colors duration-150 sticky top-0 z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
+      <div class="py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
         
-        <!-- Brand / Identity -->
-        <div class="flex items-center space-x-3.5">
-          <div class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-sm border border-blue-400 p-1.5 flex-shrink-0" title="Klinik App Brand Mark">
-            <svg viewBox="0 0 256 256" class="w-full h-full" fill="currentColor">
-              <path fill-rule="evenodd" d="M100 56C100 40.536 112.536 28 128 28C143.464 28 156 40.536 156 56V100H200C215.464 100 228 112.536 228 128C228 143.464 215.464 156 200 156H156V200C156 215.464 143.464 228 128 228C112.536 228 100 215.464 100 200V156H56C40.536 156 28 143.464 28 128C28 112.536 40.536 100 56 100H100V56ZM68 134H96.5L114.5 94L137.5 162L153.5 122H188C191.314 122 194 124.686 194 128C194 131.314 191.314 134 188 134H159.5L141.5 174L118.5 106L102.5 146H68C64.686 146 62 143.314 62 140C62 136.686 64.686 134 68 134Z"/>
-            </svg>
+        <!-- Institutional Identity -->
+        <div>
+          <div class="flex items-center space-x-2 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+            <span>UBSI</span>
+            <span>/</span>
+            <span>SISTEM INFORMASI</span>
+            <span>/</span>
+            <span class="text-blue-600 dark:text-blue-400 font-semibold">KELAS 19.5A.05</span>
           </div>
-          <div>
-            <div class="flex items-center space-x-2">
-              <span class="text-xs font-mono font-semibold px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 border border-blue-300 dark:border-blue-800/60">19.5A.05</span>
-              <h1 class="text-sm font-bold text-slate-900 dark:text-slate-100 tracking-tight">Klinik 37 &bull; Portal Nilai Mobile Programming II</h1>
-            </div>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400">Dosen Pengampu: Cep Adiwiharja &bull; Semester 5 UBSI</p>
-          </div>
+          <h1 class="text-base font-bold text-slate-900 dark:text-white tracking-tight mt-0.5">
+            Buku Rekapitulasi Poin Keaktifan Mahasiswa
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            Mobile Programming II &bull; Dosen: Cep Adiwiharja &bull; Status: Pertemuan 7 Selesai (3 November 2026)
+          </p>
         </div>
 
-        <!-- Controls & Meta -->
-        <div class="flex items-center space-x-2.5">
-          <!-- Live Session Pill -->
-          <div class="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800/70">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 mr-2 animate-pulse"></span>
-            Update Pertemuan 7 (3 Nov 2026)
-          </div>
-
-          <!-- Quick Search Shortcut -->
-          <button onclick="focusSearch()" title="Tekan '/' untuk mencari" class="hidden md:inline-flex items-center px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 text-xs transition">
-            <svg class="w-3.5 h-3.5 mr-1.5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            <span>Cari Mahasiswa</span>
-            <kbd class="ml-2 px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 text-[10px] text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700">/</kbd>
+        <!-- Global Utility Actions -->
+        <div class="flex items-center space-x-2 no-print self-start md:self-center">
+          <button onclick="toggleTransferPanel()" class="px-3 py-1.5 rounded border border-blue-600 bg-blue-600 text-white hover:bg-blue-700 text-xs font-medium transition flex items-center space-x-1.5" title="Buka panel transaksi mutasi">
+            <span>Mutasi Poin</span>
           </button>
 
-          <!-- Export CSV -->
-          <button onclick="exportToCSV()" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700/80 text-xs text-slate-700 dark:text-slate-200 font-medium transition flex items-center space-x-1.5" title="Unduh CSV">
-            <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            <span class="hidden sm:inline">Export CSV</span>
+          <button onclick="focusSearch()" title="Cari data (Tekan /)" class="px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 transition flex items-center space-x-1.5">
+            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span>Cari</span>
+            <kbd class="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[10px] text-slate-500 font-mono border border-slate-200 dark:border-slate-700">/</kbd>
           </button>
 
-          <!-- Print Transcript -->
-          <button onclick="window.print()" class="p-2 sm:px-3 sm:py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700/80 text-xs text-slate-700 dark:text-slate-200 font-medium transition flex items-center space-x-1.5" title="Cetak / PDF">
-            <svg class="w-4 h-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-            <span class="hidden sm:inline">Cetak</span>
+          <button onclick="exportToCSV()" class="px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 transition" title="Unduh rekap data CSV">
+            Ekspor CSV
           </button>
 
-          <!-- Theme Toggle (Dark / Light) -->
-          <button onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 transition" title="Ganti Tema (Light / Dark)">
-            <svg id="theme-icon-dark" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-            <svg id="theme-icon-light" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <button onclick="window.print()" class="px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 transition" title="Cetak transkrip nilai">
+            Cetak
+          </button>
+
+          <button onclick="toggleTheme()" class="px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 transition" title="Alihkan tema visual">
+            <span id="theme-btn-label">Mode Terang</span>
           </button>
         </div>
 
@@ -175,414 +134,345 @@
     </div>
   </header>
 
-  <!-- MAIN CONTAINER -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+  <!-- MAIN LEDGER VIEWPORT -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-5">
 
-    <!-- ACADEMIC POLICY / TIER RULES HERO -->
-    <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm transition-colors duration-200">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+    <!-- ACADEMIC POLICY STRIP (Unboxed, Hairline Separators) -->
+    <section class="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f1523] rounded-lg p-4 transition-colors duration-150">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
         
-        <div class="space-y-1.5 max-w-2xl">
-          <div class="flex items-center space-x-2">
-            <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400 tracking-wider uppercase">Regulasi Akademik Resmi</span>
-            <span class="text-slate-400 dark:text-slate-600">&bull;</span>
-            <span class="text-xs text-slate-500 dark:text-slate-400">Target Kelulusan Semester 5</span>
+        <div class="space-y-1 md:pr-4">
+          <div class="flex items-baseline justify-between font-mono">
+            <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">Kualifikasi Tier 1 (Auto-A)</span>
+            <span class="font-bold text-emerald-700 dark:text-emerald-400">150 – 199 Poin</span>
           </div>
-          <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight">
-            Sistem Apresiasi Poin Keaktifan & Hak Fasilitas Akademik
-          </h2>
-          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-            Mahasiswa yang mengumpulkan keaktifan challenge secara konsisten berhak mendapatkan insentif akademik mutlak, kebebasan tugas akhir projek kelompok, serta dispensasi kehadiran resmi.
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px]">
+            Bebas Tugas Projek Akhir Semester & Presentasi (P14-P15), serta hak <strong>1 kali dispensasi presensi kehadiran</strong>.
           </p>
         </div>
 
-        <!-- 3 Policy Badges with Purposeful Semantics -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full lg:w-auto text-xs">
-          <div class="p-3.5 rounded-xl bg-emerald-50/70 dark:bg-slate-950/60 border border-emerald-200 dark:border-emerald-900/40">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-bold text-emerald-700 dark:text-emerald-400">Tier 1 (≥ 150 Poin)</span>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">Auto-A</span>
-            </div>
-            <p class="text-slate-700 dark:text-slate-300 text-[11px] leading-snug">
-              Nilai Mutlak A + Bebas Projek/Presentasi (P14-15) + <strong>Dispensasi Presensi 1x</strong>.
-            </p>
+        <div class="pt-3 md:pt-0 md:px-4 space-y-1">
+          <div class="flex items-baseline justify-between font-mono">
+            <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">Kualifikasi Tier 2 (Kehormatan)</span>
+            <span class="font-bold text-amber-700 dark:text-amber-400">≥ 200 Poin</span>
           </div>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px]">
+            Nilai Akhir Mutlak A, Bebas Tugas Projek Akhir & Presentasi, serta hak <strong>2 kali dispensasi presensi kehadiran</strong>.
+          </p>
+        </div>
 
-          <div class="p-3.5 rounded-xl bg-amber-50/70 dark:bg-slate-950/60 border border-amber-200 dark:border-amber-900/40">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-bold text-amber-700 dark:text-amber-400">Tier 2 (≥ 200 Poin)</span>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800">Honor</span>
-            </div>
-            <p class="text-slate-700 dark:text-slate-300 text-[11px] leading-snug">
-              Nilai Mutlak A + Bebas Projek/Presentasi + <strong>Dispensasi Presensi 2x</strong>.
-            </p>
+        <div class="pt-3 md:pt-0 md:pl-4 space-y-1">
+          <div class="flex items-baseline justify-between font-mono">
+            <span class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">Regulasi Transfer Surplus</span>
+            <span class="font-bold text-blue-700 dark:text-blue-400">> 150 Poin</span>
           </div>
-
-          <div class="p-3.5 rounded-xl bg-blue-50/70 dark:bg-slate-950/60 border border-blue-200 dark:border-blue-900/40">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-bold text-blue-700 dark:text-blue-400">Regulasi Transfer</span>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-300 dark:border-blue-800">Solidaritas</span>
-            </div>
-            <p class="text-slate-700 dark:text-slate-300 text-[11px] leading-snug">
-              Surplus poin di atas 150 <strong>sah ditransfer</strong> ke mahasiswa lain yang membutuhkan.
-            </p>
-          </div>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-[11px]">
+            Poin di atas ambang batas 150 berstatus surplus aktif yang sah dialokasikan/ditransfer kepada rekan mahasiswa lain.
+          </p>
         </div>
 
       </div>
     </section>
 
-    <!-- KPI STATS RIBBON (Strict Monochrome & Tabular Numerals) -->
-    <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
-      <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm transition-colors duration-200">
-        <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400 block">Total Mahasiswa</span>
-        <span class="text-2xl font-bold font-mono text-slate-900 dark:text-white mt-1 block num-tabular" id="kpi-total-mhs">40</span>
-        <span class="text-[10px] text-slate-400 dark:text-slate-500 block mt-0.5">Rombel 19.5A.05</span>
-      </div>
-
-      <div class="bg-white dark:bg-slate-900/90 border border-emerald-200 dark:border-slate-800 rounded-xl p-4 shadow-sm transition-colors duration-200">
-        <span class="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 block">Lolos Auto-A (≥150)</span>
-        <span class="text-2xl font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-1 block num-tabular" id="kpi-auto-a">8</span>
-        <span class="text-[10px] text-emerald-700 dark:text-emerald-500/80 block mt-0.5" id="kpi-auto-a-pct">20.0% dari kelas</span>
-      </div>
-
-      <div class="bg-white dark:bg-slate-900/90 border border-amber-200 dark:border-slate-800 rounded-xl p-4 shadow-sm transition-colors duration-200">
-        <span class="text-[11px] font-medium text-amber-600 dark:text-amber-400 block">Tier 2 (≥200 Poin)</span>
-        <span class="text-2xl font-bold font-mono text-amber-600 dark:text-amber-400 mt-1 block num-tabular" id="kpi-tier2">0</span>
-        <span class="text-[10px] text-amber-700 dark:text-amber-500/80 block mt-0.5">Dispensasi Presensi 2x</span>
-      </div>
-
-      <div class="bg-white dark:bg-slate-900/90 border border-blue-200 dark:border-slate-800 rounded-xl p-4 shadow-sm transition-colors duration-200">
-        <span class="text-[11px] font-medium text-blue-600 dark:text-blue-400 block">Surplus Siap Transfer</span>
-        <span class="text-2xl font-bold font-mono text-blue-600 dark:text-blue-400 mt-1 block num-tabular" id="kpi-surplus">60</span>
-        <span class="text-[10px] text-blue-700 dark:text-blue-500/80 block mt-0.5">Poin sedia dialihkan</span>
-      </div>
-
-      <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm transition-colors duration-200">
-        <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400 block">Rata-Rata Kelas</span>
-        <span class="text-2xl font-bold font-mono text-slate-900 dark:text-white mt-1 block num-tabular" id="kpi-avg">102.5</span>
-        <span class="text-[10px] text-slate-400 dark:text-slate-500 block mt-0.5">Akumulasi per mhs</span>
-      </div>
-
-      <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm transition-colors duration-200">
-        <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400 block">Total Poin Kelas</span>
-        <span class="text-2xl font-bold font-mono text-slate-900 dark:text-white mt-1 block num-tabular" id="kpi-total-points">4,100</span>
-        <span class="text-[10px] text-slate-400 dark:text-slate-500 block mt-0.5">7 Pertemuan selesai</span>
-      </div>
-    </section>
-
-    <!-- TOP 3 PODIUM (HALL OF FAME) -->
-    <section class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm transition-colors duration-200">
-      <div class="flex items-center justify-between mb-4">
-        <div>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white tracking-tight flex items-center space-x-2">
-            <span>🏆 Peringkat Teratas & Pemegang Kuota Surplus</span>
-          </h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400">Mahasiswa yang telah menembus batas kelulusan 150 poin per Pertemuan 7</p>
+    <!-- CLASS TELEMETRY RIBBON (Dense single-strip, no disconnected cards) -->
+    <section class="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f1523] rounded-lg overflow-hidden transition-colors duration-150">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-y sm:divide-y-0 divide-x divide-slate-200 dark:divide-slate-800 text-left">
+        
+        <div class="p-3.5">
+          <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 block">Mahasiswa Terdaftar</span>
+          <span class="text-xl font-bold font-mono text-slate-900 dark:text-white mt-0.5 block num-tabular" id="kpi-total-mhs">40</span>
+          <span class="text-[11px] text-slate-500 block">Rombel 19.5A.05</span>
         </div>
-        <span class="text-xs font-mono text-slate-500 dark:text-slate-400 hidden sm:inline-block">Ambang Auto-A: 150 Poin</span>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="podium-container">
-        <!-- populated dynamically by JS for accuracy -->
+        <div class="p-3.5">
+          <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 block">Kualifikasi Auto-A</span>
+          <span class="text-xl font-bold font-mono text-emerald-700 dark:text-emerald-400 mt-0.5 block num-tabular" id="kpi-auto-a">8</span>
+          <span class="text-[11px] text-slate-500 block" id="kpi-auto-a-pct">20.0% Dari Kelas</span>
+        </div>
+
+        <div class="p-3.5">
+          <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 block">Cadangan Surplus Aktif</span>
+          <span class="text-xl font-bold font-mono text-blue-700 dark:text-blue-400 mt-0.5 block num-tabular" id="kpi-surplus">60</span>
+          <span class="text-[11px] text-slate-500 block">Poin Siap Ditransfer</span>
+        </div>
+
+        <div class="p-3.5">
+          <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 block">Rata-Rata Nilai</span>
+          <span class="text-xl font-bold font-mono text-slate-900 dark:text-white mt-0.5 block num-tabular" id="kpi-avg">102.5</span>
+          <span class="text-[11px] text-slate-500 block">Poin Per Mahasiswa</span>
+        </div>
+
+        <div class="p-3.5 col-span-2 sm:col-span-1">
+          <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 block">Total Poin Terkumpul</span>
+          <span class="text-xl font-bold font-mono text-slate-900 dark:text-white mt-0.5 block num-tabular" id="kpi-total-points">4.100</span>
+          <span class="text-[11px] text-slate-500 block">Sesi P1 s/d P7</span>
+        </div>
+
       </div>
     </section>
 
-    <!-- ACTIONS & SIMULATION DECK (Interactive Transfer + Quick Add) -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- TRANSACTION CONSOLE (Collapsible / Focused Action Drawer) -->
+    <section id="transfer-panel" class="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f1523] rounded-lg overflow-hidden transition-colors duration-150">
+      
+      <div class="px-4 py-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-[#0a0e16] flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+          <h2 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider font-mono">
+            Konsol Mutasi Alokasi Poin Surplus
+          </h2>
+        </div>
+        <button onclick="toggleTransferPanel()" class="text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 font-mono">
+          [Tutup Panel]
+        </button>
+      </div>
 
-      <!-- Action Panel 1: Transfer Engine -->
-      <div class="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between transition-colors duration-200">
-        <div>
-          <div class="flex items-center space-x-2.5 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-600/20 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-500/30 flex items-center justify-center font-bold">
-              ⇄
-            </div>
-            <div>
-              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Simulator & Eksekusi Transfer Poin</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Pindahkan kelebihan poin surplus ke rekan mahasiswa yang membutuhkan</p>
-            </div>
-          </div>
-
-          <form id="transfer-form" onsubmit="handleTransfer(event)" class="space-y-4">
+      <div class="p-4 sm:p-5">
+        <form id="transfer-form" onsubmit="handleTransfer(event)" class="space-y-4">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <!-- Sender (From) with Mini Search -->
-              <div class="relative" id="custom-select-from-container">
-                <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Pengirim (Memiliki Surplus >150):</label>
-                
-                <button type="button" id="select-from-trigger" onclick="toggleSelectDropdown('from')" class="w-full text-left text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 p-2.5 flex items-center justify-between transition-colors shadow-sm">
-                  <span id="select-from-label" class="truncate font-medium text-slate-500 dark:text-slate-400">
-                    -- Pilih Mahasiswa Pengirim --
-                  </span>
-                  <svg class="w-4 h-4 text-slate-400 transition-transform duration-200 flex-shrink-0 ml-1.5" id="select-from-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                  </svg>
-                </button>
-                <input type="hidden" id="transfer-from" value="">
-
-                <!-- Dropdown Popover with Mini Search -->
-                <div id="select-from-dropdown" class="hidden absolute left-0 right-0 top-full mt-1.5 z-30 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden text-xs">
-                  <div class="p-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
-                    <div class="relative">
-                      <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                      </svg>
-                      <input type="text" id="select-from-search" oninput="filterSelectOptions('from')" placeholder="Cari nama, NIM, atau absen..." class="w-full pl-8 pr-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 text-xs">
-                    </div>
-                  </div>
-                  <ul id="select-from-options" class="max-h-52 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/60 py-1">
-                    <!-- Populated by JS -->
-                  </ul>
-                </div>
-
-                <p id="sender-info" class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Pilih mahasiswa pengirim.</p>
-              </div>
-
-              <!-- Receiver (To) with Mini Search -->
-              <div class="relative" id="custom-select-to-container">
-                <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Penerima Poin:</label>
-                
-                <button type="button" id="select-to-trigger" onclick="toggleSelectDropdown('to')" class="w-full text-left text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 p-2.5 flex items-center justify-between transition-colors shadow-sm">
-                  <span id="select-to-label" class="truncate font-medium text-slate-500 dark:text-slate-400">
-                    -- Pilih Mahasiswa Penerima --
-                  </span>
-                  <svg class="w-4 h-4 text-slate-400 transition-transform duration-200 flex-shrink-0 ml-1.5" id="select-to-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                  </svg>
-                </button>
-                <input type="hidden" id="transfer-to" value="">
-
-                <!-- Dropdown Popover with Mini Search -->
-                <div id="select-to-dropdown" class="hidden absolute left-0 right-0 top-full mt-1.5 z-30 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden text-xs">
-                  <div class="p-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
-                    <div class="relative">
-                      <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                      </svg>
-                      <input type="text" id="select-to-search" oninput="filterSelectOptions('to')" placeholder="Cari nama, NIM, atau absen..." class="w-full pl-8 pr-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 text-xs">
-                    </div>
-                  </div>
-                  <ul id="select-to-options" class="max-h-52 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/60 py-1">
-                    <!-- Populated by JS -->
-                  </ul>
-                </div>
-
-                <p id="receiver-info" class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Pilih mahasiswa penerima.</p>
-              </div>
-            </div>
-
-            <!-- Amount & Notes -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 items-end">
-              <div>
-                <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Jumlah Poin Ditransfer:</label>
-                <input type="number" id="transfer-amount" min="1" max="100" placeholder="Misal: 5" required class="w-full text-xs font-mono font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 p-2.5 num-tabular">
-              </div>
-
-              <div class="sm:col-span-2">
-                <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Catatan / Alasan Transfer:</label>
-                <input type="text" id="transfer-note" placeholder="Misal: Solidaritas Tugas P7 / Bantuan Projek" class="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 p-2.5">
-              </div>
-            </div>
-
-            <div class="pt-1">
-              <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-bold text-xs shadow-sm transition flex items-center justify-center space-x-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                <span>Konfirmasi & Eksekusi Transfer Poin</span>
+            <!-- Sender Selector (Searchable Mini-Select) -->
+            <div class="relative" id="custom-select-from-container">
+              <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
+                Mahasiswa Pengirim (Kuota Surplus > 150):
+              </label>
+              
+              <button type="button" id="select-from-trigger" onclick="toggleSelectDropdown('from')" class="w-full text-left text-xs rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#080c13] text-slate-900 dark:text-slate-100 p-2.5 flex items-center justify-between transition-colors">
+                <span id="select-from-label" class="truncate font-medium text-slate-500 dark:text-slate-400">
+                  Pilih mahasiswa pengirim...
+                </span>
+                <svg class="w-4 h-4 text-slate-400 ml-1.5 flex-shrink-0" id="select-from-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
+              <input type="hidden" id="transfer-from" value="">
+
+              <!-- Searchable Popover -->
+              <div id="select-from-dropdown" class="hidden absolute left-0 right-0 top-full mt-1 z-30 bg-white dark:bg-[#111827] border border-slate-300 dark:border-slate-700 rounded shadow-lg overflow-hidden text-xs">
+                <div class="p-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a0e16]">
+                  <input type="text" id="select-from-search" oninput="filterSelectOptions('from')" placeholder="Ketik nama, NIM, atau nomor absen..." class="w-full px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#080c13] text-slate-900 dark:text-white placeholder-slate-400 text-xs focus:outline-none focus:border-blue-600">
+                </div>
+                <ul id="select-from-options" class="max-h-52 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800 py-1 font-mono text-[11px]">
+                  <!-- Populated by JS -->
+                </ul>
+              </div>
+
+              <p id="sender-info" class="text-[11px] text-slate-500 mt-1">Pilih mahasiswa dengan surplus aktif.</p>
             </div>
 
-          </form>
+            <!-- Receiver Selector (Searchable Mini-Select) -->
+            <div class="relative" id="custom-select-to-container">
+              <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
+                Mahasiswa Penerima:
+              </label>
+              
+              <button type="button" id="select-to-trigger" onclick="toggleSelectDropdown('to')" class="w-full text-left text-xs rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#080c13] text-slate-900 dark:text-slate-100 p-2.5 flex items-center justify-between transition-colors">
+                <span id="select-to-label" class="truncate font-medium text-slate-500 dark:text-slate-400">
+                  Pilih mahasiswa penerima...
+                </span>
+                <svg class="w-4 h-4 text-slate-400 ml-1.5 flex-shrink-0" id="select-to-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <input type="hidden" id="transfer-to" value="">
 
-          <div id="transfer-alert" class="hidden mt-3 p-3 rounded-xl text-xs font-semibold flex items-center justify-between"></div>
-        </div>
+              <!-- Searchable Popover -->
+              <div id="select-to-dropdown" class="hidden absolute left-0 right-0 top-full mt-1 z-30 bg-white dark:bg-[#111827] border border-slate-300 dark:border-slate-700 rounded shadow-lg overflow-hidden text-xs">
+                <div class="p-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a0e16]">
+                  <input type="text" id="select-to-search" oninput="filterSelectOptions('to')" placeholder="Ketik nama, NIM, atau nomor absen..." class="w-full px-2.5 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#080c13] text-slate-900 dark:text-white placeholder-slate-400 text-xs focus:outline-none focus:border-blue-600">
+                </div>
+                <ul id="select-to-options" class="max-h-52 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800 py-1 font-mono text-[11px]">
+                  <!-- Populated by JS -->
+                </ul>
+              </div>
 
-        <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-500 flex items-center justify-between">
-          <span>Formula: Total Akhir = Akumulasi - Trf Keluar + Trf Masuk</span>
-          <span class="font-mono">Live Sync: Aktif</span>
-        </div>
-      </div>
+              <p id="receiver-info" class="text-[11px] text-slate-500 mt-1">Pilih mahasiswa penerima alokasi.</p>
+            </div>
 
-      <!-- Action Panel 2: Interactive Class Visual Analytics -->
-      <div class="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between transition-colors duration-200">
-        <div>
-          <div class="flex items-center justify-between mb-3">
+          </div>
+
+          <!-- Points Amount, Presets & Note -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
             <div>
-              <h3 class="text-sm font-bold text-slate-900 dark:text-white">Distribusi Poin & Ambang Kelulusan</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Komposisi capaian nilai mahasiswa 19.5A.05</p>
+              <div class="flex items-center justify-between mb-1">
+                <label class="block text-xs font-medium text-slate-700 dark:text-slate-300">Jumlah Poin:</label>
+                <div class="space-x-1 text-[10px] font-mono text-slate-500">
+                  <button type="button" onclick="setTransferAmount(5)" class="hover:text-blue-600 underline">5</button>
+                  <span>&bull;</span>
+                  <button type="button" onclick="setTransferAmount(10)" class="hover:text-blue-600 underline">10</button>
+                  <span>&bull;</span>
+                  <button type="button" onclick="setTransferAmountMax()" class="hover:text-blue-600 underline">Maksimal</button>
+                </div>
+              </div>
+              <input type="number" id="transfer-amount" min="1" max="100" placeholder="5" required class="w-full text-xs font-mono font-bold rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#080c13] text-slate-900 dark:text-white p-2.5 num-tabular focus:outline-none focus:border-blue-600">
             </div>
-            <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">Target 150 Pt</span>
+
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Keterangan / Referensi Challenge:</label>
+              <input type="text" id="transfer-note" placeholder="Misal: Bantuan Challenge P7 MockAPI" class="w-full text-xs rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#080c13] text-slate-900 dark:text-white p-2.5 focus:outline-none focus:border-blue-600">
+            </div>
           </div>
 
-          <div class="h-44 relative flex items-center justify-center">
-            <canvas id="statusChart"></canvas>
+          <div class="flex items-center justify-between pt-1">
+            <span class="text-[11px] text-slate-500 font-mono">Rumus: Total Akhir = Akumulasi - Trf Keluar + Trf Masuk</span>
+            <button type="submit" class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs transition">
+              Proses Mutasi Poin
+            </button>
+          </div>
+
+        </form>
+
+        <div id="transfer-alert" class="hidden mt-3 p-3 rounded text-xs font-medium"></div>
+
+        <!-- Audit Trail Table -->
+        <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold text-slate-900 dark:text-white font-mono uppercase">
+              Riwayat Transaksi Mutasi
+            </h3>
+            <button onclick="clearLogs()" class="text-[11px] text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition">
+              Kosongkan Catatan
+            </button>
+          </div>
+
+          <div class="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded">
+            <table class="w-full text-left text-xs whitespace-nowrap">
+              <thead class="bg-slate-100 dark:bg-[#0a0e16] text-slate-600 dark:text-slate-400 font-mono text-[10px] uppercase border-b border-slate-200 dark:border-slate-800">
+                <tr>
+                  <th class="py-2 px-3">Waktu</th>
+                  <th class="py-2 px-3">Pengirim</th>
+                  <th class="py-2 px-3">Penerima</th>
+                  <th class="py-2 px-3 text-center">Nominal</th>
+                  <th class="py-2 px-3">Keterangan</th>
+                  <th class="py-2 px-3 text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody id="transfer-log-body" class="divide-y divide-slate-100 dark:divide-slate-800 text-[11px]">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-2 text-center text-xs mt-4 pt-4 border-t border-slate-200 dark:border-slate-800">
-          <div>
-            <span class="block font-bold font-mono text-emerald-600 dark:text-emerald-400 text-sm num-tabular" id="stat-pass-num">8</span>
-            <span class="text-[10px] text-slate-500 dark:text-slate-400">Auto-A (≥150)</span>
-          </div>
-          <div>
-            <span class="block font-bold font-mono text-amber-600 dark:text-amber-400 text-sm num-tabular" id="stat-tier2-num">0</span>
-            <span class="text-[10px] text-slate-500 dark:text-slate-400">Tier 2 (≥200)</span>
-          </div>
-          <div>
-            <span class="block font-bold font-mono text-slate-600 dark:text-slate-400 text-sm num-tabular" id="stat-pending-num">32</span>
-            <span class="text-[10px] text-slate-500 dark:text-slate-400">Menuju Target</span>
-          </div>
-        </div>
       </div>
-
     </section>
 
-    <!-- DATA TABLE: KLASEMEN AKADEMIK LENGKAP 40 MAHASISWA -->
-    <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden transition-colors duration-200">
+    <!-- MASTER REGISTRY: KLASEMEN 40 MAHASISWA -->
+    <section class="border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f1523] rounded-lg overflow-hidden transition-colors duration-150">
       
       <!-- Toolbar Header -->
-      <div class="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-3.5">
+      <div class="p-3.5 border-b border-slate-200 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-3">
         <div>
-          <h3 class="text-base font-bold text-slate-900 dark:text-white">Klasemen Akumulasi Nilai Keaktifan (P1 - P7)</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400">Data terurut berdasarkan total poin tertinggi &bull; Klik mahasiswa untuk melihat rapor detail</p>
+          <h2 class="text-sm font-bold text-slate-900 dark:text-white">
+            Buku Rekapitulasi Poin Keaktifan Mahasiswa (P1 - P7)
+          </h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            Daftar lengkap 40 mahasiswa terurut berdasarkan capaian total poin akhir
+          </p>
         </div>
 
-        <!-- Filter Chips & Search -->
-        <div class="flex flex-wrap items-center gap-2.5">
-          <!-- Filter Buttons -->
-          <div class="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-medium">
-            <button onclick="setFilter('all')" id="btn-filter-all" class="px-2.5 py-1 rounded-lg bg-blue-600 text-white font-semibold">Semua (40)</button>
-            <button onclick="setFilter('pass')" id="btn-filter-pass" class="px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition">Auto-A (8)</button>
-            <button onclick="setFilter('surplus')" id="btn-filter-surplus" class="px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition">Surplus (8)</button>
-            <button onclick="setFilter('need')" id="btn-filter-need" class="px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition">Belum (32)</button>
+        <!-- Filters & Search Toolbar -->
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Filter Tabs -->
+          <div class="inline-flex rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-[#080c13] p-0.5 text-xs font-mono">
+            <button onclick="setFilter('all')" id="btn-filter-all" class="px-2.5 py-1 rounded bg-slate-900 dark:bg-blue-600 text-white font-medium">Semua (40)</button>
+            <button onclick="setFilter('pass')" id="btn-filter-pass" class="px-2.5 py-1 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Auto-A (8)</button>
+            <button onclick="setFilter('surplus')" id="btn-filter-surplus" class="px-2.5 py-1 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Surplus (8)</button>
+            <button onclick="setFilter('need')" id="btn-filter-need" class="px-2.5 py-1 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Belum (32)</button>
           </div>
 
-          <!-- Live Search Bar -->
+          <!-- Quick Search -->
           <div class="relative">
-            <input type="text" id="search-input" oninput="renderTable()" placeholder="Cari nama, NIM, atau absen..." class="text-xs pl-8 pr-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500 w-52">
-            <svg class="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <input type="text" id="search-input" oninput="renderTable()" placeholder="Cari nama, NIM, absen..." class="text-xs pl-7 pr-3 py-1.5 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#080c13] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-600 w-48">
+            <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
         </div>
       </div>
 
-      <!-- Main Data Table -->
+      <!-- Table Viewport -->
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs whitespace-nowrap">
-          <thead class="bg-slate-100 dark:bg-slate-950 text-slate-700 dark:text-slate-400 uppercase text-[10px] font-mono tracking-wider border-b border-slate-200 dark:border-slate-800">
+          <thead class="bg-slate-100 dark:bg-[#0a0e16] text-slate-700 dark:text-slate-400 font-mono text-[10px] uppercase border-b border-slate-200 dark:border-slate-800">
             <tr>
-              <th class="py-3 px-3 text-center">Rank</th>
-              <th class="py-3 px-3 text-center">Absen</th>
-              <th class="py-3 px-3">NIM</th>
-              <th class="py-3 px-4">Nama Lengkap Mahasiswa</th>
-              <th class="py-3 px-2 text-center">JK</th>
-              <th class="py-3 px-2 text-center bg-slate-200/50 dark:bg-slate-900/60" title="Pertemuan 2">P2</th>
-              <th class="py-3 px-2 text-center bg-slate-200/50 dark:bg-slate-900/60" title="Pertemuan 3">P3</th>
-              <th class="py-3 px-2 text-center bg-slate-200/50 dark:bg-slate-900/60" title="Pertemuan 4">P4</th>
-              <th class="py-3 px-2 text-center bg-slate-200/80 dark:bg-slate-950 text-slate-500" title="Dosen Pengganti (Tidak ada challenge)">P5 (Pengganti)</th>
-              <th class="py-3 px-2 text-center bg-slate-200/50 dark:bg-slate-900/60" title="Pertemuan 6">P6</th>
-              <th class="py-3 px-2 text-center bg-slate-200/50 dark:bg-slate-900/60" title="Pertemuan 7 (Hari ini)">P7</th>
-              <th class="py-3 px-3 text-center font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/40">Total Akumulasi</th>
-              <th class="py-3 px-2 text-center text-rose-600 dark:text-rose-400 bg-slate-50 dark:bg-slate-950/70">Trf (-)</th>
-              <th class="py-3 px-2 text-center text-emerald-600 dark:text-emerald-400 bg-slate-50 dark:bg-slate-950/70">Trf (+)</th>
-              <th class="py-3 px-3 text-center font-extrabold text-blue-950 dark:text-white bg-blue-100/70 dark:bg-blue-900/40">Total Akhir</th>
-              <th class="py-3 px-3 text-center font-bold text-blue-700 dark:text-blue-400 bg-slate-50 dark:bg-slate-950/70">Surplus (>150)</th>
-              <th class="py-3 px-4 text-center">Status Kelulusan & Fasilitas</th>
-              <th class="py-3 px-3 text-center">Aksi</th>
+              <th class="py-2.5 px-3 text-center">Rank</th>
+              <th class="py-2.5 px-2 text-center">Absen</th>
+              <th class="py-2.5 px-3">NIM</th>
+              <th class="py-2.5 px-4">Nama Mahasiswa</th>
+              <th class="py-2.5 px-2 text-center">JK</th>
+              <th class="py-2.5 px-2 text-center bg-slate-200/40 dark:bg-slate-900/40" title="Pertemuan 2">P2</th>
+              <th class="py-2.5 px-2 text-center bg-slate-200/40 dark:bg-slate-900/40" title="Pertemuan 3">P3</th>
+              <th class="py-2.5 px-2 text-center bg-slate-200/40 dark:bg-slate-900/40" title="Pertemuan 4">P4</th>
+              <th class="py-2.5 px-2 text-center bg-slate-200/70 dark:bg-slate-950 text-slate-500" title="Sesi Dosen Pengganti (Tanpa challenge)">P5 (Sub)</th>
+              <th class="py-2.5 px-2 text-center bg-slate-200/40 dark:bg-slate-900/40" title="Pertemuan 6">P6</th>
+              <th class="py-2.5 px-2 text-center bg-slate-200/40 dark:bg-slate-900/40" title="Pertemuan 7">P7</th>
+              <th class="py-2.5 px-3 text-center font-mono font-bold text-slate-900 dark:text-white bg-slate-200/30 dark:bg-slate-800/30">Akumulasi</th>
+              <th class="py-2.5 px-2 text-center font-mono text-rose-700 dark:text-rose-400">Trf (-)</th>
+              <th class="py-2.5 px-2 text-center font-mono text-emerald-700 dark:text-emerald-400">Trf (+)</th>
+              <th class="py-2.5 px-3 text-center font-mono font-bold text-blue-700 dark:text-blue-400 bg-blue-50/60 dark:bg-blue-950/30">Total Akhir</th>
+              <th class="py-2.5 px-3 text-center font-mono text-slate-600 dark:text-slate-400">Surplus</th>
+              <th class="py-2.5 px-4">Status Kualifikasi</th>
+              <th class="py-2.5 px-3 text-center">Aksi Cepat</th>
             </tr>
           </thead>
-          <tbody id="table-body" class="divide-y divide-slate-200 dark:divide-slate-800/80 font-normal">
-            <!-- populated by JS -->
+          <tbody id="table-body" class="divide-y divide-slate-100 dark:divide-slate-800/80 font-normal">
+            <!-- Populated by JS -->
           </tbody>
         </table>
       </div>
 
-      <!-- Table Footer / Summary Bar -->
-      <div class="p-3.5 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-600 dark:text-slate-400">
+      <!-- Table Summary Footer -->
+      <div class="px-4 py-3 bg-slate-50 dark:bg-[#0a0e16] border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-600 dark:text-slate-400 font-mono">
         <span id="showing-entries-label">Menampilkan 40 dari 40 Mahasiswa</span>
-        <span class="font-mono text-[11px] text-slate-500">Kriteria Auto-A: ≥ 150 Poin &bull; Dispen 2x: ≥ 200 Poin</span>
+        <span class="text-[11px] text-slate-500">Ambang Batas Nilai A: 150 Poin</span>
       </div>
 
-    </section>
-
-    <!-- AUDIT TRAIL / RIWAYAT LOG TRANSFER -->
-    <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm transition-colors duration-200">
-      <div class="flex items-center justify-between mb-4">
-        <div>
-          <h3 class="text-sm font-bold text-slate-900 dark:text-white">Log Riwayat Transaksi Transfer Poin (Audit Trail)</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400">Pencatatan mutasi poin antar mahasiswa kelas 19.5A.05</p>
-        </div>
-        <button onclick="clearLogs()" class="text-xs text-rose-600 dark:text-rose-400 hover:underline font-medium transition">Reset Riwayat</button>
-      </div>
-
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs whitespace-nowrap">
-          <thead class="bg-slate-100 dark:bg-slate-950 text-slate-700 dark:text-slate-400 font-mono uppercase text-[10px] border-b border-slate-200 dark:border-slate-800">
-            <tr>
-              <th class="py-2.5 px-3">Waktu</th>
-              <th class="py-2.5 px-3">Dari (Pengirim)</th>
-              <th class="py-2.5 px-3">Kepada (Penerima)</th>
-              <th class="py-2.5 px-3 text-center">Jumlah Poin</th>
-              <th class="py-2.5 px-4">Keterangan / Catatan</th>
-              <th class="py-2.5 px-3 text-center">Status</th>
-            </tr>
-          </thead>
-          <tbody id="transfer-log-body" class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
-            <!-- populated by JS -->
-          </tbody>
-        </table>
-      </div>
     </section>
 
   </main>
 
-  <!-- STUDENT DETAIL MODAL (RAPOR DETAIL MAHASISWA) -->
-  <div id="student-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-sm">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 transition-colors duration-200">
+  <!-- STUDENT DETAIL MODAL -->
+  <div id="student-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-black/80">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 rounded-lg max-w-lg w-full p-5 shadow-2xl space-y-4 transition-colors">
+      
       <div class="flex items-start justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
         <div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/80" id="modal-absen">Absen #</span>
-          <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1" id="modal-nama">Nama Mahasiswa</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 font-mono" id="modal-nim">NIM</p>
+          <span class="text-[11px] font-mono text-slate-500" id="modal-absen">Nomor Absen #</span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white" id="modal-nama">Nama Mahasiswa</h3>
+          <p class="text-xs text-slate-500 font-mono" id="modal-nim">NIM</p>
         </div>
-        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 dark:hover:text-white p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 dark:hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <div class="grid grid-cols-2 gap-3 text-xs" id="modal-stats">
-        <!-- populated by JS -->
-      </div>
+      <div class="grid grid-cols-2 gap-3 text-xs" id="modal-stats"></div>
 
-      <!-- Meetings breakdown -->
       <div>
-        <h4 class="text-xs font-bold text-slate-800 dark:text-slate-300 mb-2">Riwayat Poin Per Pertemuan:</h4>
-        <div class="grid grid-cols-6 gap-1.5 text-center text-xs" id="modal-breakdown">
-          <!-- populated by JS -->
-        </div>
+        <h4 class="text-xs font-bold text-slate-800 dark:text-slate-300 mb-2 font-mono uppercase">Riwayat Poin Challenge:</h4>
+        <div class="grid grid-cols-6 gap-1 text-center font-mono text-xs" id="modal-breakdown"></div>
       </div>
 
-      <!-- Academic status alert -->
-      <div id="modal-status-box" class="p-3 rounded-xl text-xs font-medium"></div>
+      <div id="modal-status-box" class="p-3 rounded text-xs leading-relaxed border"></div>
 
-      <div class="flex justify-end pt-2">
-        <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
+      <div class="flex justify-between items-center pt-1">
+        <button id="modal-transfer-btn" class="px-3 py-1.5 rounded bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium transition">
+          Alokasikan Poin Dari/Ke Mahasiswa Ini
+        </button>
+        <button onclick="closeModal()" class="px-4 py-1.5 rounded border border-slate-300 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           Tutup
         </button>
       </div>
+
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-slate-200 dark:border-slate-800 py-6 mt-12 text-center text-xs text-slate-500 transition-colors duration-200">
-    <p>&copy; 2026 Portal Akademik Sistem Informasi &bull; Universitas Bina Sarana Informatika</p>
-    <p class="text-[11px] text-slate-400 dark:text-slate-600 mt-1">Mobile Programming II (19.5A.05) &bull; Dosen: Cep Adiwiharja &bull; Sistem Terverifikasi</p>
+  <!-- ACADEMIC FOOTER -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-6 mt-10 text-center text-xs text-slate-500">
+    <p>Program Studi Sistem Informasi &bull; Fakultas Teknik dan Informatika &bull; Universitas Bina Sarana Informatika</p>
+    <p class="text-[11px] text-slate-400 mt-1 font-mono">Mobile Programming II (19.5A.05) &bull; Dosen Pengampu: Cep Adiwiharja</p>
   </footer>
 
-  <!-- JAVASCRIPT STATE ENGINE & DATA -->
+  <!-- DATA & REACTIVE LOGIC -->
   <script>
     // Master Dataset: 40 Mahasiswa Kelas 19.5A.05
-    // p array: [P2, P3, P4, P5_pengganti, P6, P7]
-    let students = [
+    // p array: [P2, P3, P4, P5_sub, P6, P7]
+    const students = [
       { absen: 1, nim: "19240001", nama: "RIFKI WAHYU", jk: "L", p: [25, 20, 50, 0, 20, 30], out: 0, in: 0 },
       { absen: 2, nim: "19240002", nama: "MUHAMMAD SYAUQI", jk: "L", p: [10, 0, 0, 0, 0, 0], out: 0, in: 0 },
       { absen: 3, nim: "19240052", nama: "MICHIO CHRISTIAN HADY", jk: "L", p: [15, 20, 50, 0, 30, 30], out: 0, in: 0 },
@@ -626,14 +516,12 @@
     ];
 
     // Transfer Audit Log
-    let transferLogs = [
-      { time: "03/11/2026 15:30", from: "TIRTA ADI MULYA (Absen 39)", to: "RIFKI WAHYU (Absen 1)", points: 5, note: "Solidaritas Challenge P7", status: "Berhasil" }
+    const transferLogs = [
+      { time: "03/11/2026 15:30", from: "TIRTA ADI MULYA (#39)", to: "RIFKI WAHYU (#1)", points: 5, note: "Bantuan P7 MockAPI", status: "Tercatat" }
     ];
 
     let currentFilter = 'all';
-    let statusChartInstance = null;
 
-    // Mathematical Helpers
     function getAccumulated(s) {
       return s.p.reduce((a, b) => a + b, 0);
     }
@@ -645,18 +533,14 @@
       return final > 150 ? final - 150 : 0;
     }
 
-    // Lifecycle Init
     document.addEventListener("DOMContentLoaded", () => {
-      // Load saved theme preference
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'light') {
         document.documentElement.classList.remove('dark');
-        document.getElementById('theme-icon-dark').classList.add('hidden');
-        document.getElementById('theme-icon-light').classList.remove('hidden');
+        document.getElementById('theme-btn-label').textContent = 'Mode Gelap';
       } else {
         document.documentElement.classList.add('dark');
-        document.getElementById('theme-icon-dark').classList.remove('hidden');
-        document.getElementById('theme-icon-light').classList.add('hidden');
+        document.getElementById('theme-btn-label').textContent = 'Mode Terang';
       }
 
       init();
@@ -664,13 +548,10 @@
 
     function init() {
       renderKPIs();
-      renderPodium();
       renderTable();
       populateSelects();
-      renderCharts();
       renderLogs();
 
-      // Keyboard shortcuts
       window.addEventListener('keydown', (e) => {
         if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT') {
           e.preventDefault();
@@ -682,7 +563,6 @@
         }
       });
 
-      // Outside click to close custom select dropdowns
       document.addEventListener('click', (e) => {
         const fromContainer = document.getElementById('custom-select-from-container');
         const toContainer = document.getElementById('custom-select-to-container');
@@ -690,6 +570,14 @@
           closeAllSelectDropdowns();
         }
       });
+    }
+
+    function toggleTransferPanel() {
+      const panel = document.getElementById('transfer-panel');
+      panel.classList.toggle('hidden');
+      if (!panel.classList.contains('hidden')) {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     }
 
     function focusSearch() {
@@ -702,28 +590,21 @@
       const html = document.documentElement;
       const isDark = html.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      document.getElementById('theme-btn-label').textContent = isDark ? 'Mode Terang' : 'Mode Gelap';
 
-      document.getElementById('theme-icon-dark').classList.toggle('hidden', !isDark);
-      document.getElementById('theme-icon-light').classList.toggle('hidden', isDark);
-
-      // Re-render UI elements to adapt to light/dark classes
-      renderPodium();
       renderTable();
-      renderCharts();
       renderLogs();
     }
 
     function renderKPIs() {
       const totalMhs = students.length;
       let countAutoA = 0;
-      let countTier2 = 0;
       let totalSurplus = 0;
       let totalPoints = 0;
 
       students.forEach(s => {
         const final = getFinal(s);
         totalPoints += final;
-        if (final >= 200) countTier2++;
         if (final >= 150) countAutoA++;
         totalSurplus += getSurplus(s);
       });
@@ -732,78 +613,10 @@
 
       document.getElementById('kpi-total-mhs').textContent = totalMhs;
       document.getElementById('kpi-auto-a').textContent = countAutoA;
-      document.getElementById('kpi-auto-a-pct').textContent = ((countAutoA / totalMhs) * 100).toFixed(1) + "% dari kelas";
-      document.getElementById('kpi-tier2').textContent = countTier2;
+      document.getElementById('kpi-auto-a-pct').textContent = ((countAutoA / totalMhs) * 100).toFixed(1) + "% Dari Kelas";
       document.getElementById('kpi-surplus').textContent = totalSurplus;
       document.getElementById('kpi-avg').textContent = avg;
       document.getElementById('kpi-total-points').textContent = totalPoints.toLocaleString('id-ID');
-
-      document.getElementById('stat-pass-num').textContent = countAutoA;
-      document.getElementById('stat-tier2-num').textContent = countTier2;
-      document.getElementById('stat-pending-num').textContent = totalMhs - countAutoA;
-    }
-
-    function renderPodium() {
-      const container = document.getElementById('podium-container');
-      const sorted = [...students].sort((a, b) => getFinal(b) - getFinal(a));
-
-      const top1 = sorted[0];
-      const top2 = sorted[1];
-      const top3 = sorted[2];
-
-      const cardsData = [
-        { rank: "🥈 Peringkat 2", student: top2, border: "border-slate-300 dark:border-slate-700", medal: "🥈" },
-        { rank: "🥇 Peringkat 1 (Puncak)", student: top1, border: "border-amber-400 dark:border-amber-500/50 ring-1 ring-amber-400/30", medal: "🥇" },
-        { rank: "🥉 Peringkat 3", student: top3, border: "border-slate-300 dark:border-slate-700", medal: "🥉" }
-      ];
-
-      container.innerHTML = '';
-      cardsData.forEach(c => {
-        const s = c.student;
-        const final = getFinal(s);
-        const surplus = getSurplus(s);
-        const pctToTier2 = Math.min(100, Math.round((final / 200) * 100));
-
-        const card = document.createElement('div');
-        card.className = `p-4 rounded-xl border ${c.border} bg-slate-50/70 dark:bg-slate-950/80 shadow-sm flex flex-col justify-between transition-colors duration-200`;
-        card.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between text-xs mb-2">
-              <span class="font-bold text-slate-700 dark:text-slate-300 flex items-center space-x-1">
-                <span>${c.medal}</span>
-                <span>${c.rank}</span>
-              </span>
-              <span class="font-mono text-[10px] text-slate-500 dark:text-slate-400">Absen #${s.absen}</span>
-            </div>
-            <h4 class="text-sm font-bold text-slate-900 dark:text-white tracking-tight">${s.nama}</h4>
-            <p class="text-[11px] font-mono text-slate-500 dark:text-slate-400">${s.nim}</p>
-
-            <div class="mt-3 flex items-baseline justify-between">
-              <div>
-                <span class="text-2xl font-bold font-mono text-slate-900 dark:text-white num-tabular">${final}</span>
-                <span class="text-xs text-slate-500 dark:text-slate-400 ml-1">Poin</span>
-              </div>
-              <span class="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400">+${surplus} Surplus</span>
-            </div>
-
-            <div class="mt-2.5">
-              <div class="flex justify-between text-[10px] text-slate-500 dark:text-slate-400 mb-1">
-                <span>Progress Tier 2 (200 Poin)</span>
-                <span class="font-mono font-semibold text-slate-700 dark:text-slate-300">${pctToTier2}%</span>
-              </div>
-              <div class="w-full h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-                <div class="h-full bg-blue-600 rounded-full" style="width: ${pctToTier2}%"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-[11px]">
-            <span class="text-emerald-700 dark:text-emerald-400 font-semibold">Bebas Projek & Presensi 1x</span>
-            <button onclick="quickSelectTransfer(${s.absen})" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Transfer &rarr;</button>
-          </div>
-        `;
-        container.appendChild(card);
-      });
     }
 
     function setFilter(f) {
@@ -811,9 +624,9 @@
       ['all', 'pass', 'surplus', 'need'].forEach(id => {
         const btn = document.getElementById('btn-filter-' + id);
         if (id === f) {
-          btn.className = "px-2.5 py-1 rounded-lg bg-blue-600 text-white font-semibold shadow-sm";
+          btn.className = "px-2.5 py-1 rounded bg-slate-900 dark:bg-blue-600 text-white font-medium";
         } else {
-          btn.className = "px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition";
+          btn.className = "px-2.5 py-1 rounded text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
         }
       });
       renderTable();
@@ -823,7 +636,6 @@
       const tbody = document.getElementById('table-body');
       const query = document.getElementById('search-input').value.toLowerCase().trim();
 
-      // Sorted by final score descending, tie break by absen asc
       let sorted = [...students].sort((a, b) => {
         const diff = getFinal(b) - getFinal(a);
         return diff !== 0 ? diff : a.absen - b.absen;
@@ -850,24 +662,22 @@
         const accum = getAccumulated(s);
         const surplus = getSurplus(s);
         const rank = sorted.findIndex(item => item.absen === s.absen) + 1;
+        const isDarell = s.absen === 37;
 
-        let statusBadge = '';
-        let rowClass = 'hover:bg-slate-100/70 dark:hover:bg-slate-800/40 transition cursor-pointer';
+        let statusText = '';
+        let rowClass = 'hover:bg-slate-50 dark:hover:bg-slate-800/40 transition cursor-pointer';
 
-        if (final >= 200) {
-          statusBadge = '<span class="px-2 py-0.5 rounded text-[11px] font-bold badge-tier2">⭐ Lolos Tier 2 (Dispen 2x)</span>';
-          rowClass = 'bg-amber-50/60 dark:bg-amber-950/20 hover:bg-amber-100/60 dark:hover:bg-amber-950/30 transition cursor-pointer';
-        } else if (final >= 150) {
-          statusBadge = '<span class="px-2 py-0.5 rounded text-[11px] font-bold badge-tier1">✅ Lolos Auto-A (Dispen 1x)</span>';
-          rowClass = 'bg-emerald-50/40 dark:bg-emerald-950/10 hover:bg-emerald-100/40 dark:hover:bg-emerald-950/20 transition cursor-pointer';
-        } else {
-          statusBadge = `<span class="px-2 py-0.5 rounded text-[11px] font-medium badge-neutral">Kurang ${150 - final} Poin</span>`;
+        if (isDarell) {
+          rowClass = 'bg-blue-50/60 dark:bg-blue-950/20 hover:bg-blue-50/90 dark:hover:bg-blue-950/30 transition cursor-pointer font-medium';
         }
 
-        let medal = '';
-        if (rank === 1) medal = '🥇 ';
-        else if (rank === 2) medal = '🥈 ';
-        else if (rank === 3) medal = '🥉 ';
+        if (final >= 200) {
+          statusText = '<span class="font-bold text-amber-700 dark:text-amber-400 font-mono text-[11px]">● Tier 2 (Dispen 2x)</span>';
+        } else if (final >= 150) {
+          statusText = '<span class="font-bold text-emerald-700 dark:text-emerald-400 font-mono text-[11px]">● Auto-A (Dispen 1x)</span>';
+        } else {
+          statusText = `<span class="text-slate-500 dark:text-slate-400 font-mono text-[11px]">Kurang ${150 - final} Pt</span>`;
+        }
 
         const tr = document.createElement('tr');
         tr.id = `row-absen-${s.absen}`;
@@ -879,26 +689,32 @@
         };
 
         tr.innerHTML = `
-          <td class="py-2.5 px-3 text-center font-mono font-bold text-slate-700 dark:text-slate-300 num-tabular">${medal}${rank}</td>
-          <td class="py-2.5 px-3 text-center font-mono text-slate-500 dark:text-slate-400 num-tabular">${s.absen}</td>
-          <td class="py-2.5 px-3 font-mono text-slate-600 dark:text-slate-400">${s.nim}</td>
-          <td class="py-2.5 px-4 font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition">${s.nama}</td>
-          <td class="py-2.5 px-2 text-center text-slate-500 dark:text-slate-400">${s.jk}</td>
-          <td class="py-2.5 px-2 text-center font-mono text-slate-700 dark:text-slate-300 bg-slate-100/50 dark:bg-slate-950/30 num-tabular">${s.p[0]}</td>
-          <td class="py-2.5 px-2 text-center font-mono text-slate-700 dark:text-slate-300 bg-slate-100/50 dark:bg-slate-950/30 num-tabular">${s.p[1]}</td>
-          <td class="py-2.5 px-2 text-center font-mono text-slate-700 dark:text-slate-300 bg-slate-100/50 dark:bg-slate-950/30 num-tabular">${s.p[2]}</td>
-          <td class="py-2.5 px-2 text-center font-mono text-slate-400 dark:text-slate-500 bg-slate-200/50 dark:bg-slate-950/60">${s.p[3] === 0 ? '-' : s.p[3]}</td>
-          <td class="py-2.5 px-2 text-center font-mono text-slate-700 dark:text-slate-300 bg-slate-100/50 dark:bg-slate-950/30 num-tabular">${s.p[4]}</td>
-          <td class="py-2.5 px-2 text-center font-mono text-slate-700 dark:text-slate-300 bg-slate-100/50 dark:bg-slate-950/30 num-tabular">${s.p[5]}</td>
-          <td class="py-2.5 px-3 text-center font-mono font-bold text-blue-700 dark:text-blue-300 bg-blue-50/70 dark:bg-blue-950/20 num-tabular">${accum}</td>
-          <td class="py-2.5 px-2 text-center font-mono text-rose-600 dark:text-rose-400 num-tabular">${s.out > 0 ? '-' + s.out : '0'}</td>
-          <td class="py-2.5 px-2 text-center font-mono text-emerald-600 dark:text-emerald-400 num-tabular">${s.in > 0 ? '+' + s.in : '0'}</td>
-          <td class="py-2.5 px-3 text-center font-mono font-extrabold text-blue-950 dark:text-white bg-blue-100/60 dark:bg-blue-900/20 text-sm num-tabular">${final}</td>
-          <td class="py-2.5 px-3 text-center font-mono font-bold text-blue-600 dark:text-blue-400 num-tabular">${surplus > 0 ? '+' + surplus : '0'}</td>
-          <td class="py-2.5 px-4 text-center">${statusBadge}</td>
-          <td class="py-2.5 px-3 text-center">
-            <button onclick="openModal(${s.absen})" class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-semibold border border-slate-200 dark:border-slate-700 transition">
-              Detail
+          <td class="py-2 px-3 text-center font-mono font-medium text-slate-500 num-tabular">${rank}</td>
+          <td class="py-2 px-2 text-center font-mono text-slate-500 num-tabular">${s.absen}</td>
+          <td class="py-2 px-3 font-mono text-slate-500">${s.nim}</td>
+          <td class="py-2 px-4 font-semibold text-slate-900 dark:text-white">
+            <span>${s.nama}</span>
+            ${isDarell ? '<span class="ml-1.5 text-[10px] font-mono text-blue-600 dark:text-blue-400 font-bold">(Anda)</span>' : ''}
+          </td>
+          <td class="py-2 px-2 text-center text-slate-500 font-mono">${s.jk}</td>
+          <td class="py-2 px-2 text-center font-mono text-slate-700 dark:text-slate-300 num-tabular">${s.p[0]}</td>
+          <td class="py-2 px-2 text-center font-mono text-slate-700 dark:text-slate-300 num-tabular">${s.p[1]}</td>
+          <td class="py-2 px-2 text-center font-mono text-slate-700 dark:text-slate-300 num-tabular">${s.p[2]}</td>
+          <td class="py-2 px-2 text-center font-mono text-slate-400 dark:text-slate-600">${s.p[3] === 0 ? '-' : s.p[3]}</td>
+          <td class="py-2 px-2 text-center font-mono text-slate-700 dark:text-slate-300 num-tabular">${s.p[4]}</td>
+          <td class="py-2 px-2 text-center font-mono text-slate-700 dark:text-slate-300 num-tabular">${s.p[5]}</td>
+          <td class="py-2 px-3 text-center font-mono font-bold text-slate-900 dark:text-white bg-slate-100/50 dark:bg-slate-800/30 num-tabular">${accum}</td>
+          <td class="py-2 px-2 text-center font-mono text-rose-700 dark:text-rose-400 num-tabular">${s.out > 0 ? '-' + s.out : '0'}</td>
+          <td class="py-2 px-2 text-center font-mono text-emerald-700 dark:text-emerald-400 num-tabular">${s.in > 0 ? '+' + s.in : '0'}</td>
+          <td class="py-2 px-3 text-center font-mono font-bold text-blue-700 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-950/20 text-sm num-tabular">${final}</td>
+          <td class="py-2 px-3 text-center font-mono font-semibold ${surplus > 0 ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400'} num-tabular">${surplus > 0 ? '+' + surplus : '0'}</td>
+          <td class="py-2 px-4">${statusText}</td>
+          <td class="py-2 px-3 text-center space-x-1">
+            <button onclick="quickActionTransfer(${s.absen}); event.stopPropagation();" class="px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-mono transition text-blue-600 dark:text-blue-400" title="Kirim/Terima Poin">
+              Transfer
+            </button>
+            <button onclick="openModal(${s.absen}); event.stopPropagation();" class="px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-[11px] font-mono transition text-slate-600 dark:text-slate-400" title="Lihat Rapor Detail">
+              Rapor
             </button>
           </td>
         `;
@@ -906,6 +722,39 @@
       });
     }
 
+    // Quick Transfer Trigger from Row
+    function quickActionTransfer(absen) {
+      const panel = document.getElementById('transfer-panel');
+      panel.classList.remove('hidden');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      const s = students.find(item => item.absen === absen);
+      if (!s) return;
+
+      const surplus = getSurplus(s);
+      if (surplus > 0) {
+        // As sender
+        selectOption('from', absen);
+      } else {
+        // As receiver
+        selectOption('to', absen);
+      }
+    }
+
+    // Amount helper buttons
+    function setTransferAmount(val) {
+      document.getElementById('transfer-amount').value = val;
+    }
+    function setTransferAmountMax() {
+      const fromAbsen = document.getElementById('transfer-from').value;
+      if (!fromAbsen) return;
+      const s = students.find(item => item.absen == fromAbsen);
+      if (s) {
+        document.getElementById('transfer-amount').value = getSurplus(s);
+      }
+    }
+
+    // Custom Searchable Dropdowns
     function toggleSelectDropdown(type) {
       const isFrom = type === 'from';
       const targetDropdown = document.getElementById(isFrom ? 'select-from-dropdown' : 'select-to-dropdown');
@@ -927,7 +776,7 @@
         const searchInput = document.getElementById(isFrom ? 'select-from-search' : 'select-to-search');
         searchInput.value = '';
         filterSelectOptions(type);
-        setTimeout(() => searchInput.focus(), 60);
+        setTimeout(() => searchInput.focus(), 50);
       }
     }
 
@@ -960,7 +809,7 @@
       listEl.innerHTML = '';
 
       if (filtered.length === 0) {
-        listEl.innerHTML = `<li class="p-3 text-center text-xs text-slate-400">Tidak ada mahasiswa yang cocok</li>`;
+        listEl.innerHTML = `<li class="p-3 text-center text-xs text-slate-400 font-sans">Tidak ada data mahasiswa</li>`;
         return;
       }
 
@@ -970,7 +819,7 @@
         const final = getFinal(s);
 
         const li = document.createElement('li');
-        li.className = `px-3 py-2 cursor-pointer flex items-center justify-between text-xs transition-colors ${
+        li.className = `px-3 py-2 cursor-pointer flex items-center justify-between transition-colors ${
           isSelected 
             ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-bold' 
             : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200'
@@ -982,21 +831,18 @@
 
         let metaBadge = '';
         if (type === 'from') {
-          metaBadge = `<span class="font-mono text-emerald-600 dark:text-emerald-400 font-bold">+${surplus} Surplus</span>`;
+          metaBadge = `<span class="font-bold text-blue-700 dark:text-blue-400">+${surplus} Surplus</span>`;
         } else {
           const need = final < 150 ? 150 - final : 0;
           metaBadge = need > 0 
-            ? `<span class="font-mono text-slate-500 dark:text-slate-400">${final} Poin <span class="text-rose-500 font-medium">(-${need})</span></span>`
-            : `<span class="font-mono text-emerald-600 dark:text-emerald-400 font-bold">${final} Poin (Auto-A)</span>`;
+            ? `<span class="text-slate-500 font-mono">${final} Pt <span class="text-rose-600 font-medium">(-${need})</span></span>`
+            : `<span class="text-emerald-700 dark:text-emerald-400 font-bold font-mono">${final} Pt</span>`;
         }
 
         li.innerHTML = `
           <div class="flex items-center space-x-2 truncate mr-2">
-            <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex-shrink-0">#${s.absen}</span>
-            <div class="truncate">
-              <span class="font-medium text-slate-900 dark:text-white block truncate">${s.nama}</span>
-              <span class="font-mono text-[10px] text-slate-400 block">${s.nim}</span>
-            </div>
+            <span class="text-[10px] text-slate-500">#${s.absen}</span>
+            <span class="font-medium text-slate-900 dark:text-white truncate">${s.nama}</span>
           </div>
           <div class="flex-shrink-0 text-right">
             ${metaBadge}
@@ -1017,15 +863,15 @@
         if (type === 'from') {
           const surplus = getSurplus(s);
           labelSpan.className = "truncate font-medium text-slate-900 dark:text-white";
-          labelSpan.innerHTML = `<span class="font-bold">Absen #${s.absen}: ${s.nama}</span> <span class="font-mono text-emerald-600 dark:text-emerald-400 font-semibold">(+${surplus} Surplus)</span>`;
+          labelSpan.innerHTML = `<span>#${s.absen} ${s.nama}</span> <span class="font-mono text-blue-700 dark:text-blue-400 font-bold">(+${surplus} Surplus)</span>`;
         } else {
           const final = getFinal(s);
           labelSpan.className = "truncate font-medium text-slate-900 dark:text-white";
-          labelSpan.innerHTML = `<span class="font-bold">Absen #${s.absen}: ${s.nama}</span> <span class="font-mono text-slate-500 dark:text-slate-400">(${final} Poin)</span>`;
+          labelSpan.innerHTML = `<span>#${s.absen} ${s.nama}</span> <span class="font-mono text-slate-500 dark:text-slate-400">(${final} Poin)</span>`;
         }
       } else {
         labelSpan.className = "truncate font-medium text-slate-500 dark:text-slate-400";
-        labelSpan.textContent = type === 'from' ? '-- Pilih Mahasiswa Pengirim --' : '-- Pilih Mahasiswa Penerima --';
+        labelSpan.textContent = type === 'from' ? 'Pilih mahasiswa pengirim...' : 'Pilih mahasiswa penerima...';
       }
 
       closeAllSelectDropdowns();
@@ -1042,11 +888,6 @@
       filterSelectOptions('to');
     }
 
-    function quickSelectTransfer(absen) {
-      selectOption('from', absen);
-      document.getElementById('transfer-form').scrollIntoView({ behavior: 'smooth' });
-    }
-
     function onSenderChange() {
       const val = document.getElementById('transfer-from').value;
       const info = document.getElementById('sender-info');
@@ -1059,22 +900,22 @@
       }
       const s = students.find(item => item.absen == val);
       const surplus = getSurplus(s);
-      info.innerHTML = `<span class="text-slate-900 dark:text-white font-semibold">${s.nama}</span> memiliki surplus sah: <strong class="text-emerald-600 dark:text-emerald-400 font-mono">+${surplus} Poin</strong>.`;
+      info.innerHTML = `Pengirim: <strong class="text-slate-900 dark:text-white">${s.nama}</strong> &bull; Kuota surplus sah: <span class="text-blue-700 dark:text-blue-400 font-mono font-bold">+${surplus} Poin</span>.`;
       amtInput.max = surplus;
-      amtInput.placeholder = `Maksimal: ${surplus}`;
+      amtInput.placeholder = String(surplus);
     }
 
     function onReceiverChange() {
       const val = document.getElementById('transfer-to').value;
       const info = document.getElementById('receiver-info');
       if (!val) {
-        info.textContent = "Pilih mahasiswa penerima.";
+        info.textContent = "Pilih mahasiswa penerima alokasi.";
         return;
       }
       const s = students.find(item => item.absen == val);
       const final = getFinal(s);
       const need = final < 150 ? 150 - final : 0;
-      info.innerHTML = `<span class="text-slate-900 dark:text-white font-semibold">${s.nama}</span> saat ini memiliki <strong>${final} Poin</strong> (Kurang <strong class="text-rose-600 dark:text-rose-400">${need} Poin</strong> menuju Auto-A).`;
+      info.innerHTML = `Penerima: <strong class="text-slate-900 dark:text-white">${s.nama}</strong> &bull; Saldo saat ini: <span class="font-mono">${final} Poin</span> ${need > 0 ? `(Kekurangan: <span class="text-rose-600 font-mono font-bold">${need} Poin</span> menuju batas A)` : '(Memenuhi Syarat A)'}.`;
     }
 
     function handleTransfer(e) {
@@ -1082,15 +923,15 @@
       const fromAbsen = parseInt(document.getElementById('transfer-from').value);
       const toAbsen = parseInt(document.getElementById('transfer-to').value);
       const amount = parseInt(document.getElementById('transfer-amount').value);
-      const note = document.getElementById('transfer-note').value || "Bantuan Keaktifan Perkuliahan";
+      const note = document.getElementById('transfer-note').value || "Alokasi Poin Keaktifan";
 
       if (isNaN(fromAbsen) || isNaN(toAbsen) || isNaN(amount)) {
-        showAlert("Lengkapi seluruh kolom pengirim, penerima, dan jumlah poin!", "rose");
+        showAlert("Lengkapi pilihan pengirim, penerima, dan nominal poin transfer.", "rose");
         return;
       }
 
       if (fromAbsen === toAbsen) {
-        showAlert("Pengirim dan penerima tidak boleh sama!", "rose");
+        showAlert("Pengirim dan penerima tidak boleh mahasiswa yang sama.", "rose");
         return;
       }
 
@@ -1099,61 +940,58 @@
 
       const surplus = getSurplus(sender);
       if (amount > surplus) {
-        showAlert(`Jumlah transfer (${amount} poin) melebihi surplus sah (${surplus} poin)!`, "rose");
+        showAlert(`Nominal transfer (${amount} poin) melebihi kuota surplus (${surplus} poin).`, "rose");
         return;
       }
 
-      // Execute Mutation
       sender.out += amount;
       receiver.in += amount;
 
-      // Log Audit Trail
       const now = new Date();
       const timeStr = now.toLocaleDateString('id-ID') + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
       transferLogs.unshift({
         time: timeStr,
-        from: `${sender.nama} (Absen ${sender.absen})`,
-        to: `${receiver.nama} (Absen ${receiver.absen})`,
+        from: `${sender.nama} (#${sender.absen})`,
+        to: `${receiver.nama} (#${receiver.absen})`,
         points: amount,
         note: note,
-        status: "Berhasil"
+        status: "Tercatat"
       });
 
-      showAlert(`✅ Berhasil mentransfer ${amount} poin dari ${sender.nama} ke ${receiver.nama}!`, "emerald");
+      showAlert(`Mutasi berhasil: ${amount} poin dialihkan dari ${sender.nama} ke ${receiver.nama}.`, "emerald");
 
-      // Reset form
       document.getElementById('transfer-form').reset();
       document.getElementById('transfer-from').value = "";
       document.getElementById('transfer-to').value = "";
-      document.getElementById('select-from-label').textContent = "-- Pilih Mahasiswa Pengirim --";
+      document.getElementById('select-from-label').textContent = "Pilih mahasiswa pengirim...";
       document.getElementById('select-from-label').className = "truncate font-medium text-slate-500 dark:text-slate-400";
-      document.getElementById('select-to-label').textContent = "-- Pilih Mahasiswa Penerima --";
+      document.getElementById('select-to-label').textContent = "Pilih mahasiswa penerima...";
       document.getElementById('select-to-label').className = "truncate font-medium text-slate-500 dark:text-slate-400";
-      document.getElementById('sender-info').textContent = "Pilih mahasiswa pengirim.";
-      document.getElementById('receiver-info').textContent = "Pilih mahasiswa penerima.";
+      document.getElementById('sender-info').textContent = "Pilih mahasiswa dengan surplus aktif.";
+      document.getElementById('receiver-info').textContent = "Pilih mahasiswa penerima alokasi.";
       document.getElementById('transfer-amount').max = 100;
-      document.getElementById('transfer-amount').placeholder = "Misal: 5";
+      document.getElementById('transfer-amount').placeholder = "5";
 
-      // Reactive update
       renderKPIs();
-      renderPodium();
       renderTable();
       populateSelects();
-      renderCharts();
       renderLogs();
 
-      // Visual highlight
       const rRow = document.getElementById(`row-absen-${receiver.absen}`);
       if (rRow) {
-        rRow.classList.add('row-highlight');
+        rRow.classList.add('flash-highlight');
         rRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
 
     function showAlert(msg, color) {
       const alertBox = document.getElementById('transfer-alert');
-      alertBox.className = `mt-3 p-3 rounded-xl text-xs font-semibold flex items-center justify-between bg-${color}-50 dark:bg-${color}-950/80 text-${color}-800 dark:text-${color}-300 border border-${color}-200 dark:border-${color}-800`;
-      alertBox.innerHTML = `<span>${msg}</span><button type="button" onclick="this.parentElement.classList.add('hidden')" class="text-xs font-bold ml-2">&times;</button>`;
+      alertBox.className = `mt-3 p-3 rounded text-xs font-medium border ${
+        color === 'emerald'
+          ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
+          : 'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-800'
+      }`;
+      alertBox.textContent = msg;
       alertBox.classList.remove('hidden');
     }
 
@@ -1161,74 +999,29 @@
       const tbody = document.getElementById('transfer-log-body');
       tbody.innerHTML = '';
       if (transferLogs.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-slate-500 text-xs">Belum ada riwayat transfer poin.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-slate-400 font-sans">Belum ada catatan mutasi.</td></tr>';
         return;
       }
       transferLogs.forEach(l => {
         const tr = document.createElement('tr');
-        tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/30";
+        tr.className = "hover:bg-slate-50 dark:hover:bg-slate-800/30 font-mono";
         tr.innerHTML = `
-          <td class="py-2.5 px-3 font-mono text-[11px] text-slate-500 dark:text-slate-400">${l.time}</td>
-          <td class="py-2.5 px-3 font-semibold text-slate-900 dark:text-white">${l.from}</td>
-          <td class="py-2.5 px-3 font-semibold text-slate-900 dark:text-white">${l.to}</td>
-          <td class="py-2.5 px-3 text-center font-mono font-bold text-blue-600 dark:text-blue-400 num-tabular">+${l.points} Poin</td>
-          <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300">${l.note}</td>
-          <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800">✅ Sukses</span></td>
+          <td class="py-2 px-3 text-slate-500">${l.time}</td>
+          <td class="py-2 px-3 font-medium text-slate-900 dark:text-white font-sans">${l.from}</td>
+          <td class="py-2 px-3 font-medium text-slate-900 dark:text-white font-sans">${l.to}</td>
+          <td class="py-2 px-3 text-center font-bold text-blue-700 dark:text-blue-400 num-tabular">+${l.points} Pt</td>
+          <td class="py-2 px-3 text-slate-600 dark:text-slate-400 font-sans">${l.note}</td>
+          <td class="py-2 px-3 text-center text-emerald-700 dark:text-emerald-400">${l.status}</td>
         `;
         tbody.appendChild(tr);
       });
     }
 
     function clearLogs() {
-      if (confirm("Reset seluruh catatan riwayat transfer?")) {
-        transferLogs = [];
+      if (confirm("Kosongkan catatan riwayat transaksi mutasi?")) {
+        transferLogs.length = 0;
         renderLogs();
       }
-    }
-
-    function renderCharts() {
-      const ctxStatus = document.getElementById('statusChart').getContext('2d');
-      const isDark = document.documentElement.classList.contains('dark');
-
-      let passCount = 0;
-      let needCount = 0;
-      students.forEach(s => {
-        if (getFinal(s) >= 150) passCount++;
-        else needCount++;
-      });
-
-      if (statusChartInstance) statusChartInstance.destroy();
-
-      const bgEmpty = isDark ? '#334155' : '#e2e8f0';
-      const borderCanvas = isDark ? '#0f172a' : '#ffffff';
-      const labelColor = isDark ? '#94a3b8' : '#64748b';
-
-      statusChartInstance = new Chart(ctxStatus, {
-        type: 'doughnut',
-        data: {
-          labels: ['Lolos Auto-A (≥150)', 'Belum Mencapai Target (<150)'],
-          datasets: [{
-            data: [passCount, needCount],
-            backgroundColor: ['#10b981', bgEmpty],
-            borderWidth: 2,
-            borderColor: borderCanvas,
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                color: labelColor,
-                font: { family: 'Plus Jakarta Sans', size: 10 }
-              }
-            }
-          },
-          cutout: '72%'
-        }
-      });
     }
 
     function openModal(absen) {
@@ -1239,18 +1032,18 @@
       const accum = getAccumulated(s);
       const surplus = getSurplus(s);
 
-      document.getElementById('modal-absen').textContent = `Nomor Absen #${s.absen}`;
+      document.getElementById('modal-absen').textContent = `Nomor Urut Absen: #${s.absen}`;
       document.getElementById('modal-nama').textContent = s.nama;
-      document.getElementById('modal-nim').textContent = `NIM: ${s.nim} | Jenis Kelamin: ${s.jk === 'L' ? 'Laki-laki' : 'Perempuan'}`;
+      document.getElementById('modal-nim').textContent = `NIM: ${s.nim} &bull; Jenis Kelamin: ${s.jk === 'L' ? 'Laki-laki' : 'Perempuan'}`;
 
       document.getElementById('modal-stats').innerHTML = `
-        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-          <span class="text-slate-500 dark:text-slate-400 text-[11px] block">Akumulasi Murni:</span>
-          <span class="text-lg font-bold font-mono text-slate-900 dark:text-white num-tabular">${accum} Poin</span>
+        <div class="p-3 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#080c13]">
+          <span class="text-slate-500 text-[11px] block">Akumulasi Challenge Murni:</span>
+          <span class="text-base font-bold font-mono text-slate-900 dark:text-white num-tabular">${accum} Poin</span>
         </div>
-        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
-          <span class="text-slate-500 dark:text-slate-400 text-[11px] block">Total Poin Akhir:</span>
-          <span class="text-lg font-bold font-mono text-blue-600 dark:text-blue-400 num-tabular">${final} Poin</span>
+        <div class="p-3 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#080c13]">
+          <span class="text-slate-500 text-[11px] block">Total Capaian Akhir:</span>
+          <span class="text-base font-bold font-mono text-blue-700 dark:text-blue-400 num-tabular">${final} Poin</span>
         </div>
       `;
 
@@ -1259,26 +1052,32 @@
       breakdown.innerHTML = '';
       s.p.forEach((val, idx) => {
         const box = document.createElement('div');
-        box.className = "p-2 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800";
+        box.className = "p-2 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#080c13]";
         box.innerHTML = `
-          <span class="text-[10px] text-slate-500 block">${meetLabels[idx]}</span>
-          <span class="text-xs font-mono font-bold ${idx === 3 ? 'text-slate-400 dark:text-slate-600' : 'text-slate-800 dark:text-slate-200'}">${idx === 3 && val === 0 ? '-' : val}</span>
+          <span class="text-[10px] text-slate-400 block">${meetLabels[idx]}</span>
+          <span class="text-xs font-bold ${idx === 3 ? 'text-slate-400' : 'text-slate-900 dark:text-white'}">${idx === 3 && val === 0 ? '-' : val}</span>
         `;
         breakdown.appendChild(box);
       });
 
       const statusBox = document.getElementById('modal-status-box');
       if (final >= 200) {
-        statusBox.className = "p-3 rounded-xl text-xs font-medium bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800";
-        statusBox.innerHTML = `🌟 <strong>Lolos Tier 2 (Prestasi Tertinggi)</strong><br>Berhak atas Nilai Akhir Mutlak A, Bebas Tugas Projek Akhir & Bebas Presentasi, serta Jatah Dispensasi Presensi 2 Pertemuan (2x).`;
+        statusBox.className = "p-3 rounded text-xs leading-relaxed border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200";
+        statusBox.innerHTML = `<strong>Kualifikasi Kehormatan (Tier 2)</strong>: Mahasiswa telah melampaui 200 poin. Berhak atas Nilai Akhir Mutlak A, Bebas Tugas Projek Akhir & Presentasi, serta Jatah Dispensasi Presensi 2 Pertemuan.`;
       } else if (final >= 150) {
-        statusBox.className = "p-3 rounded-xl text-xs font-medium bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800";
-        statusBox.innerHTML = `✅ <strong>Lolos Tier 1 (Kualifikasi Auto-A)</strong><br>Berhak atas Nilai Akhir Mutlak A, Bebas Tugas Projek Akhir & Bebas Presentasi, serta Jatah Dispensasi Presensi 1 Pertemuan (1x). Surplus: +${surplus} Poin sah ditransfer.`;
+        statusBox.className = "p-3 rounded text-xs leading-relaxed border border-emerald-300 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-200";
+        statusBox.innerHTML = `<strong>Kualifikasi Nilai Mutlak A (Tier 1)</strong>: Memenuhi syarat nilai A dan bebas projek semester. Hak dispensasi presensi 1 pertemuan. Surplus yang dapat dialokasikan: <strong>${surplus} Poin</strong>.`;
       } else {
         const need = 150 - final;
-        statusBox.className = "p-3 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-950 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800";
-        statusBox.innerHTML = `⏳ <strong>Menuju Target Kualifikasi</strong><br>Membutuhkan <strong>${need} poin</strong> tambahan untuk mengunci nilai mutlak A dan hak dispensasi kuliah.`;
+        statusBox.className = "p-3 rounded text-xs leading-relaxed border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#080c13] text-slate-700 dark:text-slate-300";
+        statusBox.innerHTML = `<strong>Dalam Proses Kualifikasi</strong>: Membutuhkan <strong>${need} poin</strong> tambahan untuk mengunci nilai mutlak A dan bebas tugas projek.`;
       }
+
+      const modalTransferBtn = document.getElementById('modal-transfer-btn');
+      modalTransferBtn.onclick = () => {
+        closeModal();
+        quickActionTransfer(s.absen);
+      };
 
       document.getElementById('student-modal').classList.remove('hidden');
     }
@@ -1289,7 +1088,7 @@
 
     function exportToCSV() {
       let csvContent = "data:text/csv;charset=utf-8,";
-      csvContent += "Rank,No Absen,NIM,Nama Mahasiswa,JK,P2,P3,P4,P5 Pengganti,P6,P7,Total Akumulasi,Transfer Keluar,Transfer Masuk,Total Poin Akhir,Surplus,Status Kelulusan\n";
+      csvContent += "No,No Absen,NIM,Nama Mahasiswa,JK,P2,P3,P4,P5 Pengganti,P6,P7,Akumulasi,Trf Keluar,Trf Masuk,Total Poin Akhir,Surplus,Status Kelulusan\n";
 
       const sorted = [...students].sort((a, b) => getFinal(b) - getFinal(a));
       sorted.forEach((s, idx) => {
