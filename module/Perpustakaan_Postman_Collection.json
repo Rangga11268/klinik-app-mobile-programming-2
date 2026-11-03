@@ -1,16 +1,37 @@
 {
 	"info": {
-		"_postman_id": "perpus-app-darell-37",
+		"_postman_id": "perpus-app-darell-37-v2",
 		"name": "Perpustakaan API - Postman Collection (Darell - Absen 37)",
-		"description": "Koleksi Postman Lengkap Tantangan MockAPI Perpustakaan (Anggota & Buku) untuk Dosen Pak Cep Adiwiharja.",
+		"description": "Koleksi Postman Resmi Tantangan API Perpustakaan (Anggota 40 Mahasiswa & Buku) untuk Uji Coba REST API MockAPI (Pak Cep Adiwiharja - Mobile Programming II).\nDilengkapi dengan Script Pengujian Otomatis (Status Code, Response Time, & Data Validation).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "1. Anggota",
+			"name": "1. Resource Anggota",
+			"description": "Pengujian CRUD Endpoint Anggota Perpustakaan (40 Mahasiswa Kelas 19.5A.05)",
 			"item": [
 				{
-					"name": "GET All Anggota",
+					"name": "1. GET All Anggota (40 Mahasiswa Kelas)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Format response adalah Array JSON\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"pm.test(\"Response time di bawah 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -27,12 +48,30 @@
 							"path": [
 								"anggota"
 							]
-						}
+						},
+						"description": "Mengambil seluruh 40 daftar anggota perpustakaan yang berisi seluruh mahasiswa kelas 19.5A.05."
 					},
 					"response": []
 				},
 				{
-					"name": "GET Detail Anggota by ID",
+					"name": "2. GET Detail Anggota (Absen 37 - Darell)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Data anggota berhasil ditemukan\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('nama_anggota');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -42,20 +81,38 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/anggota/1",
+							"raw": "{{base_url}}/anggota/37",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"anggota",
-								"1"
+								"37"
 							]
-						}
+						},
+						"description": "Mengambil detail data anggota spesifik berdasarkan ID Anggota (Contoh: ID 37 - Darell Rangga Putra Rachman)."
 					},
 					"response": []
 				},
 				{
-					"name": "POST Create Anggota",
+					"name": "3. POST Create Anggota Baru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 201 Created\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"ID anggota baru ter-generate\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id_anggota');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -66,7 +123,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"nama_anggota\": \"Darell Rangga Putra Rachman\",\n  \"jenis_kelamin\": \"Laki-laki\",\n  \"alamat\": \"Jl. Salemba Raya No. 37, Jakarta Pusat\",\n  \"no_telepon\": \"081298765437\",\n  \"email\": \"darell.absen37@perpus.ac.id\",\n  \"tanggal_daftar\": \"2026-11-03T08:00:00.000Z\",\n  \"status\": \"Aktif\"\n}"
+							"raw": "{\n  \"nama_anggota\": \"MAHASISWA BARU PERPUS\",\n  \"jenis_kelamin\": \"Laki-laki\",\n  \"alamat\": \"Jl. Kramat Raya No. 98, Jakarta Pusat\",\n  \"no_telepon\": \"081299998888\",\n  \"email\": \"mhs.baru@perpus.ac.id\",\n  \"tanggal_daftar\": \"2026-11-03T10:00:00.000Z\",\n  \"status\": \"Aktif\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/anggota",
@@ -76,12 +133,30 @@
 							"path": [
 								"anggota"
 							]
-						}
+						},
+						"description": "Menambahkan data anggota perpustakaan baru ke dalam MockAPI."
 					},
 					"response": []
 				},
 				{
-					"name": "PUT Update Anggota",
+					"name": "4. PUT Update Anggota",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Data berhasil di-update\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"Aktif\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -92,46 +167,82 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"nama_anggota\": \"Darell Rangga Putra Rachman (Absen 37)\",\n  \"jenis_kelamin\": \"Laki-laki\",\n  \"alamat\": \"Jl. Kramat Raya No. 37, Senen, Jakarta Pusat\",\n  \"no_telepon\": \"081298765437\",\n  \"email\": \"darell.absen37@perpus.ac.id\",\n  \"status\": \"Aktif\"\n}"
+							"raw": "{\n  \"nama_anggota\": \"DARELL RANGGA PUTRA RACHMAN\",\n  \"jenis_kelamin\": \"Laki-laki\",\n  \"alamat\": \"Jl. Salemba Raya No. 37, Senen, Jakarta Pusat\",\n  \"no_telepon\": \"081237765432\",\n  \"email\": \"darell.rangga.p@perpus.ac.id\",\n  \"status\": \"Aktif\"\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/anggota/1",
+							"raw": "{{base_url}}/anggota/37",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"anggota",
-								"1"
+								"37"
 							]
-						}
+						},
+						"description": "Mengubah data anggota yang sudah ada (contoh: update alamat & kontak Absen 37)."
 					},
 					"response": []
 				},
 				{
-					"name": "DELETE Anggota",
+					"name": "5. DELETE Anggota",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/anggota/1",
+							"raw": "{{base_url}}/anggota/41",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"anggota",
-								"1"
+								"41"
 							]
-						}
+						},
+						"description": "Menghapus data anggota berdasarkan ID."
 					},
 					"response": []
 				}
 			]
 		},
 		{
-			"name": "2. Buku",
+			"name": "2. Resource Buku",
+			"description": "Pengujian CRUD Endpoint Buku Perpustakaan",
 			"item": [
 				{
-					"name": "GET All Buku",
+					"name": "1. GET All Buku (10 Buku Perpustakaan)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Format response adalah Array JSON\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"pm.test(\"Response time di bawah 2000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -148,12 +259,31 @@
 							"path": [
 								"buku"
 							]
-						}
+						},
+						"description": "Mengambil seluruh 10 daftar koleksi buku perpustakaan."
 					},
 					"response": []
 				},
 				{
-					"name": "GET Detail Buku by ID",
+					"name": "2. GET Detail Buku by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Data buku memiliki judul dan isbn\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('judul_buku');",
+									"    pm.expect(jsonData).to.have.property('isbn');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -171,12 +301,30 @@
 								"buku",
 								"1"
 							]
-						}
+						},
+						"description": "Mengambil detail spesifik buku berdasarkan ID Buku (Contoh: ID 1 - Pemrograman Mobile dengan Flutter & Dart)."
 					},
 					"response": []
 				},
 				{
-					"name": "POST Create Buku",
+					"name": "3. POST Create Buku Baru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 201 Created\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Buku baru berhasil tersimpan\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -187,7 +335,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"isbn\": \"978-602-03-8888-1\",\n  \"judul_buku\": \"Pemrograman Mobile dengan Flutter & Dart\",\n  \"id_kategori\": 1,\n  \"id_penerbit\": 1,\n  \"tahun_terbit\": \"2024-01-15T00:00:00.000Z\",\n  \"deskripsi\": \"Buku panduan praktis dan fundamental membuat aplikasi mobile modern dengan Flutter.\"\n}"
+							"raw": "{\n  \"isbn\": \"978-602-03-9999-9\",\n  \"judul_buku\": \"Klinik App & Mobile Architecture\",\n  \"id_kategori\": 1,\n  \"id_penerbit\": 1,\n  \"tahun_terbit\": \"2026-11-03T00:00:00.000Z\",\n  \"deskripsi\": \"Buku arsitektur aplikasi mobile berbasis Flutter, Dio, dan REST API MockAPI.\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/buku",
@@ -197,12 +345,30 @@
 							"path": [
 								"buku"
 							]
-						}
+						},
+						"description": "Menambahkan koleksi buku baru ke database perpustakaan."
 					},
 					"response": []
 				},
 				{
-					"name": "PUT Update Buku",
+					"name": "4. PUT Update Buku",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Judul buku ter-update\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.judul_buku).to.include(\"Edisi Revisi\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -213,7 +379,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"isbn\": \"978-602-03-8888-1\",\n  \"judul_buku\": \"Pemrograman Mobile Flutter & REST API (Revisi 2026)\",\n  \"id_kategori\": 1,\n  \"id_penerbit\": 1,\n  \"tahun_terbit\": \"2024-01-15T00:00:00.000Z\",\n  \"deskripsi\": \"Edisi revisi terbaru pengintegrasian REST API dan MockAPI.\"\n}"
+							"raw": "{\n  \"isbn\": \"978-602-03-8801-1\",\n  \"judul_buku\": \"Pemrograman Mobile dengan Flutter & Dart (Edisi Revisi 2026)\",\n  \"id_kategori\": 1,\n  \"id_penerbit\": 1,\n  \"tahun_terbit\": \"2024-01-15T00:00:00.000Z\",\n  \"deskripsi\": \"Edisi revisi terbaru materi kuliah Mobile Programming 2 UBSI.\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/buku/1",
@@ -224,25 +390,40 @@
 								"buku",
 								"1"
 							]
-						}
+						},
+						"description": "Memperbarui informasi data buku berdasarkan ID."
 					},
 					"response": []
 				},
 				{
-					"name": "DELETE Buku",
+					"name": "5. DELETE Buku",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/buku/1",
+							"raw": "{{base_url}}/buku/11",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"buku",
-								"1"
+								"11"
 							]
-						}
+						},
+						"description": "Menghapus data buku dari sistem perpustakaan."
 					},
 					"response": []
 				}
