@@ -307,21 +307,67 @@
           <form id="transfer-form" onsubmit="handleTransfer(event)" class="space-y-4">
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <!-- Sender (From) -->
-              <div>
+              <!-- Sender (From) with Mini Search -->
+              <div class="relative" id="custom-select-from-container">
                 <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Pengirim (Memiliki Surplus >150):</label>
-                <select id="transfer-from" onchange="onSenderChange()" class="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 p-2.5">
-                  <!-- Populated by JS -->
-                </select>
+                
+                <button type="button" id="select-from-trigger" onclick="toggleSelectDropdown('from')" class="w-full text-left text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 p-2.5 flex items-center justify-between transition-colors shadow-sm">
+                  <span id="select-from-label" class="truncate font-medium text-slate-500 dark:text-slate-400">
+                    -- Pilih Mahasiswa Pengirim --
+                  </span>
+                  <svg class="w-4 h-4 text-slate-400 transition-transform duration-200 flex-shrink-0 ml-1.5" id="select-from-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+                <input type="hidden" id="transfer-from" value="">
+
+                <!-- Dropdown Popover with Mini Search -->
+                <div id="select-from-dropdown" class="hidden absolute left-0 right-0 top-full mt-1.5 z-30 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden text-xs">
+                  <div class="p-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+                    <div class="relative">
+                      <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                      </svg>
+                      <input type="text" id="select-from-search" oninput="filterSelectOptions('from')" placeholder="Cari nama, NIM, atau absen..." class="w-full pl-8 pr-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 text-xs">
+                    </div>
+                  </div>
+                  <ul id="select-from-options" class="max-h-52 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/60 py-1">
+                    <!-- Populated by JS -->
+                  </ul>
+                </div>
+
                 <p id="sender-info" class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Pilih mahasiswa pengirim.</p>
               </div>
 
-              <!-- Receiver (To) -->
-              <div>
+              <!-- Receiver (To) with Mini Search -->
+              <div class="relative" id="custom-select-to-container">
                 <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Penerima Poin:</label>
-                <select id="transfer-to" onchange="onReceiverChange()" class="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 p-2.5">
-                  <!-- Populated by JS -->
-                </select>
+                
+                <button type="button" id="select-to-trigger" onclick="toggleSelectDropdown('to')" class="w-full text-left text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 p-2.5 flex items-center justify-between transition-colors shadow-sm">
+                  <span id="select-to-label" class="truncate font-medium text-slate-500 dark:text-slate-400">
+                    -- Pilih Mahasiswa Penerima --
+                  </span>
+                  <svg class="w-4 h-4 text-slate-400 transition-transform duration-200 flex-shrink-0 ml-1.5" id="select-to-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+                <input type="hidden" id="transfer-to" value="">
+
+                <!-- Dropdown Popover with Mini Search -->
+                <div id="select-to-dropdown" class="hidden absolute left-0 right-0 top-full mt-1.5 z-30 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl overflow-hidden text-xs">
+                  <div class="p-2 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+                    <div class="relative">
+                      <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                      </svg>
+                      <input type="text" id="select-to-search" oninput="filterSelectOptions('to')" placeholder="Cari nama, NIM, atau absen..." class="w-full pl-8 pr-2.5 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 text-xs">
+                    </div>
+                  </div>
+                  <ul id="select-to-options" class="max-h-52 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/60 py-1">
+                    <!-- Populated by JS -->
+                  </ul>
+                </div>
+
                 <p id="receiver-info" class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Pilih mahasiswa penerima.</p>
               </div>
             </div>
@@ -624,7 +670,7 @@
       renderCharts();
       renderLogs();
 
-      // Keyboard shortcut: '/' to search
+      // Keyboard shortcuts
       window.addEventListener('keydown', (e) => {
         if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT') {
           e.preventDefault();
@@ -632,6 +678,16 @@
         }
         if (e.key === 'Escape') {
           closeModal();
+          closeAllSelectDropdowns();
+        }
+      });
+
+      // Outside click to close custom select dropdowns
+      document.addEventListener('click', (e) => {
+        const fromContainer = document.getElementById('custom-select-from-container');
+        const toContainer = document.getElementById('custom-select-to-container');
+        if (fromContainer && !fromContainer.contains(e.target) && toContainer && !toContainer.contains(e.target)) {
+          closeAllSelectDropdowns();
         }
       });
     }
@@ -850,36 +906,144 @@
       });
     }
 
-    function populateSelects() {
-      const fromSel = document.getElementById('transfer-from');
-      const toSel = document.getElementById('transfer-to');
+    function toggleSelectDropdown(type) {
+      const isFrom = type === 'from';
+      const targetDropdown = document.getElementById(isFrom ? 'select-from-dropdown' : 'select-to-dropdown');
+      const targetArrow = document.getElementById(isFrom ? 'select-from-arrow' : 'select-to-arrow');
+      const otherDropdown = document.getElementById(isFrom ? 'select-to-dropdown' : 'select-from-dropdown');
+      const otherArrow = document.getElementById(isFrom ? 'select-to-arrow' : 'select-from-arrow');
 
-      fromSel.innerHTML = '<option value="">-- Pilih Mahasiswa Pengirim --</option>';
-      toSel.innerHTML = '<option value="">-- Pilih Mahasiswa Penerima --</option>';
+      if (otherDropdown) {
+        otherDropdown.classList.add('hidden');
+        if (otherArrow) otherArrow.classList.remove('rotate-180');
+      }
 
-      const byAbsen = [...students].sort((a, b) => a.absen - b.absen);
+      const isHidden = targetDropdown.classList.toggle('hidden');
+      if (targetArrow) {
+        targetArrow.classList.toggle('rotate-180', !isHidden);
+      }
 
-      byAbsen.forEach(s => {
-        const surplus = getSurplus(s);
-        const final = getFinal(s);
+      if (!isHidden) {
+        const searchInput = document.getElementById(isFrom ? 'select-from-search' : 'select-to-search');
+        searchInput.value = '';
+        filterSelectOptions(type);
+        setTimeout(() => searchInput.focus(), 60);
+      }
+    }
 
-        if (surplus > 0) {
-          const opt = document.createElement('option');
-          opt.value = s.absen;
-          opt.textContent = `Absen ${s.absen}: ${s.nama} (+${surplus} Surplus)`;
-          fromSel.appendChild(opt);
-        }
-
-        const opt2 = document.createElement('option');
-        opt2.value = s.absen;
-        opt2.textContent = `Absen ${s.absen}: ${s.nama} (${final} Poin)`;
-        toSel.appendChild(opt2);
+    function closeAllSelectDropdowns() {
+      ['from', 'to'].forEach(type => {
+        const d = document.getElementById(`select-${type}-dropdown`);
+        const a = document.getElementById(`select-${type}-arrow`);
+        if (d) d.classList.add('hidden');
+        if (a) a.classList.remove('rotate-180');
       });
     }
 
+    function filterSelectOptions(type) {
+      const query = document.getElementById(`select-${type}-search`).value.toLowerCase().trim();
+      const listEl = document.getElementById(`select-${type}-options`);
+      const activeVal = document.getElementById(type === 'from' ? 'transfer-from' : 'transfer-to').value;
+
+      const byAbsen = [...students].sort((a, b) => a.absen - b.absen);
+      let available = byAbsen;
+      if (type === 'from') {
+        available = byAbsen.filter(s => getSurplus(s) > 0);
+      }
+
+      const filtered = available.filter(s => {
+        return s.nama.toLowerCase().includes(query) ||
+               s.nim.toLowerCase().includes(query) ||
+               String(s.absen).includes(query);
+      });
+
+      listEl.innerHTML = '';
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = `<li class="p-3 text-center text-xs text-slate-400">Tidak ada mahasiswa yang cocok</li>`;
+        return;
+      }
+
+      filtered.forEach(s => {
+        const isSelected = activeVal == s.absen;
+        const surplus = getSurplus(s);
+        const final = getFinal(s);
+
+        const li = document.createElement('li');
+        li.className = `px-3 py-2 cursor-pointer flex items-center justify-between text-xs transition-colors ${
+          isSelected 
+            ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 font-bold' 
+            : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200'
+        }`;
+        li.onclick = (e) => {
+          e.stopPropagation();
+          selectOption(type, s.absen);
+        };
+
+        let metaBadge = '';
+        if (type === 'from') {
+          metaBadge = `<span class="font-mono text-emerald-600 dark:text-emerald-400 font-bold">+${surplus} Surplus</span>`;
+        } else {
+          const need = final < 150 ? 150 - final : 0;
+          metaBadge = need > 0 
+            ? `<span class="font-mono text-slate-500 dark:text-slate-400">${final} Poin <span class="text-rose-500 font-medium">(-${need})</span></span>`
+            : `<span class="font-mono text-emerald-600 dark:text-emerald-400 font-bold">${final} Poin (Auto-A)</span>`;
+        }
+
+        li.innerHTML = `
+          <div class="flex items-center space-x-2 truncate mr-2">
+            <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex-shrink-0">#${s.absen}</span>
+            <div class="truncate">
+              <span class="font-medium text-slate-900 dark:text-white block truncate">${s.nama}</span>
+              <span class="font-mono text-[10px] text-slate-400 block">${s.nim}</span>
+            </div>
+          </div>
+          <div class="flex-shrink-0 text-right">
+            ${metaBadge}
+          </div>
+        `;
+        listEl.appendChild(li);
+      });
+    }
+
+    function selectOption(type, absen) {
+      const hiddenInput = document.getElementById(type === 'from' ? 'transfer-from' : 'transfer-to');
+      hiddenInput.value = absen;
+
+      const s = students.find(item => item.absen == absen);
+      const labelSpan = document.getElementById(type === 'from' ? 'select-from-label' : 'select-to-label');
+
+      if (s) {
+        if (type === 'from') {
+          const surplus = getSurplus(s);
+          labelSpan.className = "truncate font-medium text-slate-900 dark:text-white";
+          labelSpan.innerHTML = `<span class="font-bold">Absen #${s.absen}: ${s.nama}</span> <span class="font-mono text-emerald-600 dark:text-emerald-400 font-semibold">(+${surplus} Surplus)</span>`;
+        } else {
+          const final = getFinal(s);
+          labelSpan.className = "truncate font-medium text-slate-900 dark:text-white";
+          labelSpan.innerHTML = `<span class="font-bold">Absen #${s.absen}: ${s.nama}</span> <span class="font-mono text-slate-500 dark:text-slate-400">(${final} Poin)</span>`;
+        }
+      } else {
+        labelSpan.className = "truncate font-medium text-slate-500 dark:text-slate-400";
+        labelSpan.textContent = type === 'from' ? '-- Pilih Mahasiswa Pengirim --' : '-- Pilih Mahasiswa Penerima --';
+      }
+
+      closeAllSelectDropdowns();
+
+      if (type === 'from') {
+        onSenderChange();
+      } else {
+        onReceiverChange();
+      }
+    }
+
+    function populateSelects() {
+      filterSelectOptions('from');
+      filterSelectOptions('to');
+    }
+
     function quickSelectTransfer(absen) {
-      document.getElementById('transfer-from').value = absen;
-      onSenderChange();
+      selectOption('from', absen);
       document.getElementById('transfer-form').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -959,6 +1123,16 @@
 
       // Reset form
       document.getElementById('transfer-form').reset();
+      document.getElementById('transfer-from').value = "";
+      document.getElementById('transfer-to').value = "";
+      document.getElementById('select-from-label').textContent = "-- Pilih Mahasiswa Pengirim --";
+      document.getElementById('select-from-label').className = "truncate font-medium text-slate-500 dark:text-slate-400";
+      document.getElementById('select-to-label').textContent = "-- Pilih Mahasiswa Penerima --";
+      document.getElementById('select-to-label').className = "truncate font-medium text-slate-500 dark:text-slate-400";
+      document.getElementById('sender-info').textContent = "Pilih mahasiswa pengirim.";
+      document.getElementById('receiver-info').textContent = "Pilih mahasiswa penerima.";
+      document.getElementById('transfer-amount').max = 100;
+      document.getElementById('transfer-amount').placeholder = "Misal: 5";
 
       // Reactive update
       renderKPIs();
