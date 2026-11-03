@@ -1,0 +1,407 @@
+{
+	"info": {
+		"_postman_id": "klinik-app-darell-37",
+		"name": "Klinik App - Postman Collection (Darell - Absen 37)",
+		"description": "Koleksi Postman Lengkap untuk Pengujian REST API MockAPI Klinik App (Poli, Pasien, Pegawai). Siap di-import langsung ke Postman.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Poli",
+			"item": [
+				{
+					"name": "GET All Poli",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/poli",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"poli"
+							]
+						},
+						"description": "Mengambil semua data poli klinik"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Poli by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/poli/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"poli",
+								"1"
+							]
+						},
+						"description": "Mengambil detail poli berdasarkan ID (contoh: ID 1)"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Poli",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_poli\": \"POLI GIGI DARELL\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/poli",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"poli"
+							]
+						},
+						"description": "Menambahkan data poli baru"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Poli",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nama_poli\": \"POLI MATA & BEDAH\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/poli/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"poli",
+								"1"
+							]
+						},
+						"description": "Mengubah data poli berdasarkan ID"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Poli",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/poli/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"poli",
+								"1"
+							]
+						},
+						"description": "Menghapus data poli berdasarkan ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Pasien (Fokus Absen 37)",
+			"item": [
+				{
+					"name": "GET All Pasien",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pasien",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pasien"
+							]
+						},
+						"description": "Mengambil semua daftar pasien"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Pasien by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pasien/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pasien",
+								"1"
+							]
+						},
+						"description": "Mengambil detail pasien berdasarkan ID"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Pasien",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomor_rm\": \"RM-037\",\n    \"nama\": \"Darell Rangga\",\n    \"tanggal_lahir\": \"2004-05-15\",\n    \"nomor_telepon\": \"081234567890\",\n    \"alamat\": \"Jl. Merdeka No. 37 Jakarta\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pasien",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pasien"
+							]
+						},
+						"description": "Menambahkan data pasien baru (Absen 37)"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Pasien",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomor_rm\": \"RM-037-REV\",\n    \"nama\": \"Darell Rangga Putra Rachman\",\n    \"tanggal_lahir\": \"2004-05-15\",\n    \"nomor_telepon\": \"081299887766\",\n    \"alamat\": \"Jl. Salemba Raya No. 37 Jakarta Pusat\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pasien/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pasien",
+								"1"
+							]
+						},
+						"description": "Memperbarui data pasien berdasarkan ID"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Pasien",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pasien/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pasien",
+								"1"
+							]
+						},
+						"description": "Menghapus data pasien berdasarkan ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Pegawai",
+			"item": [
+				{
+					"name": "GET All Pegawai",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pegawai",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pegawai"
+							]
+						},
+						"description": "Mengambil semua daftar pegawai"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Pegawai by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pegawai/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pegawai",
+								"1"
+							]
+						},
+						"description": "Mengambil detail pegawai berdasarkan ID"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Pegawai",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nip\": \"19241009\",\n    \"nama\": \"dr. Darell Sp.A\",\n    \"tanggal_lahir\": \"2000-01-01\",\n    \"nomor_telepon\": \"081234567890\",\n    \"email\": \"darell@klinik.ac.id\",\n    \"password\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pegawai",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pegawai"
+							]
+						},
+						"description": "Menambahkan data pegawai baru"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Pegawai",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nip\": \"19241009\",\n    \"nama\": \"dr. Darell Rangga Putra Rachman Sp.A\",\n    \"tanggal_lahir\": \"2000-01-01\",\n    \"nomor_telepon\": \"081234567890\",\n    \"email\": \"darell.update@klinik.ac.id\",\n    \"password\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pegawai/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pegawai",
+								"1"
+							]
+						},
+						"description": "Mengubah data pegawai berdasarkan ID"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Pegawai",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pegawai/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pegawai",
+								"1"
+							]
+						},
+						"description": "Menghapus data pegawai berdasarkan ID"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://6ad6b0c6f71f154ac486f007.mockapi.io/api/v1",
+			"type": "string"
+		}
+	]
+}
