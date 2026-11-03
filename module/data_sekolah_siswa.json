@@ -1,0 +1,42 @@
+[
+  {
+    "id_siswa": "1",
+    "nis": "202610037",
+    "nama_siswa": "DARELL RANGGA PUTRA RACHMAN",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2004-05-15",
+    "alamat": "Jl. Salemba Raya No. 37, Senen, Jakarta Pusat"
+  },
+  {
+    "id_siswa": "2",
+    "nis": "202610001",
+    "nama_siswa": "RIFKI WAHYU",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2004-01-10",
+    "alamat": "Jl. Kramat Raya No. 1, Jakarta Pusat"
+  },
+  {
+    "id_siswa": "3",
+    "nis": "202610004",
+    "nama_siswa": "NASVIRA MELANI PUTRI",
+    "jenis_kelamin": "P",
+    "tanggal_lahir": "2004-08-22",
+    "alamat": "Jl. Margonda Raya No. 12, Depok"
+  },
+  {
+    "id_siswa": "4",
+    "nis": "202610039",
+    "nama_siswa": "TIRTA ADI MULYA",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2004-03-30",
+    "alamat": "Jl. Pemuda No. 39, Rawamangun, Jakarta Timur"
+  },
+  {
+    "id_siswa": "5",
+    "nis": "202610040",
+    "nama_siswa": "WAHYU NOVIANTO",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2004-11-12",
+    "alamat": "Jl. Daan Mogot No. 40, Jakarta Barat"
+  }
+]

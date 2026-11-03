@@ -1,0 +1,42 @@
+[
+  {
+    "id_guru": "1",
+    "nip": "198001012005011001",
+    "nama_guru": "Cep Adiwiharja, M.Kom",
+    "keilmuan": "Mobile Programming",
+    "no_hp": "081234567891",
+    "Pendidikan": "S2 Ilmu Komputer"
+  },
+  {
+    "id_guru": "2",
+    "nip": "198205122008022002",
+    "nama_guru": "Dr. Deden Setiawan, M.T",
+    "keilmuan": "Basis Data & Cloud",
+    "no_hp": "081398765432",
+    "Pendidikan": "S3 Informatika"
+  },
+  {
+    "id_guru": "3",
+    "nip": "198511202010011003",
+    "nama_guru": "Ir. Budi Hartono, M.Cs",
+    "keilmuan": "Rekayasa Web & API",
+    "no_hp": "085678901234",
+    "Pendidikan": "S2 Sistem Informasi"
+  },
+  {
+    "id_guru": "4",
+    "nip": "198803152014022004",
+    "nama_guru": "Siti Rahmawati, S.Kom, M.M",
+    "keilmuan": "UI/UX & Multimedia",
+    "no_hp": "087812345678",
+    "Pendidikan": "S2 Manajemen Sistem"
+  },
+  {
+    "id_guru": "5",
+    "nip": "199009082018011005",
+    "nama_guru": "Hendra Pratama, M.Kom",
+    "keilmuan": "Jaringan Komputer",
+    "no_hp": "089611223344",
+    "Pendidikan": "S2 Teknik Informatika"
+  }
+]

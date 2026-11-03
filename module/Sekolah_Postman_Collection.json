@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "sekolah-api-darell-37",
+		"name": "Database Sekolah API - Postman Collection (Darell - Absen 37 Ganjil)",
+		"description": "Koleksi Postman Resmi Challenge Database Sekolah (Pak Cep Adiwiharja - Mobile Programming II).\nAbsen 37 (GANJIL): Fokus Tabel Siswa & Tabel Kelas.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Tabel Siswa (Absen Ganjil)",
+			"item": [
+				{
+					"name": "GET All Siswa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Format response adalah Array\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/siswa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"siswa"
+							]
+						},
+						"description": "Mengambil seluruh 5 data siswa (Absen Ganjil)"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Siswa (Darell - Absen 37)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Data siswa berisi nama\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('nama_siswa');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/siswa/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"siswa",
+								"1"
+							]
+						},
+						"description": "Mengambil detail siswa berdasarkan ID"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Siswa Baru",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 201 Created\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nis\": \"202610099\",\n  \"nama_siswa\": \"SISWA BARU UBSI\",\n  \"jenis_kelamin\": \"L\",\n  \"tanggal_lahir\": \"2004-12-01\",\n  \"alamat\": \"Jl. Kramat 98 Jakarta\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/siswa",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"siswa"
+							]
+						},
+						"description": "Menambahkan data siswa baru ke database sekolah"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Siswa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nis\": \"202610037\",\n  \"nama_siswa\": \"DARELL RANGGA PUTRA RACHMAN\",\n  \"jenis_kelamin\": \"L\",\n  \"tanggal_lahir\": \"2004-05-15\",\n  \"alamat\": \"Jl. Salemba Raya No. 37, Senen, Jakarta Pusat (Update)\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/siswa/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"siswa",
+								"1"
+							]
+						},
+						"description": "Mengubah data siswa yang sudah ada"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Siswa",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/siswa/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"siswa",
+								"6"
+							]
+						},
+						"description": "Menghapus data siswa"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Tabel Kelas (Absen Ganjil)",
+			"item": [
+				{
+					"name": "GET All Kelas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code adalah 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/kelas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"kelas"
+							]
+						},
+						"description": "Mengambil seluruh data kelas"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Kelas by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/kelas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"kelas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Kelas Baru",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_kelas\": \"XII RPL 3\",\n  \"tingkat\": \"XII\",\n  \"id_guru\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/kelas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"kelas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Kelas",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nama_kelas\": \"XII RPL 1 Unggulan\",\n  \"tingkat\": \"XII\",\n  \"id_guru\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/kelas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"kelas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Kelas",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/kelas/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"kelas",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://6ae951e91a7b15aaa5101572.mockapi.io/api/v1",
+			"type": "string"
+		}
+	]
+}
