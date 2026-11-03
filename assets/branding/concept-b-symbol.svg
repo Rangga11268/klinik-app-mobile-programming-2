@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <title>Klinik Care Monogram K Logo</title>
+  <!-- Vertical Capsule Stem -->
+  <rect x="44" y="36" width="52" height="184" rx="26" fill="#0F172A"/>
+  <!-- Top Diagonal Capsule (Caring Arm) -->
+  <path fill="#0F172A" d="M110 148L174 66C181.8 56 195.8 54.2 205.8 62C215.8 69.8 217.6 83.8 209.8 93.8L156 162C150 169.6 138.8 171.2 131 165L110 148Z"/>
+  <!-- Bottom Diagonal Capsule (Support Arm) -->
+  <path fill="#0F172A" d="M128 122L178 184C185.8 193.8 199.8 195.4 209.6 187.6C219.4 179.8 221 165.8 213.2 156L176 110C170 102.4 158.8 101 151 107L128 122Z" transform="matrix(1 0 0 -1 0 326)"/>
+</svg>
