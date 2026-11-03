@@ -3,30 +3,30 @@
     "id_kelas": "1",
     "nama_kelas": "XII RPL 1",
     "tingkat": "XII",
-    "id_guru": 1
+    "id_guru": "GURU-001"
   },
   {
     "id_kelas": "2",
     "nama_kelas": "XII RPL 2",
     "tingkat": "XII",
-    "id_guru": 2
+    "id_guru": "GURU-002"
   },
   {
     "id_kelas": "3",
     "nama_kelas": "XI TKJ 1",
     "tingkat": "XI",
-    "id_guru": 1
+    "id_guru": "GURU-001"
   },
   {
     "id_kelas": "4",
     "nama_kelas": "X SI 1",
     "tingkat": "X",
-    "id_guru": 3
+    "id_guru": "GURU-003"
   },
   {
     "id_kelas": "5",
     "nama_kelas": "X SI 2",
     "tingkat": "X",
-    "id_guru": 2
+    "id_guru": "GURU-002"
   }
 ]
